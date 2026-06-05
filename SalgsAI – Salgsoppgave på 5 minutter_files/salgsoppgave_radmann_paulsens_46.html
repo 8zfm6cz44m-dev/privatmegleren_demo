@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html -->
+<html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salgsoppgave – Rådmann Paulsens gate 46</title>
+<link href="./css2(1)" rel="stylesheet">
+<style>
+:root {
+  --gold: #b5844a;
+  --gold-light: #d4a96a;
+  --dark: #1a1814;
+  --mid: #3d3a35;
+  --muted: #7a7570;
+  --warm-bg: #faf8f5;
+  --warm-bg2: #f5f1ec;
+  --border: #e8e2d9;
+  --tg0: #2d7a3a;
+  --tg1: #5a8a2e;
+  --tg2: #e8a020;
+  --tg3: #c0392b;
+  --blue-pm: #2b5c8a;
+  --blue-light: #e8f0f8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--warm-bg);
+  color: var(--dark);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* NAV */
+.topbar {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo-pm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-box {
+  width: 38px; height: 38px;
+  border: 1.5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: -0.5px;
+}
+.logo-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+.logo-sub {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: block;
+}
+.nav-tabs {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+.nav-tabs a {
+  display: block;
+  padding: 0 18px;
+  line-height: 64px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.nav-tabs a:hover { color: var(--dark); border-bottom-color: var(--gold); }
+.nav-cta {
+  background: var(--gold);
+  color: white !important;
+  padding: 10px 20px !important;
+  border-radius: 3px;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+  border-bottom: none !important;
+  font-size: 13px;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 520px;
+  background: linear-gradient(180deg, rgba(26,24,20,0.55) 0%, rgba(26,24,20,0.2) 60%, rgba(26,24,20,0.7) 100%),
+    url('https://images.finncdn.no/dynamic/1600w/2026/5/vertical-2/29/4/465/301/054_6128f1e5-9c56-4e63-b1d3-aedbe6495881.jpg') center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 48px 56px;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 54px;
+  font-weight: 300;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.hero-sub {
+  color: rgba(255,255,255,0.75);
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+.hero-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pill {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+.pill-icon { margin-right: 4px; }
+
+/* PRICE BAR */
+.price-bar {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 28px 56px;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+.price-main {
+  display: flex;
+  flex-direction: column;
+}
+.price-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.price-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--dark);
+  letter-spacing: -1px;
+}
+.price-divider {
+  width: 1px;
+  height: 52px;
+  background: var(--border);
+}
+.price-meta {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 32px;
+}
+.price-item {
+  display: flex;
+  flex-direction: column;
+}
+.price-item-label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.price-item-value {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--dark);
+  margin-top: 2px;
+}
+.price-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+}
+.btn-primary {
+  background: var(--gold);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background .2s;
+}
+.btn-primary:hover { background: #a07038; }
+.btn-outline {
+  background: white;
+  color: var(--dark);
+  padding: 12px 24px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.btn-outline:hover { border-color: var(--gold); }
+
+/* LAYOUT */
+.main-layout {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 56px 40px;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+}
+
+/* SECTION HEADINGS */
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.section-title-gold {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+/* KEY FACTS GRID */
+.key-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+.fact-cell {
+  background: white;
+  padding: 18px 20px;
+}
+.fact-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.fact-value {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--dark);
+}
+.fact-value-small {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-top: 2px;
+}
+
+/* DESCRIPTION */
+.description-text {
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: var(--mid);
+  margin-bottom: 32px;
+}
+.description-text p + p {
+  margin-top: 16px;
+}
+.description-text strong {
+  color: var(--dark);
+  font-weight: 500;
+}
+
+/* FEATURE TAGS */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+.feature-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--warm-bg2);
+  border: 1px solid var(--border);
+  padding: 7px 14px;
+  border-radius: 3px;
+  font-size: 13px;
+  color: var(--mid);
+}
+.feature-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* COMPARABLE SALES TABLE */
+.table-section {
+  margin-bottom: 40px;
+}
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.comp-table thead th {
+  background: var(--warm-bg2);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.comp-table tbody td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--mid);
+}
+.comp-table tbody tr:last-child td { border-bottom: none; }
+.comp-table tbody tr:hover td { background: var(--warm-bg2); }
+.comp-num {
+  width: 24px; height: 24px;
+  background: var(--blue-pm);
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+}
+.price-bold { font-weight: 600; color: var(--dark); }
+.td-right { text-align: right; }
+
+/* TILSTANDSRAPPORT */
+.tg-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.tg-card {
+  padding: 16px;
+  border-radius: 4px;
+  text-align: center;
+}
+.tg-card.tg0 { background: #e8f5e9; border: 1px solid #c8e6c9; }
+.tg-card.tg1 { background: #f1f8e9; border: 1px solid #dcedc8; }
+.tg-card.tg2 { background: #fff8e1; border: 1px solid #ffe082; }
+.tg-card.tgiu { background: #f3f3f3; border: 1px solid #e0e0e0; }
+.tg-card-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.tg0 .tg-card-number { color: var(--tg0); }
+.tg1 .tg-card-number { color: var(--tg1); }
+.tg2 .tg-card-number { color: var(--tg2); }
+.tgiu .tg-card-number { color: var(--muted); }
+.tg-card-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.tg0 .tg-card-label { color: var(--tg0); }
+.tg1 .tg-card-label { color: var(--tg1); }
+.tg2 .tg-card-label { color: var(--tg2); }
+.tgiu .tg-card-label { color: var(--muted); }
+.tg-card-desc {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.tg-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.tg-item:last-child { border-bottom: none; }
+.tg-badge {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+.badge-tg0 { background: #c8e6c9; color: var(--tg0); }
+.badge-tg1 { background: #dcedc8; color: var(--tg1); }
+.badge-tg2 { background: #ffe082; color: #a06000; }
+.badge-tgiu { background: #e0e0e0; color: #666; }
+.tg-item-content { flex: 1; }
+.tg-item-room {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.tg-item-title {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--dark);
+}
+.tg-item-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+/* MARKET STATS */
+.market-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.market-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px;
+}
+.market-card-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.market-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--blue-pm);
+  line-height: 1;
+}
+.market-unit {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.market-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ENERGY */
+.energy-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+.energy-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.energy-letter {
+  width: 32px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.energy-bar-fill {
+  height: 28px;
+  border-radius: 0 2px 2px 0;
+  transition: width .3s;
+}
+.energy-A { background: #2e7d32; }
+.energy-B { background: #558b2f; }
+.energy-C { background: #827717; }
+.energy-D { background: #ef6c00; }
+.energy-E { background: #c62828; }
+.energy-F { background: #880e4f; }
+.energy-G { background: #4a148c; }
+.energy-fill-A { background: #2e7d32; width: 80px; }
+.energy-fill-B { background: #558b2f; width: 140px; }
+.energy-fill-C { background: #827717; width: 200px; }
+.energy-fill-D { background: #ef6c00; width: 240px; }
+.energy-fill-E { background: #c62828; width: 260px; }
+.energy-fill-F { background: #880e4f; width: 270px; }
+.energy-fill-G { background: #4a148c; width: 280px; }
+.energy-selected {
+  border: 2px solid var(--dark);
+  font-weight: 700;
+}
+.energy-label-text {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* SIDEBAR */
+.sidebar { display: flex; flex-direction: column; gap: 24px; }
+.sidebar-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.sidebar-card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--warm-bg2);
+}
+.sidebar-card-body { padding: 20px; }
+
+.megler-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.megler-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: white;
+  flex-shrink: 0;
+}
+.megler-name {
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--dark);
+}
+.megler-role {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 16px;
+}
+.info-row:last-child { border-bottom: none; }
+.info-key {
+  font-size: 13px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.info-val {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dark);
+  text-align: right;
+}
+
+.costs-total {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 2px solid var(--dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.costs-total-label { font-weight: 500; font-size: 14px; }
+.costs-total-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--dark);
+}
+
+/* NEIGHBORHOOD */
+.neighborhood-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.nb-category {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px;
+}
+.nb-category-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nb-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.nb-item:last-child { border-bottom: none; }
+.nb-name { color: var(--dark); }
+.nb-dist {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* SCORES */
+.score-row {
+  margin-bottom: 12px;
+}
+.score-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.score-label { font-size: 13px; color: var(--mid); }
+.score-value { font-size: 13px; font-weight: 600; color: var(--dark); }
+.score-bar-bg {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+}
+
+/* SECTION SPACER */
+.content-section { margin-bottom: 48px; }
+
+/* FOOTER */
+.salgsoppgave-footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.5);
+  padding: 40px 56px;
+  font-size: 12px;
+  line-height: 1.7;
+  margin-top: 40px;
+}
+.footer-grid {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 32px;
+}
+.footer-col-title {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 12px;
+}
+.footer-bottom {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+
+/* NOTIFICATION BANNER */
+.ai-banner {
+  background: linear-gradient(135deg, #f0f4ff, #e8f0fb);
+  border: 1px solid #c8d8f0;
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--blue-pm);
+}
+.ai-banner-icon {
+  width: 20px; height: 20px;
+  background: var(--blue-pm);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* CHART */
+.mini-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 60px;
+  margin: 16px 0;
+}
+.mini-bar {
+  flex: 1;
+  background: var(--blue-light);
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  transition: background .2s;
+}
+.mini-bar:hover { background: var(--blue-pm); }
+.mini-bar.active { background: var(--blue-pm); }
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+/* PRINT */
+@media print {
+  .topbar, .nav-tabs, .price-actions, .btn-primary, .btn-outline { display: none; }
+  .hero { height: 300px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topbar">
+  <div class="logo-pm">
+    <div class="logo-box">P<sup style="font-size:9px">M</sup></div>
+    <div>
+      <span class="logo-text">PrivatMegleren</span>
+      <span class="logo-sub">Lillestrøm</span>
+    </div>
+  </div>
+  <ul class="nav-tabs">
+    <li><a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#om">Om boligen</a></li>
+    <li><a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#tilstand">Tilstand</a></li>
+    <li><a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#marked">Marked</a></li>
+    <li><a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#nabolag">Nabolag</a></li>
+    <li><a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#kostnader">Kostnader</a></li>
+    <li><a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#kontakt" class="nav-cta">Gi bud</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="topp">
+  <div class="hero-badge">
+    ✦ Selveierleilighet · Byggeår 2023
+  </div>
+  <h1>Rådmann Paulsens<br>gate 46</h1>
+  <p class="hero-sub">Lørenskog / Rolvsrud · 3. etasje</p>
+  <div class="hero-pills">
+    <span class="pill">🛏 3 soverom</span>
+    <span class="pill">📐 87 m² BRA</span>
+    <span class="pill">🌿 Sydvendt balkong 13 m²</span>
+    <span class="pill">🚗 Garasjeplass m/el-lader</span>
+    <span class="pill">🛗 Heis</span>
+    <span class="pill">⭐ Plussbolig® – Selvaag</span>
+  </div>
+</div>
+
+<!-- PRICE BAR -->
+<div class="price-bar">
+  <div class="price-main">
+    <div class="price-label">Prisantydning</div>
+    <div class="price-amount">kr 6 400 000</div>
+  </div>
+  <div class="price-divider"></div>
+  <div class="price-meta">
+    <div class="price-item">
+      <span class="price-item-label">Fellesgjeld</span>
+      <span class="price-item-value">kr 0</span>
+    </div>
+    <div class="price-item">
+      <span class="price-item-label">Totalpris</span>
+      <span class="price-item-value">kr 6 400 000</span>
+    </div>
+    <div class="price-item">
+      <span class="price-item-label">m²-pris</span>
+      <span class="price-item-value">kr 73 563</span>
+    </div>
+    <div class="price-item">
+      <span class="price-item-label">Felleskostnader</span>
+      <span class="price-item-value">kr 6 457/mnd</span>
+    </div>
+  </div>
+  <div class="price-actions">
+    <a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#" class="btn-outline">Last ned salgsoppgave</a>
+    <a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#" class="btn-primary">Gi bud</a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-layout">
+
+  <!-- LEFT COLUMN -->
+  <div>
+
+    <!-- AI NOTICE -->
+    <div class="ai-banner">
+      <div class="ai-banner-icon">AI</div>
+      <div>Denne salgsoppgaven er generert automatisk basert på tilstandsrapport, egenerklæring, verdivurdering og nabolagsdata. Ansvarlig megler: <strong>Lars Espen Storebø</strong>, PrivatMegleren Lillestrøm.</div>
+    </div>
+
+    <!-- OM BOLIGEN -->
+    <div class="content-section" id="om">
+      <h2 class="section-title">Om boligen</h2>
+
+      <div class="key-facts">
+        <div class="fact-cell">
+          <div class="fact-label">Boligtype</div>
+          <div class="fact-value">Selveierleilighet</div>
+          <div class="fact-value-small">Selveiertomt</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-label">Areal</div>
+          <div class="fact-value">87 m²</div>
+          <div class="fact-value-small">BRA-i</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-label">Byggeår</div>
+          <div class="fact-value">2023</div>
+          <div class="fact-value-small">Moderne standard</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-label">Etasje</div>
+          <div class="fact-value">3. etasje</div>
+          <div class="fact-value-small">Med heis</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-label">Soverom</div>
+          <div class="fact-value">3</div>
+          <div class="fact-value-small">+ stue, kjøkken, bad</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-label">Balkong</div>
+          <div class="fact-value">13 m²</div>
+          <div class="fact-value-small">Sydvendt</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-label">Matrikkel</div>
+          <div class="fact-value" style="font-size:14px">GNR 102 BNR 463</div>
+          <div class="fact-value-small">SNR 165 · Lørenskog</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-label">Sameie</div>
+          <div class="fact-value" style="font-size:14px">Skårerbyen 2</div>
+          <div class="fact-value-small">Forsikring: Tryg #8592413</div>
+        </div>
+        <div class="fact-cell">
+          <div class="fact-label">Formue</div>
+          <div class="fact-value">kr 30 932</div>
+          <div class="fact-value-small">Ligningsverdi</div>
+        </div>
+      </div>
+
+      <div class="description-text">
+        <p>En moderne og innbydende <strong>4-roms selveierleilighet fra 2023</strong>, beliggende i populære Skårerbyen i Lørenskog. Leiligheten ligger i byggets 3. etasje med heis og byr på en gjennomtenkt planløsning, gode lysforhold og en romslig <strong>sydvendt balkong på 13 m²</strong> som gir en fin forlengelse av oppholdsrommet.</p>
+        <p>Her bor du i et attraktivt boligkonsept med tilgang til <strong>Selvaag Pluss®</strong> – utviklet for å gi en enklere og mer sosial hverdag. Som beboer får du tilgang til et eksklusivt serviceområde på hele <strong>600 kvm</strong> med blant annet bemannet resepsjon, treningsrom, selskapslokale, møterom, gjesterom og hyggelige fellesarealer.</p>
+        <p>Leiligheten disponerer <strong>garasjeplass med el-lader</strong> samt bod nr. 2062 i kjeller. Samtidig bor du svært sentralt med kort gangavstand til Triaden, kollektivtransport, butikker, servicetilbud og flotte turmuligheter i Østmarka.</p>
+      </div>
+
+      <div class="features">
+        <div class="feature-tag"><div class="feature-dot"></div>Plussbolig® Selvaag</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Garasjeplass m/el-lader</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Heis i bygget</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Sydvendt balkong</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Balansert ventilasjon</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Gulvvarme på bad</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Integrerte hvitevarer</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Rør-i-rør system</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Automatsikringer</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Bod i kjeller</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Kort til Triaden</div>
+        <div class="feature-tag"><div class="feature-dot"></div>Energikarakter B</div>
+      </div>
+
+      <!-- INNREDNING -->
+      <h3 class="section-title-gold">Innredning og standard</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:32px; border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+        <div style="padding:18px 20px; border-right:1px solid var(--border); border-bottom:1px solid var(--border);">
+          <div class="fact-label" style="margin-bottom:8px">Utvendig</div>
+          <p style="font-size:13.5px; color:var(--mid); line-height:1.6">Malte trevinduer med 3-lags glass. Malt hovedytterdør og balkongdør i tre.</p>
+        </div>
+        <div style="padding:18px 20px; border-bottom:1px solid var(--border);">
+          <div class="fact-label" style="margin-bottom:8px">Innvendig</div>
+          <p style="font-size:13.5px; color:var(--mid); line-height:1.6">Parkett på gulv. Malte plater på vegger. Malte dekker i tak. Hvite, glatte innvendige dører.</p>
+        </div>
+        <div style="padding:18px 20px; border-right:1px solid var(--border);">
+          <div class="fact-label" style="margin-bottom:8px">Bad</div>
+          <p style="font-size:13.5px; color:var(--mid); line-height:1.6">Flisbelagte flater, gulvvarme, vegghengt toalett, dusj, servant og opplegg for vaskemaskin. Downlights i tak.</p>
+        </div>
+        <div style="padding:18px 20px;">
+          <div class="fact-label" style="margin-bottom:8px">Kjøkken</div>
+          <p style="font-size:13.5px; color:var(--mid); line-height:1.6">Glatt kjøkken med laminert benkeplate. Integrert koketopp, komfyr, kombiovn, kjøleskap og oppvaskmaskin.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TILSTANDSRAPPORT -->
+    <div class="content-section" id="tilstand">
+      <h2 class="section-title">Tilstandsrapport</h2>
+      <p style="font-size:13.5px; color:var(--muted); margin-bottom:20px;">Utarbeidet av Boligtaksering Oslo &amp; Akershus AS · Gunnar Mårdalen · Befaringsdato 29.05.2026</p>
+
+      <div class="tg-summary">
+        <div class="tg-card tg0">
+          <div class="tg-card-number">16</div>
+          <div class="tg-card-label">TG 0</div>
+          <div class="tg-card-desc">Ingen avvik</div>
+        </div>
+        <div class="tg-card tg1">
+          <div class="tg-card-number">4</div>
+          <div class="tg-card-label">TG 1</div>
+          <div class="tg-card-desc">Mindre avvik</div>
+        </div>
+        <div class="tg-card tg2">
+          <div class="tg-card-number">1</div>
+          <div class="tg-card-label">TG 2</div>
+          <div class="tg-card-desc">Kan kreve tiltak</div>
+        </div>
+        <div class="tg-card tgiu">
+          <div class="tg-card-number">1</div>
+          <div class="tg-card-label">TG IU</div>
+          <div class="tg-card-desc">Ikke undersøkt</div>
+        </div>
+      </div>
+
+      <div style="background:white; border:1px solid var(--border); border-radius:4px; padding:20px; margin-bottom:24px;">
+        <div class="tg-item">
+          <div class="tg-badge badge-tg0">TG0</div>
+          <div class="tg-item-content">
+            <div class="tg-item-room">Innvendig</div>
+            <div class="tg-item-title">Overflater</div>
+            <div class="tg-item-desc">Parkett på gulv, malte plater på vegger og malte dekker i tak. Boligen holder forventet standard i forhold til alder og bruk.</div>
+          </div>
+        </div>
+        <div class="tg-item">
+          <div class="tg-badge badge-tg0">TG0</div>
+          <div class="tg-item-content">
+            <div class="tg-item-room">Innvendig</div>
+            <div class="tg-item-title">Innvendige dører</div>
+            <div class="tg-item-desc">Hvite, glatte innvendige dører uten avvik.</div>
+          </div>
+        </div>
+        <div class="tg-item">
+          <div class="tg-badge badge-tg1">TG1</div>
+          <div class="tg-item-content">
+            <div class="tg-item-room">Utvendig</div>
+            <div class="tg-item-title">Vinduer og dører</div>
+            <div class="tg-item-desc">Malte trevinduer med 3-lags glass. Tilfredsstillende funksjonell stand med normal bruksslitasje. Punktering er påregnelig ved ordinær slitasje.</div>
+          </div>
+        </div>
+        <div class="tg-item">
+          <div class="tg-badge badge-tg1">TG1</div>
+          <div class="tg-item-content">
+            <div class="tg-item-room">Våtrom · Bad 3. etasje</div>
+            <div class="tg-item-title">Overflater vegger og himling</div>
+            <div class="tg-item-desc">Flisbelagte vegger, malt tak, downlights. Normal bruksslitasje uten vesentlige avvik.</div>
+          </div>
+        </div>
+        <div class="tg-item">
+          <div class="tg-badge badge-tg2">TG2</div>
+          <div class="tg-item-content">
+            <div class="tg-item-room">Utvendig</div>
+            <div class="tg-item-title">Andre utvendige forhold</div>
+            <div class="tg-item-desc">Ingen tilstandsrapport eller vedlikeholdsplan for fellesdeler i bygget. Det bør utarbeides slik plan. Rapporten begrenser seg til seksjonen og eiers selvstendige vedlikeholdsansvar.</div>
+          </div>
+        </div>
+        <div class="tg-item">
+          <div class="tg-badge badge-tgiu">IU</div>
+          <div class="tg-item-content">
+            <div class="tg-item-room">Utvendig</div>
+            <div class="tg-item-title">Andre utvendige forhold</div>
+            <div class="tg-item-desc">Konstruksjoner utenfor leilighetens vegger (tak, yttervegger, grunnmur) er ikke undersøkt som del av denne rapporten.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#f8f4ee; border:1px solid #e8d8c0; border-radius:4px; padding:16px 20px; font-size:13px; color:var(--mid);">
+        <strong style="color:var(--gold)">Merknad fra takstmann:</strong> Det må forventes noe overflatebehandling ved et eierskifte. Reklamasjonssaker på ventilasjon og vindu er utbedret av Selvaag Bolig uten kostnad for selger.
+      </div>
+    </div>
+
+    <!-- MARKED -->
+    <div class="content-section" id="marked">
+      <h2 class="section-title">Markedsanalyse</h2>
+
+      <div class="market-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="market-card">
+          <div class="market-card-label">m²-pris denne</div>
+          <div class="market-big">73 563</div>
+          <div class="market-unit">kr/m²</div>
+          <div class="market-sub">Totalpris 6 400 000</div>
+        </div>
+        <div class="market-card">
+          <div class="market-card-label">Snitt nærområde</div>
+          <div class="market-big">73 810</div>
+          <div class="market-unit">kr/m²</div>
+          <div class="market-sub">Rolvsrud-sør siste 3 mnd</div>
+        </div>
+        <div class="market-card">
+          <div class="market-card-label">Snitt Lørenskog</div>
+          <div class="market-big">69 985</div>
+          <div class="market-unit">kr/m²</div>
+          <div class="market-sub">Kommune siste 3 mnd</div>
+        </div>
+      </div>
+
+      <div class="market-grid" style="margin-bottom:32px;">
+        <div class="market-card">
+          <div class="market-card-label">Til salgs nå i nærområdet</div>
+          <div class="market-big" style="color:var(--gold)">67</div>
+          <div class="market-unit">leiligheter</div>
+          <div class="market-sub">Snitt 91 dager på markedet · Snitt prisantydning 5 010 000</div>
+        </div>
+        <div class="market-card">
+          <div class="market-card-label">Solgt siste 3 måneder</div>
+          <div class="market-big" style="color:var(--tg0)">58</div>
+          <div class="market-unit">leiligheter</div>
+          <div class="market-sub">Solgt på 70 dager i snitt · 0,8% under prisantydning</div>
+        </div>
+      </div>
+
+      <!-- COMPARABLE TABLE -->
+      <div class="table-section">
+        <h3 class="section-title-gold">Sammenlignbare salg i nærområdet</h3>
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th style="width:40px">#</th>
+              <th>Eiendom</th>
+              <th>Areal</th>
+              <th>Etg.</th>
+              <th>Salgsdato</th>
+              <th class="td-right">Prisant.</th>
+              <th class="td-right">Pris</th>
+              <th class="td-right">m²-pris</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="comp-num">1</span></td>
+              <td>Rådmann Paulsens gate 44</td>
+              <td>83 m²</td>
+              <td>7. etg</td>
+              <td>16.04.2026</td>
+              <td class="td-right">7 150 000</td>
+              <td class="td-right price-bold">6 720 000</td>
+              <td class="td-right">80 964</td>
+            </tr>
+            <tr>
+              <td><span class="comp-num">2</span></td>
+              <td>Rådmann Paulsens gate 56</td>
+              <td>89 m²</td>
+              <td>2. etg</td>
+              <td>04.12.2025</td>
+              <td class="td-right">6 750 000</td>
+              <td class="td-right price-bold">6 750 000</td>
+              <td class="td-right">75 843</td>
+            </tr>
+            <tr>
+              <td><span class="comp-num">3</span></td>
+              <td>Ingvald Kristiansens gate 13</td>
+              <td>96 m²</td>
+              <td>3. etg</td>
+              <td>10.10.2025</td>
+              <td class="td-right">6 990 000</td>
+              <td class="td-right price-bold">6 990 000</td>
+              <td class="td-right">72 813</td>
+            </tr>
+            <tr>
+              <td><span class="comp-num">4</span></td>
+              <td>Søster Mathildes gate 41</td>
+              <td>89 m²</td>
+              <td>2. etg</td>
+              <td>05.05.2026</td>
+              <td class="td-right">6 490 000</td>
+              <td class="td-right price-bold">6 300 000</td>
+              <td class="td-right">70 787</td>
+            </tr>
+            <tr>
+              <td><span class="comp-num">5</span></td>
+              <td>Søster Mathildes gate 33</td>
+              <td>90 m²</td>
+              <td>4. etg</td>
+              <td>17.10.2025</td>
+              <td class="td-right">6 800 000</td>
+              <td class="td-right price-bold">6 250 000</td>
+              <td class="td-right">69 444</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NABOLAG -->
+    <div class="content-section" id="nabolag">
+      <h2 class="section-title">Nabolag – Rolvsrud</h2>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:28px;">
+        <div style="background:white; border:1px solid var(--border); border-radius:4px; padding:18px; text-align:center;">
+          <div style="font-family:&#39;Cormorant Garamond&#39;,serif; font-size:32px; color:var(--gold)">91</div>
+          <div style="font-size:11px; font-weight:500; letter-spacing:0.5px; color:var(--muted)">Nærhet til skog og mark</div>
+          <div style="font-size:11px; color:var(--muted)">/100 · Vurdert av 100 lokalkjente</div>
+        </div>
+        <div style="background:white; border:1px solid var(--border); border-radius:4px; padding:18px; text-align:center;">
+          <div style="font-family:&#39;Cormorant Garamond&#39;,serif; font-size:32px; color:var(--gold)">88</div>
+          <div style="font-size:11px; font-weight:500; letter-spacing:0.5px; color:var(--muted)">Kollektivtilbud</div>
+          <div style="font-size:11px; color:var(--muted)">/100 · Veldig bra</div>
+        </div>
+        <div style="background:white; border:1px solid var(--border); border-radius:4px; padding:18px; text-align:center;">
+          <div style="font-family:&#39;Cormorant Garamond&#39;,serif; font-size:32px; color:var(--gold)">83</div>
+          <div style="font-size:11px; font-weight:500; letter-spacing:0.5px; color:var(--muted)">Kvalitet barnehager</div>
+          <div style="font-size:11px; color:var(--muted)">/100 · Veldig bra</div>
+        </div>
+      </div>
+
+      <div class="neighborhood-grid">
+        <div class="nb-category">
+          <div class="nb-category-title">🚌 Kollektivtransport</div>
+          <div class="nb-item"><span class="nb-name">Linje 120, 125E, 310, 315</span><span class="nb-dist">Rolvsrud</span></div>
+          <div class="nb-item"><span class="nb-name">Lørenskog stasjon (L1)</span><span class="nb-dist">8 min · 3,4 km</span></div>
+          <div class="nb-item"><span class="nb-name">Ellingsrudåsen (linje 2)</span><span class="nb-dist">11 min · 4,7 km</span></div>
+          <div class="nb-item"><span class="nb-name">Oslo S</span><span class="nb-dist">18 min · 15,2 km</span></div>
+          <div class="nb-item"><span class="nb-name">Oslo Gardermoen</span><span class="nb-dist">29 min</span></div>
+        </div>
+        <div class="nb-category">
+          <div class="nb-category-title">🏫 Skoler</div>
+          <div class="nb-item"><span class="nb-name">Benterud skole (1–7)</span><span class="nb-dist">13 min · 1,1 km</span></div>
+          <div class="nb-item"><span class="nb-name">Rasta skole (1–7)</span><span class="nb-dist">14 min · 1,1 km</span></div>
+          <div class="nb-item"><span class="nb-name">Løkenåsen (8–10)</span><span class="nb-dist">16 min · 1,4 km</span></div>
+          <div class="nb-item"><span class="nb-name">Kjenn skole (8–10)</span><span class="nb-dist">17 min · 1,5 km</span></div>
+          <div class="nb-item"><span class="nb-name">Mailand vgs.</span><span class="nb-dist">16 min · 1,2 km</span></div>
+        </div>
+        <div class="nb-category">
+          <div class="nb-category-title">🛒 Dagligvare og handel</div>
+          <div class="nb-item"><span class="nb-name">Joker Vestparken</span><span class="nb-dist">3 min</span></div>
+          <div class="nb-item"><span class="nb-name">Rema 1000 Skårer</span><span class="nb-dist">3 min</span></div>
+          <div class="nb-item"><span class="nb-name">Triaden Lørenskog</span><span class="nb-dist">4 min</span></div>
+          <div class="nb-item"><span class="nb-name">Apotek 1 Skårersletta</span><span class="nb-dist">4 min</span></div>
+          <div class="nb-item"><span class="nb-name">Triaden Vinmonopol</span><span class="nb-dist">7 min</span></div>
+        </div>
+        <div class="nb-category">
+          <div class="nb-category-title">⚽ Idrett og friluft</div>
+          <div class="nb-item"><span class="nb-name">Emaljeverket barnehage</span><span class="nb-dist">3 min · 0,2 km</span></div>
+          <div class="nb-item"><span class="nb-name">Rolvsrud stadion</span><span class="nb-dist">6 min</span></div>
+          <div class="nb-item"><span class="nb-name">Skårersletta balløkke</span><span class="nb-dist">7 min</span></div>
+          <div class="nb-item"><span class="nb-name">Mudo Lørenskog</span><span class="nb-dist">4 min</span></div>
+          <div class="nb-item"><span class="nb-name">Fresh Fitness Skårer</span><span class="nb-dist">5 min</span></div>
+        </div>
+      </div>
+
+      <div style="background:white; border-left:3px solid var(--gold); padding:16px 20px; border-radius:0 4px 4px 0; font-style:italic; font-size:14px; color:var(--mid); margin-top:8px;">
+        «Hyggelige naboer, ålreit sted, rolig og behagelig med gode bussmuligheter.»
+        <div style="font-style:normal; font-size:12px; color:var(--muted); margin-top:6px;">Sitat fra en lokalkjent · Kilde: FINN.no nabolagsprofil</div>
+      </div>
+    </div>
+
+    <!-- ENERGIATTEST -->
+    <div class="content-section">
+      <h2 class="section-title">Energiattest</h2>
+      <p style="font-size:13.5px; color:var(--muted); margin-bottom:20px;">Utstedt 13.12.2025 · Merkenummer: Energiattest-2025-225846 · OBOS Prosjekt AS</p>
+
+      <div style="background:white; border:1px solid var(--border); border-radius:4px; padding:24px; max-width:420px;">
+        <div style="font-size:11px; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Energikarakter</div>
+        <div class="energy-bar">
+          <div class="energy-row">
+            <div class="energy-letter energy-A">A</div>
+            <div class="energy-bar-fill energy-fill-A"></div>
+            <span class="energy-label-text"></span>
+          </div>
+          <div class="energy-row">
+            <div class="energy-letter energy-B energy-selected">B</div>
+            <div class="energy-bar-fill energy-fill-B"></div>
+            <span class="energy-label-text" style="font-weight:600; color:var(--dark)">← Denne boligen</span>
+          </div>
+          <div class="energy-row">
+            <div class="energy-letter energy-C">C</div>
+            <div class="energy-bar-fill energy-fill-C"></div>
+          </div>
+          <div class="energy-row">
+            <div class="energy-letter energy-D">D</div>
+            <div class="energy-bar-fill energy-fill-D"></div>
+          </div>
+          <div class="energy-row">
+            <div class="energy-letter energy-E">E</div>
+            <div class="energy-bar-fill energy-fill-E"></div>
+          </div>
+          <div class="energy-row">
+            <div class="energy-letter energy-F">F</div>
+            <div class="energy-bar-fill energy-fill-F"></div>
+          </div>
+          <div class="energy-row">
+            <div class="energy-letter energy-G">G</div>
+            <div class="energy-bar-fill energy-fill-G"></div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:4px;">
+          <span>Høy andel el/fossilt</span><span>Lav andel el/fossilt</span>
+        </div>
+        <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border); font-size:13px; color:var(--mid);">
+          Oppvarmingskarakter: <strong>Grønn</strong> · Lav andel el, olje og gass
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end left column -->
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- MEGLER -->
+    <div class="sidebar-card" id="kontakt">
+      <div class="sidebar-card-header">Ansvarlig megler</div>
+      <div class="sidebar-card-body">
+        <div class="megler-card">
+          <div class="megler-avatar">LS</div>
+          <div>
+            <div class="megler-name">Lars Espen Storebø</div>
+            <div class="megler-role">PrivatMegleren Lillestrøm</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Oppdragsnr.</span>
+          <span class="info-val">24260202</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Befaringsdato</span>
+          <span class="info-val">29.05.2026</span>
+        </div>
+        <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+          <a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#" class="btn-primary" style="text-align:center; display:block;">Gi bud</a>
+          <a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#" class="btn-outline" style="text-align:center; display:block; font-size:13px;">Kontakt megler</a>
+          <a href="file:///Users/martin/Downloads/salgsoppgave_radmann_paulsens_46.html#" class="btn-outline" style="text-align:center; display:block; font-size:13px;">Meld deg på visning</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- KOSTNADER -->
+    <div class="sidebar-card" id="kostnader">
+      <div class="sidebar-card-header">Kjøpesum og omkostninger</div>
+      <div class="sidebar-card-body">
+        <div class="info-row">
+          <span class="info-key">Prisantydning</span>
+          <span class="info-val">6 400 000</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Fellesgjeld</span>
+          <span class="info-val">0</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Dokumentavgift (2,5%)</span>
+          <span class="info-val">160 000</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Tinglysing hjemmelsdok.</span>
+          <span class="info-val">545</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Tinglysing pantedok.</span>
+          <span class="info-val">545</span>
+        </div>
+        <div class="costs-total">
+          <span class="costs-total-label">Totalt ved kjøp</span>
+          <span class="costs-total-value">6 561 090</span>
+        </div>
+        <div style="font-size:11px; color:var(--muted); margin-top:10px;">Forutsetter tinglysing av ett pantedokument. Kjøp til prisantydning.</div>
+      </div>
+    </div>
+
+    <!-- FELLESKOSTNADER -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">Månedlige kostnader</div>
+      <div class="sidebar-card-body">
+        <div class="info-row">
+          <span class="info-key">Felleskostnader</span>
+          <span class="info-val">kr 6 457/mnd</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Sameie</span>
+          <span class="info-val">Skårerbyen 2</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Forretningsfører</span>
+          <span class="info-val">USBL</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Forsikring</span>
+          <span class="info-val">Tryg #8592413</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Formuesverdi</span>
+          <span class="info-val">kr 30 932</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NØKKELINFO SAMEIE -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">Sameiet</div>
+      <div class="sidebar-card-body" style="font-size:13px; color:var(--mid); line-height:1.6;">
+        <p style="margin-bottom:12px;">Skårerbyen 2 Sameie. Boligen inngår i et attraktivt boligkonsept med Selvaag Pluss® – serviceområde på 600 kvm med resepsjon, treningsrom, selskapslokale og gjesterom.</p>
+        <div class="info-row">
+          <span class="info-key">Dyrehold</span>
+          <span class="info-val">Tillatt (maks 2)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Grilling balkong</span>
+          <span class="info-val">Gass/el tillatt</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Husordensregler</span>
+          <span class="info-val">vibbo.no</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORISK PRIS -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">Historisk omsetning</div>
+      <div class="sidebar-card-body">
+        <div class="info-row">
+          <span class="info-key">Tinglyst</span>
+          <span class="info-val">17.10.2023</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Kjøpspris 2023</span>
+          <span class="info-val">kr 5 730 000</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Prisvekst</span>
+          <span class="info-val" style="color:var(--tg0)">+11,7%</span>
+        </div>
+        <div class="mini-chart" style="margin-top:12px;">
+          <div class="mini-bar" style="height:40%;"></div>
+          <div class="mini-bar" style="height:50%;"></div>
+          <div class="mini-bar" style="height:55%;"></div>
+          <div class="mini-bar" style="height:65%;"></div>
+          <div class="mini-bar" style="height:72%;"></div>
+          <div class="mini-bar" style="height:80%;"></div>
+          <div class="mini-bar" style="height:75%;"></div>
+          <div class="mini-bar" style="height:85%;"></div>
+          <div class="mini-bar" style="height:90%;"></div>
+          <div class="mini-bar active" style="height:100%;"></div>
+        </div>
+        <div class="chart-labels">
+          <span>2003</span><span>2026</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end sidebar -->
+</div><!-- end main layout -->
+
+<!-- FOOTER -->
+<footer class="salgsoppgave-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">PrivatMegleren Lillestrøm</div>
+      <div>Lars Espen Storebø</div>
+      <div>Oppdragsnr. 24260202</div>
+      <div style="margin-top:8px;">Rapporten er utarbeidet 29.05.2026</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Selgere</div>
+      <div>Noemia Sofia Azevedo Moutinho Campos</div>
+      <div>Elias Brosstad</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Juridisk</div>
+      <div>Salgsoppgaven er kun ment som informasjon og erstatter ikke kontrakt eller offentlig informasjon. Interessenter oppfordres til å undersøke eiendommen grundig.</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo">P<sup style="font-size:11px">M</sup> PrivatMegleren</div>
+    <div style="font-size:11px;">© 2026 PrivatMegleren NERO Eiendomsmegling AS · Tilstandsrapport: Boligtaksering Oslo &amp; Akershus AS · Nabolagsprofil: FINN.no</div>
+  </div>
+</footer>
+
+
+
+</body></html>
