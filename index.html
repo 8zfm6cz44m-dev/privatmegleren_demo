@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_12.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_13.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_12.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_12.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_12.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_13.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_13.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_13.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_12.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_12.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_13.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_13.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -925,19 +925,7 @@ async function callClaude(base64) {
         role: 'user',
         content: [
           { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: base64 } },
-          { type: 'text', text: 'Du er en ekspert på norsk eiendomsmegling og skal lese et vedleggsdokument grundig. VIKTIG: Les HELE dokumentet nøye før du svarer. Returner KUN et JSON-objekt uten markdown eller forklaring.
-
-SPESIFIKKE INSTRUKSJONER:
-- areal_brai: Finn BRA-i i m² fra tilstandsrapport eller arealbekreftelse. Ikke BRA-e eller TBA.
-- tg0/tg1/tg2/tgiu: Tell NØYAKTIG antall tilstandsgrader fra tilstandsrapporten. TG0=ingen avvik, TG1=mindre avvik, TG2=tiltak nødvendig, TGIU=ikke undersøkt.
-- tg_items: List ALLE individuelle TG-vurderinger med rom, tittel og beskrivelse.
-- naboer: Grupper i kategorier: kollektivtransport, skoler, dagligvare, idrett. Bruk format {navn, avstand, kategori}.
-- sammenlignbare: Hent alle sammenlignbare salg med prisantydning OG salgspris.
-- nb_score1/2/3: Hent nabolagscores (typisk 0-100) og label fra nabolagsprofil.
-- snitt_naeromrade/snitt_kommune: Hent m²-prisstatistikk fra verdivurdering.
-- til_salgs/solgt_3mnd/snitt_dager_ute/snitt_salgstid: Hent markedsstatistikk.
-
-JSON-struktur: {"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","forretningsforer":"","forsikring":"","gnr":"","bnr":"","snr":"","formue":"","megler":"","oppdragsnr":"","befaringsdato":"","beskrivelse":"2-3 avsnitt salgstekst","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"tg_items":[{"grade":"TG0","room":"","title":"","desc":""}],"snitt_naeromrade":"","snitt_kommune":"","til_salgs":"","solgt_3mnd":"","snitt_dager_ute":"","snitt_salgstid":"","nabolag":"","nb_score1":"","nb_label1":"","nb_score2":"","nb_label2":"","nb_score3":"","nb_label3":"","naboer":[{"navn":"","avstand":"","kategori":""}],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","prisant":"","pris":"","m2pris":""}]}'}');
+          { type: 'text', text: 'Du er en ekspert på norsk eiendomsmegling. Les HELE dokumentet nøye. Returner KUN JSON uten markdown. VIKTIG: 1) areal_brai = BRA-i fra tilstandsrapport (ikke BRA-e). 2) Tell nøyaktig antall TG0/TG1/TG2/TGIU fra tilstandsrapporten. 3) tg_items = alle individuelle vurderinger. 4) naboer = liste med {navn, avstand, kategori} der kategori er en av: kollektivtransport/skoler/dagligvare/idrett. 5) Hent alle markedsstatistikker og nabolagscores. JSON: {"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","forretningsforer":"","forsikring":"","gnr":"","bnr":"","snr":"","formue":"","megler":"","oppdragsnr":"","befaringsdato":"","beskrivelse":"","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"tg_items":[{"grade":"","room":"","title":"","desc":""}],"snitt_naeromrade":"","snitt_kommune":"","til_salgs":"","solgt_3mnd":"","snitt_dager_ute":"","snitt_salgstid":"","nabolag":"","nb_score1":"","nb_label1":"","nb_score2":"","nb_label2":"","nb_score3":"","nb_label3":"","naboer":[{"navn":"","avstand":"","kategori":""}],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","prisant":"","pris":"","m2pris":""}]}'}');
   if (jsonStart !== -1 && jsonEnd !== -1) {
     clean = clean.slice(jsonStart, jsonEnd + 1);
   }
