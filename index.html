@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0043)file:///Users/martin/Downloads/index_3.html -->
+<!-- saved from url=(0043)file:///Users/martin/Downloads/index_4.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_3.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_3.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_3.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_4.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_4.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_4.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_3.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_3.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_4.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_4.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -755,13 +755,10 @@ footer {
     <div class="section-label">Live demo</div>
     <h2 class="section-title" style="margin-bottom:32px;">Test det selv.<br><em>Dine vedlegg. Nå.</em></h2>
 
-    <div class="demo-tabs">
-      <button class="demo-tab active" onclick="switchTab(&#39;upload&#39;)">Last opp dine vedlegg</button>
-      <button class="demo-tab" onclick="switchTab(&#39;example&#39;)">Se eksempel (Rådmann Paulsens gate 46)</button>
-    </div>
+
 
     <!-- UPLOAD TAB -->
-    <div class="tab-content active" id="tab-upload">
+    <div id="tab-upload">
       <div class="demo-grid">
         <div>
           <div class="upload-zone" id="uploadZone">
@@ -829,23 +826,9 @@ footer {
         </div>
       </div>
     </div>
-
-    <!-- EXAMPLE TAB -->
-    <div class="tab-content" id="tab-example">
-      <div class="demo-iframe-wrap">
-        <div class="demo-iframe-bar">
-          <div class="iframe-dot" style="background:#ff5f57"></div>
-          <div class="iframe-dot" style="background:#ffbd2e"></div>
-          <div class="iframe-dot" style="background:#28c840"></div>
-          <div class="iframe-url">salgsoppgave · Rådmann Paulsens gate 46, 1473 Lørenskog</div>
-        </div>
-        <iframe src="./index_files/salgsoppgave_radmann_paulsens_46.html" class="demo-iframe" title="Eksempel salgsoppgave" sandbox="allow-same-origin allow-scripts">
-        </iframe>
-      </div>
-      <p style="font-size:12px; color:var(--text2); margin-top:12px; text-align:center;">Generert automatisk fra vedlegg-PDF på under 5 minutter · Alt innhold er hentet direkte fra dokumentene</p>
     </div>
   </div>
-</div>
+
 
 <!-- FOOTER -->
 <footer>
@@ -857,11 +840,7 @@ footer {
 <script>
 // TAB SWITCHING
 function switchTab(tab) {
-  document.querySelectorAll('.demo-tab').forEach((t,i) => {
-    t.classList.toggle('active', (i === 0 && tab === 'upload') || (i === 1 && tab === 'example'));
-  });
   document.getElementById('tab-upload').classList.toggle('active', tab === 'upload');
-  document.getElementById('tab-example').classList.toggle('active', tab === 'example');
 }
 
 // DRAG AND DROP
