@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0043)file:///Users/martin/Downloads/index_8.html -->
+<!-- saved from url=(0043)file:///Users/martin/Downloads/index_9.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_8.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_8.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_8.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_9.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_9.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_9.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_8.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_8.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_9.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_9.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -883,14 +883,15 @@ async function handleFile(file) {
 
     // Animate progress during API call
     let fakePct = 30;
-    const msgs = ['Ekstraherer data...','Leser tilstandsrapport...','Analyserer verdivurdering...','Finner nøkkeltall...','Leser egenerklæring...'];
+    const msgs = ['Ekstraherer data...','Leser tilstandsrapport...','Analyserer verdivurdering...','Finner nøkkeltall...','Leser egenerklæring...','Genererer salgstekst...','Bygger salgsoppgave...'];
     let msgIdx = 0;
     const crawl = setInterval(() => {
-      if (fakePct < 85) {
-        fakePct += Math.random() * 1.5;
-        // Only change message every ~5 seconds
-        if (Math.random() < 0.08) { msgIdx = (msgIdx + 1) % msgs.length; }
-        setProgress(Math.min(fakePct, 85), msgs[msgIdx]);
+      if (fakePct < 98) {
+        // Slow down as we approach 98
+        const increment = fakePct < 70 ? Math.random() * 1.5 : fakePct < 90 ? Math.random() * 0.4 : Math.random() * 0.1;
+        fakePct += increment;
+        if (Math.random() < 0.06) { msgIdx = (msgIdx + 1) % msgs.length; }
+        setProgress(Math.min(fakePct, 98), msgs[msgIdx]);
         if (fakePct > 45) { setStep(2, 'done'); setStep(3, 'active'); }
         if (fakePct > 70) { setStep(3, 'done'); setStep(4, 'active'); }
       }
@@ -1143,14 +1144,13 @@ function openFullSalgsoppgave() {
 
 
 function downloadResult() {
-  if (!window._resultData) return;
-  const d = window._resultData;
-  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Salgsoppgave – ${d.adresse || ''}</title></head><body style="font-family:sans-serif;max-width:800px;margin:40px auto;padding:20px"><h1>${d.adresse || ''}, ${d.postnummer||''} ${d.poststed||''}</h1><p>${d.beskrivelse||''}</p></body></html>`;
-  const blob = new Blob([html], {type:'text/html'});
+  if (!window._resultHTML) return;
+  const d = window._resultData || {};
+  const filename = 'salgsoppgave_' + ((d.adresse||'bolig').replace(/\s+/g,'-').toLowerCase()) + '.html';
+  const blob = new Blob([window._resultHTML], {type:'text/html'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = 'salgsoppgave.html';
-  a.click();
+  a.href = url; a.download = filename; a.click();
 }
 
 function copyResult() {
