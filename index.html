@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0043)file:///Users/martin/Downloads/index_1.html -->
+<!-- saved from url=(0043)file:///Users/martin/Downloads/index_2.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_1.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_1.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_1.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_2.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_2.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_2.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_1.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_1.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_2.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_2.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -851,7 +851,7 @@ footer {
 <footer>
   <div class="footer-logo">Salgs<span>AI</span></div>
   <div>Prototype · Kun for demonstrasjonsformål</div>
-  <div>Martin copyright</div>
+  <div>Bygget med Claude AI · Anthropic</div>
 </footer>
 
 <script>
@@ -942,44 +942,7 @@ async function callClaude(base64) {
           },
           {
             type: 'text',
-            text: `Du er en ekspert på norsk eiendomsmegling. Les dette vedleggsdokumentet og ekstraher all relevant informasjon for en salgsoppgave.
-
-Returner KUN et JSON-objekt (ingen markdown, ingen forklaring) med denne strukturen:
-{
-  "adresse": "",
-  "postnummer": "",
-  "poststed": "",
-  "boligtype": "",
-  "areal_brai": "",
-  "byggeaar": "",
-  "etasje": "",
-  "soverom": "",
-  "fellesgjeld": "",
-  "felleskostnader": "",
-  "prisantydning": "",
-  "totalpris": "",
-  "m2pris": "",
-  "energikarakter": "",
-  "heis": true/false,
-  "balkong": "",
-  "garasje": "",
-  "sameie": "",
-  "gnr": "",
-  "bnr": "",
-  "snr": "",
-  "formue": "",
-  "beskrivelse": "2-3 avsnitt salgstekst på norsk basert på dokumentet",
-  "innvendig": "kort beskrivelse",
-  "utvendig": "kort beskrivelse",
-  "bad": "kort beskrivelse",
-  "kjoekken": "kort beskrivelse",
-  "tg0": 0,
-  "tg1": 0,
-  "tg2": 0,
-  "tgiu": 0,
-  "naboer": ["sted – avstand", ...],
-  "sammenlignbare": [{"adresse":"","areal":"","etasje":"","dato":"","pris":"","m2pris":""}]
-}`
+            text: 'Du er en ekspert på norsk eiendomsmegling. Les dette vedleggsdokumentet og ekstraher all relevant informasjon for en salgsoppgave. Returner KUN et JSON-objekt (ingen markdown, ingen forklaring) med denne strukturen: {"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","gnr":"","bnr":"","snr":"","formue":"","beskrivelse":"2-3 avsnitt salgstekst på norsk","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"naboer":[],"sammenlignbare":[]}'
           }
         ]
       }]
@@ -987,18 +950,27 @@ Returner KUN et JSON-objekt (ingen markdown, ingen forklaring) med denne struktu
   });
 
   if (!response.ok) {
-    const err = await response.json();
-    throw new Error(err.error?.message || 'API-feil');
+    const errText = await response.text();
+    throw new Error('API-feil: ' + errText);
   }
 
   const data = await response.json();
-  const text = data.content.map(c => c.text || '').join('');
+
+  // Robust content extraction
+  let text = '';
+  if (data && data.content && Array.isArray(data.content)) {
+    text = data.content.map(c => c.text || '').join('');
+  } else if (data && data.error) {
+    throw new Error(data.error.message || 'API-feil');
+  } else {
+    throw new Error('Uventet svar fra API: ' + JSON.stringify(data).slice(0, 200));
+  }
+
   const clean = text.replace(/```json|```/g, '').trim();
 
   try {
     return JSON.parse(clean);
   } catch(e) {
-    // If JSON parse fails, return structured placeholder with raw text
     return { raw: text, adresse: 'Se resultat nedenfor', beskrivelse: text };
   }
 }
