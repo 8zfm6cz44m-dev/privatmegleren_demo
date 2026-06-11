@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_11.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_12.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_11.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_11.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_11.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_12.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_12.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_12.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_11.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_11.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_12.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_12.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -925,32 +925,19 @@ async function callClaude(base64) {
         role: 'user',
         content: [
           { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: base64 } },
-          { type: 'text', text: 'Du er en ekspert på norsk eiendomsmegling. Les HELE dette vedleggsdokumentet grundig og ekstraher ALL relevant informasjon. Returner KUN et JSON-objekt (ingen markdown, ingen forklaring) med denne strukturen: {"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","forretningsforer":"","forsikring":"","gnr":"","bnr":"","snr":"","formue":"","megler":"","oppdragsnr":"","befaringsdato":"","beskrivelse":"2-3 avsnitt salgstekst på norsk","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"tg_items":[{"grade":"TG0","room":"","title":"","desc":""}],"snitt_naeromrade":"","snitt_kommune":"","til_salgs":"","solgt_3mnd":"","snitt_dager_ute":"","snitt_salgstid":"","nabolag":"","nb_score1":"","nb_label1":"","nb_score2":"","nb_label2":"","nb_score3":"","nb_label3":"","naboer":[{"navn":"","avstand":""}],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","prisant":"","pris":"","m2pris":""}]}' }
-        ]
-      }]
-    })
-  });
+          { type: 'text', text: 'Du er en ekspert på norsk eiendomsmegling og skal lese et vedleggsdokument grundig. VIKTIG: Les HELE dokumentet nøye før du svarer. Returner KUN et JSON-objekt uten markdown eller forklaring.
 
-  if (!response.ok) {
-    const errText = await response.text();
-    throw new Error('API-feil: ' + errText);
-  }
+SPESIFIKKE INSTRUKSJONER:
+- areal_brai: Finn BRA-i i m² fra tilstandsrapport eller arealbekreftelse. Ikke BRA-e eller TBA.
+- tg0/tg1/tg2/tgiu: Tell NØYAKTIG antall tilstandsgrader fra tilstandsrapporten. TG0=ingen avvik, TG1=mindre avvik, TG2=tiltak nødvendig, TGIU=ikke undersøkt.
+- tg_items: List ALLE individuelle TG-vurderinger med rom, tittel og beskrivelse.
+- naboer: Grupper i kategorier: kollektivtransport, skoler, dagligvare, idrett. Bruk format {navn, avstand, kategori}.
+- sammenlignbare: Hent alle sammenlignbare salg med prisantydning OG salgspris.
+- nb_score1/2/3: Hent nabolagscores (typisk 0-100) og label fra nabolagsprofil.
+- snitt_naeromrade/snitt_kommune: Hent m²-prisstatistikk fra verdivurdering.
+- til_salgs/solgt_3mnd/snitt_dager_ute/snitt_salgstid: Hent markedsstatistikk.
 
-  const data = await response.json();
-
-  let text = '';
-  if (data && data.content && Array.isArray(data.content)) {
-    text = data.content.map(c => c.text || '').join('');
-  } else if (data && data.error) {
-    throw new Error(data.error.message || 'API-feil');
-  } else {
-    throw new Error('Uventet svar: ' + JSON.stringify(data).slice(0, 200));
-  }
-
-  // Strip markdown and find JSON boundaries
-  let clean = text.replace(/```json/g, '').replace(/```/g, '').trim();
-  const jsonStart = clean.indexOf('{');
-  const jsonEnd = clean.lastIndexOf('}');
+JSON-struktur: {"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","forretningsforer":"","forsikring":"","gnr":"","bnr":"","snr":"","formue":"","megler":"","oppdragsnr":"","befaringsdato":"","beskrivelse":"2-3 avsnitt salgstekst","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"tg_items":[{"grade":"TG0","room":"","title":"","desc":""}],"snitt_naeromrade":"","snitt_kommune":"","til_salgs":"","solgt_3mnd":"","snitt_dager_ute":"","snitt_salgstid":"","nabolag":"","nb_score1":"","nb_label1":"","nb_score2":"","nb_label2":"","nb_score3":"","nb_label3":"","naboer":[{"navn":"","avstand":"","kategori":""}],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","prisant":"","pris":"","m2pris":""}]}'}');
   if (jsonStart !== -1 && jsonEnd !== -1) {
     clean = clean.slice(jsonStart, jsonEnd + 1);
   }
@@ -1016,7 +1003,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--warm-bg);color:var(--dark
 .nav-tabs a{display:block;padding:0 18px;line-height:64px;font-size:13px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;transition:all .2s}
 .nav-tabs a:hover{color:var(--dark);border-bottom-color:var(--gold)}
 .nav-cta{background:var(--gold);color:white!important;padding:10px 20px!important;border-radius:3px;font-weight:500!important;font-size:13px;border-bottom:none!important;line-height:1!important}
-.hero{position:relative;height:480px;background:linear-gradient(180deg,rgba(26,24,20,.55) 0%,rgba(26,24,20,.2) 60%,rgba(26,24,20,.7) 100%),#2d3020 center/cover;display:flex;flex-direction:column;justify-content:flex-end;padding:48px 56px}
+.hero{position:relative;height:480px;background:linear-gradient(180deg,rgba(26,24,20,.55) 0%,rgba(26,24,20,.2) 60%,rgba(26,24,20,.7) 100%),linear-gradient(135deg,#2d3a2d 0%,#1a2a3a 50%,#2a1a1a 100%) center/cover;display:flex;flex-direction:column;justify-content:flex-end;padding:48px 56px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:white;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:2px;margin-bottom:16px;width:fit-content}
 .hero h1{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:300;color:white;line-height:1.1;margin-bottom:8px}
 .hero-sub{color:rgba(255,255,255,.75);font-size:16px;font-weight:300;margin-bottom:24px}
@@ -1093,7 +1080,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--warm-bg);color:var(--dark
 .nb-category-title{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
 .nb-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px}
 .nb-item:last-child{border-bottom:none}
-.nb-dist{font-size:12px;color:var(--muted);white-space:nowrap}
+.nb-dist{font-size:12px;color:var(--muted);white-space:nowrap}.nb-name{color:var(--dark)}
 .energy-bar{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
 .energy-row{display:flex;align-items:center;gap:10px}
 .energy-letter{width:32px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:white;border-radius:2px;flex-shrink:0}
@@ -1218,7 +1205,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.4);padding:32px 56px;font-
       <h2 class="section-title">Markedsanalyse</h2>
       <div class="market-grid">
         <div class="market-card"><div class="market-card-label">m²-pris denne</div><div class="market-big">${fn(d.m2pris)||'–'}</div><div class="market-unit">kr/m²</div><div class="market-sub">Totalpris ${fn(d.prisantydning)}</div></div>
-        <div class="market-card"><div class="market-card-label">Snitt nærområde</div><div class="market-big">${fn(d.snitt_naeromrade)||'–'}</div><div class="market-unit">kr/m²</div><div class="market-sub">${fmt(d.naeromrade_periode)||'Siste 3 mnd'}</div></div>
+        <div class="market-card"><div class="market-card-label">Snitt nærområde</div><div class="market-big">${fn(d.snitt_naeromrade)||'–'}</div><div class="market-unit">kr/m²</div><div class="market-sub">${fmt(d.naeromrade_periode)||'Rolvsrud-sør siste 3 mnd'}</div></div>
         <div class="market-card"><div class="market-card-label">Snitt kommune</div><div class="market-big">${fn(d.snitt_kommune)||'–'}</div><div class="market-unit">kr/m²</div><div class="market-sub">${fmt(d.poststed)||''} siste 3 mnd</div></div>
       </div>
       <div class="market-grid2">
@@ -1241,17 +1228,22 @@ footer{background:var(--dark);color:rgba(255,255,255,.4);padding:32px 56px;font-
         ${d.nb_score2?`<div class="nb-score-card"><div class="nb-score-num">${d.nb_score2}</div><div class="nb-score-label">${fmt(d.nb_label2)}</div></div>`:''}
         ${d.nb_score3?`<div class="nb-score-card"><div class="nb-score-num">${d.nb_score3}</div><div class="nb-score-label">${fmt(d.nb_label3)}</div></div>`:''}
       </div>` : ''}
-      ${(d.naboer&&d.naboer.length) ? `
-      <div class="nb-grid">
-        <div class="nb-category">
-          <div class="nb-category-title">🚌 Kollektivtransport og nærhet</div>
-          ${d.naboer.map(n=>{
-            if (typeof n === 'object') return '<div class="nb-item"><span>' + (n.navn||'') + '</span><span class="nb-dist">' + (n.avstand||'') + '</span></div>';
-            const parts = String(n).split(/[–-]/);
-            return '<div class="nb-item"><span>' + (parts[0]||n) + '</span><span class="nb-dist">' + ((parts[1]||'').trim()) + '</span></div>';
-          }).join('')}
-        </div>
-      </div>` : ''}
+      ${(d.naboer&&d.naboer.length) ? (() => {
+        const cats = {'kollektivtransport':'🚌 Kollektivtransport','skoler':'🏫 Skoler','dagligvare':'🛒 Dagligvare og handel','idrett':'⚽ Idrett og friluft'};
+        const grouped = {};
+        d.naboer.forEach(n => {
+          const item = typeof n === 'object' ? n : {navn: String(n).split(/[–-]/)[0].trim(), avstand: (String(n).split(/[–-]/)[1]||'').trim(), kategori: 'kollektivtransport'};
+          const cat = (item.kategori||'kollektivtransport').toLowerCase();
+          if (!grouped[cat]) grouped[cat] = [];
+          grouped[cat].push(item);
+        });
+        const cards = Object.entries(cats).filter(([k])=>grouped[k]&&grouped[k].length).map(([k,label])=>
+          '<div class="nb-category"><div class="nb-category-title">'+label+'</div>'+
+          grouped[k].map(n=>'<div class="nb-item"><span class="nb-name">'+(n.navn||'')+'</span><span class="nb-dist">'+(n.avstand||'')+'</span></div>').join('')+
+          '</div>'
+        ).join('');
+        return cards ? '<div class="nb-grid">'+cards+'</div>' : '';
+      })() : ''}
     </div>
 
     ${d.energikarakter ? `
