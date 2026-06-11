@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0043)file:///Users/martin/Downloads/index_9.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_10.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_9.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_9.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_9.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_10.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_10.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_10.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_9.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_9.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_10.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_10.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -821,7 +821,7 @@ footer {
           </div>
           <div class="result-actions" id="resultActions" style="display:none;">
             <button class="btn-sm btn-sm-gold" onclick="openFullSalgsoppgave()" style="flex:1">🔗 Åpne full salgsoppgave</button>
-            <button class="btn-sm btn-sm-outline" onclick="downloadResult()">⬇ Last ned</button>
+            <button class="btn-sm btn-sm-outline" onclick="downloadResult()">⬇ Last ned PDF</button>
           </div>
         </div>
       </div>
@@ -920,12 +920,12 @@ async function callClaude(base64) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model: 'claude-opus-4-6',
-      max_tokens: 2000,
+      max_tokens: 4000,
       messages: [{
         role: 'user',
         content: [
           { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: base64 } },
-          { type: 'text', text: 'Du er en ekspert på norsk eiendomsmegling. Les dette vedleggsdokumentet grundig og ekstraher all relevant informasjon for en salgsoppgave. Returner KUN et JSON-objekt (ingen markdown, ingen forklaring, ingen tekst før eller etter) med denne strukturen: {"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","gnr":"","bnr":"","snr":"","formue":"","beskrivelse":"2-3 avsnitt salgstekst på norsk basert på dokumentet","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"naboer":[],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","pris":"","m2pris":""}]}' }
+          { type: 'text', text: 'Du er en ekspert på norsk eiendomsmegling. Les HELE dette vedleggsdokumentet grundig og ekstraher ALL relevant informasjon. Returner KUN et JSON-objekt (ingen markdown, ingen forklaring) med denne strukturen: {"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","forretningsforer":"","forsikring":"","gnr":"","bnr":"","snr":"","formue":"","megler":"","oppdragsnr":"","befaringsdato":"","beskrivelse":"2-3 avsnitt salgstekst på norsk","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"tg_items":[{"grade":"TG0","room":"","title":"","desc":""}],"snitt_naeromrade":"","snitt_kommune":"","til_salgs":"","solgt_3mnd":"","snitt_dager_ute":"","snitt_salgstid":"","nabolag":"","nb_score1":"","nb_label1":"","nb_score2":"","nb_label2":"","nb_score3":"","nb_label3":"","naboer":[{"navn":"","avstand":""}],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","prisant":"","pris":"","m2pris":""}]}' }
         ]
       }]
     })
@@ -963,134 +963,361 @@ async function callClaude(base64) {
 }
 
 
+function fmtNum(v) {
+  if (!v && v !== 0) return '–';
+  return String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
 function buildSalgsoppgaveHTML(d) {
   const fmt = v => v || '–';
+  const fn = fmtNum;
+
+  const tgItems = (d.tg_items || []).map(item => {
+    const badge = item.grade === 'TG0' ? 'badge-tg0' : item.grade === 'TG1' ? 'badge-tg1' : item.grade === 'TG2' ? 'badge-tg2' : 'badge-tgiu';
+    return `<div class="tg-item">
+      <div class="tg-badge ${badge}">${item.grade||'IU'}</div>
+      <div class="tg-item-content">
+        <div class="tg-item-room">${item.room||''}</div>
+        <div class="tg-item-title">${item.title||''}</div>
+        ${item.desc ? `<div class="tg-item-desc">${item.desc}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  const compRows = (d.sammenlignbare||[]).slice(0,5).map((s,i) => `
+    <tr>
+      <td><span class="comp-num">${i+1}</span></td>
+      <td>${s.adresse||'–'}</td>
+      <td>${s.areal||'–'}</td>
+      <td>${s.etasje||'–'}</td>
+      <td>${s.dato||'–'}</td>
+      <td class="td-right">${fn(s.prisant)||'–'}</td>
+      <td class="td-right price-bold">${fn(s.pris)||'–'}</td>
+      <td class="td-right">${fn(s.m2pris)||'–'}</td>
+    </tr>`).join('');
+
   return `<!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Salgsoppgave – ${fmt(d.adresse)}, ${fmt(d.postnummer)} ${fmt(d.poststed)}</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
 <style>
+:root{--gold:#b5844a;--gold-light:#d4a96a;--dark:#1a1814;--mid:#3d3a35;--muted:#7a7570;--warm-bg:#faf8f5;--warm-bg2:#f5f1ec;--border:#e8e2d9;--tg0:#2d7a3a;--tg1:#5a8a2e;--tg2:#e8a020;--tg3:#c0392b;--blue-pm:#2b5c8a;--blue-light:#e8f0f8;}
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--gold:#b5844a;--dark:#1a1814;--mid:#3d3a35;--muted:#7a7570;--bg:#faf8f5;--bg2:#f5f1ec;--border:#e8e2d9}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);font-size:15px;line-height:1.65}
-.topbar{background:white;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;height:64px;gap:12px}
-.logo-box{width:36px;height:36px;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold)}
-.logo-text{font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase}
-.hero{background:linear-gradient(135deg,#1a1814 0%,#2d2820 100%);padding:56px;color:white}
-.hero-badge{display:inline-block;background:var(--gold);color:white;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:2px;margin-bottom:20px}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;line-height:1.1;margin-bottom:8px}
-.hero-sub{color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:24px}
-.pill{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:12px;padding:5px 14px;border-radius:20px;display:inline-block;margin:0 6px 6px 0}
-.price-bar{background:white;border-bottom:1px solid var(--border);padding:24px 56px;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+body{font-family:'DM Sans',sans-serif;background:var(--warm-bg);color:var(--dark);font-size:15px;line-height:1.65}
+.topbar{background:white;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+.logo-pm{display:flex;align-items:center;gap:10px}
+.logo-box{width:38px;height:38px;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--gold)}
+.logo-text{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--dark)}
+.logo-sub{font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;display:block}
+.nav-tabs{display:flex;gap:0;list-style:none}
+.nav-tabs a{display:block;padding:0 18px;line-height:64px;font-size:13px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;transition:all .2s}
+.nav-tabs a:hover{color:var(--dark);border-bottom-color:var(--gold)}
+.nav-cta{background:var(--gold);color:white!important;padding:10px 20px!important;border-radius:3px;font-weight:500!important;font-size:13px;border-bottom:none!important;line-height:1!important}
+.hero{position:relative;height:480px;background:linear-gradient(180deg,rgba(26,24,20,.55) 0%,rgba(26,24,20,.2) 60%,rgba(26,24,20,.7) 100%),#2d3020 center/cover;display:flex;flex-direction:column;justify-content:flex-end;padding:48px 56px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:white;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:2px;margin-bottom:16px;width:fit-content}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:300;color:white;line-height:1.1;margin-bottom:8px}
+.hero-sub{color:rgba(255,255,255,.75);font-size:16px;font-weight:300;margin-bottom:24px}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap}
+.pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;font-size:12px;padding:6px 14px;border-radius:20px;backdrop-filter:blur(4px)}
+.price-bar{background:white;border-bottom:1px solid var(--border);padding:28px 56px;display:flex;align-items:center;gap:48px;flex-wrap:wrap}
 .price-label{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.price-amount{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:400;color:var(--dark)}
-.price-divider{width:1px;height:48px;background:var(--border)}
+.price-amount{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:var(--dark);letter-spacing:-1px}
+.price-divider{width:1px;height:52px;background:var(--border)}
+.price-meta{display:flex;gap:32px;flex-wrap:wrap}
 .price-item{display:flex;flex-direction:column}
 .price-item-label{font-size:11px;color:var(--muted)}
-.price-item-value{font-size:17px;font-weight:500;margin-top:2px}
-.layout{max-width:1100px;margin:0 auto;padding:48px 40px;display:grid;grid-template-columns:1fr 320px;gap:48px}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:32px}
-.fact{background:white;padding:16px 18px}
-.fact-label{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.fact-value{font-size:16px;font-weight:500}
-.desc{font-size:15px;line-height:1.8;color:#3d3a35;margin-bottom:32px}
-.desc p+p{margin-top:14px}
-.tg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
-.tg-card{padding:14px;border-radius:4px;text-align:center}
-.tg0{background:#e8f5e9;border:1px solid #c8e6c9}.tg1{background:#f1f8e9;border:1px solid #dcedc8}.tg2{background:#fff8e1;border:1px solid #ffe082}.tgiu{background:#f3f3f3;border:1px solid #e0e0e0}
-.tg-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;line-height:1}
-.tg0 .tg-num{color:#2d7a3a}.tg1 .tg-num{color:#5a8a2e}.tg2 .tg-num{color:#e8a020}.tgiu .tg-num{color:#888}
-.tg-lbl{font-size:11px;font-weight:500;margin-top:4px}
-.tg0 .tg-lbl{color:#2d7a3a}.tg1 .tg-lbl{color:#5a8a2e}.tg2 .tg-lbl{color:#e8a020}.tgiu .tg-lbl{color:#888}
-.comp-table{width:100%;border-collapse:collapse;font-size:13px}
-.comp-table th{background:var(--bg2);padding:9px 12px;text-align:left;font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
-.comp-table td{padding:12px;border-bottom:1px solid var(--border);color:var(--mid)}
-.comp-table tr:last-child td{border-bottom:none}
-.num-badge{width:22px;height:22px;background:#2b5c8a;color:white;font-size:10px;font-weight:500;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:4px}
+.price-item-value{font-size:18px;font-weight:500;color:var(--dark);margin-top:2px}
+.price-actions{margin-left:auto;display:flex;gap:12px}
+.btn-primary{background:var(--gold);color:white;padding:12px 24px;border-radius:3px;font-size:14px;font-weight:500;text-decoration:none;border:none;cursor:pointer}
+.btn-outline{background:white;color:var(--dark);padding:12px 24px;border-radius:3px;font-size:14px;text-decoration:none;border:1px solid var(--border);cursor:pointer}
+.main-layout{max-width:1140px;margin:0 auto;padding:56px 40px;display:grid;grid-template-columns:1fr 340px;gap:48px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--dark);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.section-title-gold{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--gold);margin-bottom:16px}
+.key-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:40px}
+.fact-cell{background:white;padding:18px 20px}
+.fact-label{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.fact-value{font-size:18px;font-weight:500}
+.fact-value-small{font-size:14px;font-weight:400;color:var(--dark);margin-top:2px}
+.description-text{font-size:15.5px;line-height:1.8;color:var(--mid);margin-bottom:32px}
+.description-text p+p{margin-top:16px}
+.description-text strong{color:var(--dark);font-weight:500}
+.features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
+.feature-tag{display:flex;align-items:center;gap:6px;background:var(--warm-bg2);border:1px solid var(--border);padding:7px 14px;border-radius:3px;font-size:13px;color:var(--mid)}
+.feature-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.innredning-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:32px;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.innredning-cell{padding:18px 20px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.innredning-cell:nth-child(2n){border-right:none}
+.innredning-cell:nth-last-child(-n+2){border-bottom:none}
+.tg-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px}
+.tg-card{padding:16px;border-radius:4px;text-align:center}
+.tg-card.tg0{background:#e8f5e9;border:1px solid #c8e6c9}
+.tg-card.tg1{background:#f1f8e9;border:1px solid #dcedc8}
+.tg-card.tg2{background:#fff8e1;border:1px solid #ffe082}
+.tg-card.tgiu{background:#f3f3f3;border:1px solid #e0e0e0}
+.tg-card-number{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;line-height:1;margin-bottom:4px}
+.tg0 .tg-card-number{color:var(--tg0)}.tg1 .tg-card-number{color:var(--tg1)}.tg2 .tg-card-number{color:var(--tg2)}.tgiu .tg-card-number{color:var(--muted)}
+.tg-card-label{font-size:11px;font-weight:500}
+.tg0 .tg-card-label{color:var(--tg0)}.tg1 .tg-card-label{color:var(--tg1)}.tg2 .tg-card-label{color:var(--tg2)}.tgiu .tg-card-label{color:var(--muted)}
+.tg-card-desc{font-size:11px;color:var(--muted);margin-top:4px}
+.tg-item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border)}
+.tg-item:last-child{border-bottom:none}
+.tg-badge{flex-shrink:0;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.badge-tg0{background:#c8e6c9;color:var(--tg0)}.badge-tg1{background:#dcedc8;color:var(--tg1)}.badge-tg2{background:#ffe082;color:#a06000}.badge-tgiu{background:#e0e0e0;color:#666}
+.tg-item-content{flex:1}
+.tg-item-room{font-size:11px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.tg-item-title{font-weight:500;font-size:14px;color:var(--dark)}
+.tg-item-desc{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5}
+.market-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
+.market-card{background:white;border:1px solid var(--border);border-radius:4px;padding:20px}
+.market-card-label{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.market-big{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;color:var(--blue-pm);line-height:1}
+.market-unit{font-size:14px;color:var(--muted);margin-top:4px}
+.market-sub{font-size:12px;color:var(--muted);margin-top:6px}
+.market-grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.comp-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.comp-table thead th{background:var(--warm-bg2);padding:10px 14px;text-align:left;font-size:10px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.comp-table tbody td{padding:13px 14px;border-bottom:1px solid var(--border);color:var(--mid)}
+.comp-table tbody tr:last-child td{border-bottom:none}
+.comp-table tbody tr:hover td{background:var(--warm-bg2)}
+.comp-num{width:24px;height:24px;background:var(--blue-pm);color:white;font-size:11px;font-weight:500;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:6px}
+.price-bold{font-weight:600;color:var(--dark)}.td-right{text-align:right}
+.nb-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.nb-scores{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:28px}
+.nb-score-card{background:white;border:1px solid var(--border);border-radius:4px;padding:18px;text-align:center}
+.nb-score-num{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold)}
+.nb-score-label{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--muted);margin-top:4px}
+.nb-category{background:white;border:1px solid var(--border);border-radius:4px;padding:18px}
+.nb-category-title{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.nb-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px}
+.nb-item:last-child{border-bottom:none}
+.nb-dist{font-size:12px;color:var(--muted);white-space:nowrap}
+.energy-bar{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+.energy-row{display:flex;align-items:center;gap:10px}
+.energy-letter{width:32px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:white;border-radius:2px;flex-shrink:0}
+.energy-bar-fill{height:28px;border-radius:0 2px 2px 0}
+.eA{background:#2e7d32}.eB{background:#558b2f}.eC{background:#827717}.eD{background:#ef6c00}.eE{background:#c62828}.eF{background:#880e4f}.eG{background:#4a148c}
+.energy-selected{border:2px solid var(--dark);font-weight:700}
 .sidebar-card{background:white;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:20px}
-.sidebar-card-header{padding:14px 18px;border-bottom:1px solid var(--border);font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);background:var(--bg2)}
-.sidebar-card-body{padding:18px}
-.info-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px}
+.sidebar-card-header{padding:16px 20px;border-bottom:1px solid var(--border);font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);background:var(--warm-bg2)}
+.sidebar-card-body{padding:20px}
+.megler-card{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.megler-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold-light),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:white;flex-shrink:0}
+.megler-name{font-weight:500;font-size:15px}
+.megler-role{font-size:12px;color:var(--muted);margin-top:2px}
+.info-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);gap:16px}
 .info-row:last-child{border-bottom:none}
-.info-key{color:var(--muted)}.info-val{font-weight:500;text-align:right}
-.total-row{margin-top:12px;padding-top:12px;border-top:2px solid var(--dark);display:flex;justify-content:space-between;align-items:center}
-.total-label{font-weight:500}.total-val{font-family:'Cormorant Garamond',serif;font-size:22px}
-.content-section{margin-bottom:40px}
-footer{background:var(--dark);color:rgba(255,255,255,0.4);padding:32px 56px;font-size:12px;display:flex;justify-content:space-between;align-items:center;margin-top:40px}
+.info-key{font-size:13px;color:var(--muted);flex-shrink:0}
+.info-val{font-size:13px;font-weight:500;text-align:right}
+.costs-total{margin-top:12px;padding-top:12px;border-top:2px solid var(--dark);display:flex;justify-content:space-between;align-items:center}
+.costs-total-label{font-weight:500;font-size:14px}
+.costs-total-value{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400}
+.content-section{margin-bottom:48px}
+.ai-banner{background:linear-gradient(135deg,#f0f4ff,#e8f0fb);border:1px solid #c8d8f0;border-radius:4px;padding:14px 18px;margin-bottom:32px;display:flex;align-items:flex-start;gap:12px;font-size:13px;color:var(--blue-pm)}
+.ai-banner-icon{width:20px;height:20px;background:var(--blue-pm);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.takstmann-note{background:#f8f4ee;border:1px solid #e8d8c0;border-radius:4px;padding:16px 20px;font-size:13px;color:var(--mid)}
+footer{background:var(--dark);color:rgba(255,255,255,.4);padding:32px 56px;font-size:12px;display:flex;justify-content:space-between;align-items:center;margin-top:40px}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold)}
+.section-divider{margin:48px 0;border:none;border-top:1px solid var(--border)}
+@media print{.topbar,.price-actions,.btn-primary,.btn-outline{display:none}.hero{height:300px}}
 </style>
 </head>
 <body>
 <div class="topbar">
-  <div class="logo-box">P<sup style="font-size:8px">M</sup></div>
-  <div><div class="logo-text">PrivatMegleren</div><div style="font-size:9px;letter-spacing:1px;color:#7a7570;text-transform:uppercase">Generert av SalgsAI</div></div>
+  <div class="logo-pm">
+    <div class="logo-box">P<sup style="font-size:9px">M</sup></div>
+    <div><span class="logo-text">PrivatMegleren</span><span class="logo-sub">Lillestrøm</span></div>
+  </div>
+  <ul class="nav-tabs">
+    <li><a href="#om">Om boligen</a></li>
+    <li><a href="#tilstand">Tilstand</a></li>
+    <li><a href="#marked">Marked</a></li>
+    <li><a href="#nabolag">Nabolag</a></li>
+    <li><a href="#kostnader">Kostnader</a></li>
+    <li><a href="#kontakt" class="nav-cta">Gi bud</a></li>
+  </ul>
 </div>
+
 <div class="hero">
   <div class="hero-badge">✦ ${fmt(d.boligtype)} · Byggeår ${fmt(d.byggeaar)}</div>
   <h1>${fmt(d.adresse)}</h1>
-  <div class="hero-sub">${fmt(d.poststed)} · ${fmt(d.etasje)} etasje</div>
-  <div>
-    <span class="pill">🛏 ${fmt(d.soverom)} soverom</span>
-    <span class="pill">📐 ${fmt(d.areal_brai)} m²</span>
-    ${d.balkong ? "<span class=\"pill\">🌿 Balkong " + d.balkong + "</span>" : ""}
-    ${d.garasje ? "<span class=\"pill\">🚗 " + d.garasje + "</span>" : ""}
-    ${d.heis ? "<span class=\"pill\">🛗 Heis</span>" : ""}
-    ${d.energikarakter ? "<span class=\"pill\">⚡ Energi " + d.energikarakter + "</span>" : ""}
+  <p class="hero-sub">${fmt(d.poststed)} / ${fmt(d.etasje)} etasje</p>
+  <div class="hero-pills">
+    ${d.soverom ? `<span class="pill">🛏 ${d.soverom} soverom</span>` : ''}
+    ${d.areal_brai ? `<span class="pill">📐 ${d.areal_brai} m² BRA</span>` : ''}
+    ${d.balkong ? `<span class="pill">🌿 ${d.balkong}</span>` : ''}
+    ${d.garasje ? `<span class="pill">🚗 ${d.garasje}</span>` : ''}
+    ${d.heis ? '<span class="pill">🛗 Heis</span>' : ''}
+    ${d.energikarakter ? `<span class="pill">⚡ Energi ${d.energikarakter}</span>` : ''}
   </div>
 </div>
+
 <div class="price-bar">
-  <div><div class="price-label">Prisantydning</div><div class="price-amount">kr ${fmt(d.prisantydning)}</div></div>
-  <div class="price-divider"></div>
-  <div class="price-item"><span class="price-item-label">Fellesgjeld</span><span class="price-item-value">kr ${fmt(d.fellesgjeld)}</span></div>
-  <div class="price-item"><span class="price-item-label">m²-pris</span><span class="price-item-value">kr ${fmt(d.m2pris)}</span></div>
-  <div class="price-item"><span class="price-item-label">Felleskostnader</span><span class="price-item-value">kr ${fmt(d.felleskostnader)}/mnd</span></div>
-</div>
-<div class="layout">
   <div>
-    <div class="content-section">
-      <h2 class="section-title">Om boligen</h2>
-      <div class="facts">
-        <div class="fact"><div class="fact-label">Boligtype</div><div class="fact-value">${fmt(d.boligtype)}</div></div>
-        <div class="fact"><div class="fact-label">Areal BRA-i</div><div class="fact-value">${fmt(d.areal_brai)} m²</div></div>
-        <div class="fact"><div class="fact-label">Byggeår</div><div class="fact-value">${fmt(d.byggeaar)}</div></div>
-        <div class="fact"><div class="fact-label">Etasje</div><div class="fact-value">${fmt(d.etasje)}</div></div>
-        <div class="fact"><div class="fact-label">Soverom</div><div class="fact-value">${fmt(d.soverom)}</div></div>
-        <div class="fact"><div class="fact-label">Matrikkel</div><div class="fact-value" style="font-size:13px">GNR ${fmt(d.gnr)} BNR ${fmt(d.bnr)}</div></div>
-      </div>
-      <div class="desc">${(d.beskrivelse||"").split("\n").filter(p=>p.trim()).map(p=>"<p>"+p+"</p>").join("")}</div>
-    </div>
-    ${(d.tg0||d.tg1||d.tg2||d.tgiu) ? `<div class="content-section"><h2 class="section-title">Tilstandsrapport</h2><div class="tg-grid"><div class="tg-card tg0"><div class="tg-num">${fmt(d.tg0)}</div><div class="tg-lbl">TG0 – Ingen avvik</div></div><div class="tg-card tg1"><div class="tg-num">${fmt(d.tg1)}</div><div class="tg-lbl">TG1 – Mindre avvik</div></div><div class="tg-card tg2"><div class="tg-num">${fmt(d.tg2)}</div><div class="tg-lbl">TG2 – Tiltak</div></div><div class="tg-card tgiu"><div class="tg-num">${fmt(d.tgiu)}</div><div class="tg-lbl">TG IU</div></div></div></div>` : ""}
-    ${d.sammenlignbare && d.sammenlignbare.length ? `<div class="content-section"><h2 class="section-title">Sammenlignbare salg</h2><table class="comp-table"><thead><tr><th>#</th><th>Eiendom</th><th>Areal</th><th>Dato</th><th style="text-align:right">Pris</th></tr></thead><tbody>${d.sammenlignbare.slice(0,5).map((s,i)=>"<tr><td><span class=\"num-badge\">"+(i+1)+"</span></td><td>"+(s.adresse||"–")+"</td><td>"+(s.areal||"–")+"</td><td>"+(s.dato||"–")+"</td><td style=\"text-align:right;font-weight:600\">kr "+(s.pris||"–")+"</td></tr>").join("")}</tbody></table></div>` : ""}
+    <div class="price-label">Prisantydning</div>
+    <div class="price-amount">kr ${fn(d.prisantydning)}</div>
   </div>
+  <div class="price-divider"></div>
+  <div class="price-meta">
+    <div class="price-item"><span class="price-item-label">Fellesgjeld</span><span class="price-item-value">kr ${fn(d.fellesgjeld)||'0'}</span></div>
+    <div class="price-item"><span class="price-item-label">Totalpris</span><span class="price-item-value">kr ${fn(d.totalpris||d.prisantydning)}</span></div>
+    <div class="price-item"><span class="price-item-label">m²-pris</span><span class="price-item-value">kr ${fn(d.m2pris)}</span></div>
+    <div class="price-item"><span class="price-item-label">Felleskostnader</span><span class="price-item-value">kr ${fn(d.felleskostnader)}/mnd</span></div>
+  </div>
+  <div class="price-actions">
+    <a href="#kontakt" class="btn-outline">Last ned salgsoppgave</a>
+    <a href="#kontakt" class="btn-primary">Gi bud</a>
+  </div>
+</div>
+
+<div class="main-layout">
   <div>
-    <div class="sidebar-card">
+    <div class="ai-banner">
+      <div class="ai-banner-icon">AI</div>
+      <div>Denne salgsoppgaven er generert automatisk basert på tilstandsrapport, egenerklæring, verdivurdering og nabolagsdata. Ansvarlig megler godkjenner før publisering.</div>
+    </div>
+
+    <div class="content-section" id="om">
+      <h2 class="section-title">Om boligen</h2>
+      <div class="key-facts">
+        <div class="fact-cell"><div class="fact-label">Boligtype</div><div class="fact-value">${fmt(d.boligtype)}</div></div>
+        <div class="fact-cell"><div class="fact-label">Areal BRA-i</div><div class="fact-value">${fmt(d.areal_brai)} m²</div></div>
+        <div class="fact-cell"><div class="fact-label">Byggeår</div><div class="fact-value">${fmt(d.byggeaar)}</div></div>
+        <div class="fact-cell"><div class="fact-label">Etasje</div><div class="fact-value">${fmt(d.etasje)}</div><div class="fact-value-small">${d.heis?'Med heis':''}</div></div>
+        <div class="fact-cell"><div class="fact-label">Soverom</div><div class="fact-value">${fmt(d.soverom)}</div></div>
+        <div class="fact-cell"><div class="fact-label">Matrikkel</div><div class="fact-value" style="font-size:14px">GNR ${fmt(d.gnr)} BNR ${fmt(d.bnr)}</div><div class="fact-value-small">SNR ${fmt(d.snr)} · ${fmt(d.poststed)}</div></div>
+        <div class="fact-cell"><div class="fact-label">Sameie</div><div class="fact-value" style="font-size:14px">${fmt(d.sameie)}</div></div>
+        <div class="fact-cell"><div class="fact-label">Balkong</div><div class="fact-value" style="font-size:14px">${fmt(d.balkong)}</div></div>
+        <div class="fact-cell"><div class="fact-label">Formue</div><div class="fact-value">kr ${fn(d.formue)}</div><div class="fact-value-small">Ligningsverdi</div></div>
+      </div>
+      <div class="description-text">${(d.beskrivelse||'').split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('')}</div>
+      ${(d.innvendig||d.utvendig||d.bad||d.kjoekken) ? `
+      <h3 class="section-title-gold">Innredning og standard</h3>
+      <div class="innredning-grid">
+        ${d.utvendig?`<div class="innredning-cell"><div class="fact-label" style="margin-bottom:8px">Utvendig</div><p style="font-size:13.5px;color:var(--mid);line-height:1.6">${d.utvendig}</p></div>`:''}
+        ${d.innvendig?`<div class="innredning-cell"><div class="fact-label" style="margin-bottom:8px">Innvendig</div><p style="font-size:13.5px;color:var(--mid);line-height:1.6">${d.innvendig}</p></div>`:''}
+        ${d.bad?`<div class="innredning-cell"><div class="fact-label" style="margin-bottom:8px">Bad</div><p style="font-size:13.5px;color:var(--mid);line-height:1.6">${d.bad}</p></div>`:''}
+        ${d.kjoekken?`<div class="innredning-cell"><div class="fact-label" style="margin-bottom:8px">Kjøkken</div><p style="font-size:13.5px;color:var(--mid);line-height:1.6">${d.kjoekken}</p></div>`:''}
+      </div>` : ''}
+    </div>
+
+    <div class="content-section" id="tilstand">
+      <h2 class="section-title">Tilstandsrapport</h2>
+      <div class="tg-summary">
+        <div class="tg-card tg0"><div class="tg-card-number">${fmt(d.tg0)}</div><div class="tg-card-label">TG 0</div><div class="tg-card-desc">Ingen avvik</div></div>
+        <div class="tg-card tg1"><div class="tg-card-number">${fmt(d.tg1)}</div><div class="tg-card-label">TG 1</div><div class="tg-card-desc">Mindre avvik</div></div>
+        <div class="tg-card tg2"><div class="tg-card-number">${fmt(d.tg2)}</div><div class="tg-card-label">TG 2</div><div class="tg-card-desc">Kan kreve tiltak</div></div>
+        <div class="tg-card tgiu"><div class="tg-card-number">${fmt(d.tgiu)}</div><div class="tg-card-label">TG IU</div><div class="tg-card-desc">Ikke undersøkt</div></div>
+      </div>
+      ${tgItems ? `<div style="background:white;border:1px solid var(--border);border-radius:4px;padding:20px;margin-bottom:24px">${tgItems}</div>` : ''}
+    </div>
+
+    <div class="content-section" id="marked">
+      <h2 class="section-title">Markedsanalyse</h2>
+      <div class="market-grid">
+        <div class="market-card"><div class="market-card-label">m²-pris denne</div><div class="market-big">${fn(d.m2pris)||'–'}</div><div class="market-unit">kr/m²</div><div class="market-sub">Totalpris ${fn(d.prisantydning)}</div></div>
+        <div class="market-card"><div class="market-card-label">Snitt nærområde</div><div class="market-big">${fn(d.snitt_naeromrade)||'–'}</div><div class="market-unit">kr/m²</div><div class="market-sub">${fmt(d.naeromrade_periode)||'Siste 3 mnd'}</div></div>
+        <div class="market-card"><div class="market-card-label">Snitt kommune</div><div class="market-big">${fn(d.snitt_kommune)||'–'}</div><div class="market-unit">kr/m²</div><div class="market-sub">${fmt(d.poststed)||''} siste 3 mnd</div></div>
+      </div>
+      <div class="market-grid2">
+        <div class="market-card"><div class="market-card-label">Til salgs nå</div><div class="market-big" style="color:var(--gold)">${fmt(d.til_salgs)||'–'}</div><div class="market-unit">leiligheter</div>${d.snitt_dager_ute?`<div class="market-sub">Snitt ${d.snitt_dager_ute} dager på markedet</div>`:''}</div>
+        <div class="market-card"><div class="market-card-label">Solgt siste 3 mnd</div><div class="market-big" style="color:var(--tg0)">${fmt(d.solgt_3mnd)||'–'}</div><div class="market-unit">leiligheter</div>${d.snitt_salgstid?`<div class="market-sub">Solgt på ${d.snitt_salgstid} dager i snitt</div>`:''}</div>
+      </div>
+      ${(d.sammenlignbare&&d.sammenlignbare.length) ? `
+      <h3 class="section-title-gold">Sammenlignbare salg i nærområdet</h3>
+      <table class="comp-table">
+        <thead><tr><th>#</th><th>Eiendom</th><th>Areal</th><th>Etg.</th><th>Salgsdato</th><th class="td-right">Prisant.</th><th class="td-right">Pris</th><th class="td-right">m²-pris</th></tr></thead>
+        <tbody>${compRows}</tbody>
+      </table>` : ''}
+    </div>
+
+    <div class="content-section" id="nabolag">
+      <h2 class="section-title">Nabolag – ${fmt(d.nabolag||d.poststed)}</h2>
+      ${(d.nb_score1||d.nb_score2||d.nb_score3) ? `
+      <div class="nb-scores">
+        ${d.nb_score1?`<div class="nb-score-card"><div class="nb-score-num">${d.nb_score1}</div><div class="nb-score-label">${fmt(d.nb_label1)}</div></div>`:''}
+        ${d.nb_score2?`<div class="nb-score-card"><div class="nb-score-num">${d.nb_score2}</div><div class="nb-score-label">${fmt(d.nb_label2)}</div></div>`:''}
+        ${d.nb_score3?`<div class="nb-score-card"><div class="nb-score-num">${d.nb_score3}</div><div class="nb-score-label">${fmt(d.nb_label3)}</div></div>`:''}
+      </div>` : ''}
+      ${(d.naboer&&d.naboer.length) ? `
+      <div class="nb-grid">
+        <div class="nb-category">
+          <div class="nb-category-title">🚌 Kollektivtransport og nærhet</div>
+          ${d.naboer.map(n=>`<div class="nb-item"><span>${n.split('–')[0]||n.split('-')[0]||n}</span><span class="nb-dist">${(n.split('–')[1]||n.split('-')[1]||'').trim()}</span></div>`).join('')}
+        </div>
+      </div>` : ''}
+    </div>
+
+    ${d.energikarakter ? `
+    <div class="content-section">
+      <h2 class="section-title">Energiattest</h2>
+      <div style="background:white;border:1px solid var(--border);border-radius:4px;padding:24px;max-width:420px">
+        <div class="fact-label" style="margin-bottom:16px">Energikarakter</div>
+        <div class="energy-bar">
+          ${['A','B','C','D','E','F','G'].map(l=>`
+          <div class="energy-row">
+            <div class="energy-letter e${l} ${d.energikarakter===l?'energy-selected':''}">${l}</div>
+            <div class="energy-bar-fill e${l}" style="width:${['80','140','200','240','260','270','280'][['A','B','C','D','E','F','G'].indexOf(l)]}px"></div>
+            ${d.energikarakter===l?'<span style="font-size:12px;font-weight:600">← Denne boligen</span>':''}
+          </div>`).join('')}
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px"><span>Høy andel el/fossilt</span><span>Lav andel el/fossilt</span></div>
+      </div>
+    </div>` : ''}
+  </div>
+
+  <div>
+    <div class="sidebar-card" id="kontakt">
+      <div class="sidebar-card-header">Ansvarlig megler</div>
+      <div class="sidebar-card-body">
+        <div class="megler-card">
+          <div class="megler-avatar">LS</div>
+          <div><div class="megler-name">${fmt(d.megler)||'Ansvarlig megler'}</div><div class="megler-role">PrivatMegleren Lillestrøm</div></div>
+        </div>
+        ${d.oppdragsnr?`<div class="info-row"><span class="info-key">Oppdragsnr.</span><span class="info-val">${d.oppdragsnr}</span></div>`:''}
+        ${d.befaringsdato?`<div class="info-row"><span class="info-key">Befaringsdato</span><span class="info-val">${d.befaringsdato}</span></div>`:''}
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+          <a href="#" class="btn-primary" style="text-align:center;display:block">Gi bud</a>
+          <a href="#" class="btn-outline" style="text-align:center;display:block;font-size:13px">Kontakt megler</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card" id="kostnader">
       <div class="sidebar-card-header">Kjøpesum og omkostninger</div>
       <div class="sidebar-card-body">
-        <div class="info-row"><span class="info-key">Prisantydning</span><span class="info-val">kr ${fmt(d.prisantydning)}</span></div>
-        <div class="info-row"><span class="info-key">Fellesgjeld</span><span class="info-val">kr ${fmt(d.fellesgjeld)}</span></div>
-        <div class="total-row"><span class="total-label">Totalt</span><span class="total-val">kr ${fmt(d.totalpris)||fmt(d.prisantydning)}</span></div>
+        <div class="info-row"><span class="info-key">Prisantydning</span><span class="info-val">${fn(d.prisantydning)}</span></div>
+        <div class="info-row"><span class="info-key">Fellesgjeld</span><span class="info-val">${fn(d.fellesgjeld)||'0'}</span></div>
+        <div class="info-row"><span class="info-key">Dokumentavgift (2,5%)</span><span class="info-val">${d.prisantydning?fn(Math.round(Number(String(d.prisantydning).replace(/\s/g,''))*0.025)):'–'}</span></div>
+        <div class="info-row"><span class="info-key">Tinglysing hjemmelsdok.</span><span class="info-val">545</span></div>
+        <div class="info-row"><span class="info-key">Tinglysing pantedok.</span><span class="info-val">545</span></div>
+        <div class="costs-total"><span class="costs-total-label">Totalt ved kjøp</span><span class="costs-total-value">${d.prisantydning?fn(Math.round(Number(String(d.prisantydning).replace(/\s/g,''))*1.025+1090)):'–'}</span></div>
+        <div style="font-size:11px;color:var(--muted);margin-top:10px">Forutsetter tinglysing av ett pantedokument.</div>
       </div>
     </div>
+
     <div class="sidebar-card">
       <div class="sidebar-card-header">Månedlige kostnader</div>
       <div class="sidebar-card-body">
-        <div class="info-row"><span class="info-key">Felleskostnader</span><span class="info-val">kr ${fmt(d.felleskostnader)}/mnd</span></div>
+        <div class="info-row"><span class="info-key">Felleskostnader</span><span class="info-val">kr ${fn(d.felleskostnader)}/mnd</span></div>
         <div class="info-row"><span class="info-key">Sameie</span><span class="info-val">${fmt(d.sameie)}</span></div>
-        <div class="info-row"><span class="info-key">Formuesverdi</span><span class="info-val">kr ${fmt(d.formue)}</span></div>
+        ${d.forretningsforer?`<div class="info-row"><span class="info-key">Forretningsfører</span><span class="info-val">${d.forretningsforer}</span></div>`:''}
+        ${d.forsikring?`<div class="info-row"><span class="info-key">Forsikring</span><span class="info-val">${d.forsikring}</span></div>`:''}
+        <div class="info-row"><span class="info-key">Formuesverdi</span><span class="info-val">kr ${fn(d.formue)}</span></div>
       </div>
     </div>
   </div>
 </div>
+
 <footer>
   <div class="footer-logo">P<sup style="font-size:9px">M</sup> PrivatMegleren</div>
-  <div>Generert automatisk av SalgsAI · Godkjennes av ansvarlig megler</div>
+  <div>Generert automatisk av SalgsAI · Godkjennes av ansvarlig megler før publisering</div>
 </footer>
 </body></html>`;
 }
+
 
 function showResult(data) {
   const body = document.getElementById('outputBody');
@@ -1145,12 +1372,12 @@ function openFullSalgsoppgave() {
 
 function downloadResult() {
   if (!window._resultHTML) return;
-  const d = window._resultData || {};
-  const filename = 'salgsoppgave_' + ((d.adresse||'bolig').replace(/\s+/g,'-').toLowerCase()) + '.html';
-  const blob = new Blob([window._resultHTML], {type:'text/html'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename; a.click();
+  // Open in new window and trigger print-to-PDF
+  const win = window.open('', '_blank');
+  // Add print CSS to auto-trigger print dialog
+  const htmlWithPrint = window._resultHTML.replace('</head>', '<style>@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style><script>window.onload=function(){window.print()}<\/script></head>');
+  win.document.write(htmlWithPrint);
+  win.document.close();
 }
 
 function copyResult() {
