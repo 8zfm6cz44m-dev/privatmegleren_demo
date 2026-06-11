@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_10.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_11.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_10.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_10.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_10.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_11.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_11.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_11.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_10.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_10.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_11.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_11.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -972,7 +972,7 @@ function buildSalgsoppgaveHTML(d) {
   const fmt = v => v || '–';
   const fn = fmtNum;
 
-  const tgItems = (d.tg_items || []).map(item => {
+  const tgItems = (Array.isArray(d.tg_items) ? d.tg_items : []).map(item => {
     const badge = item.grade === 'TG0' ? 'badge-tg0' : item.grade === 'TG1' ? 'badge-tg1' : item.grade === 'TG2' ? 'badge-tg2' : 'badge-tgiu';
     return `<div class="tg-item">
       <div class="tg-badge ${badge}">${item.grade||'IU'}</div>
@@ -1192,7 +1192,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.4);padding:32px 56px;font-
         <div class="fact-cell"><div class="fact-label">Balkong</div><div class="fact-value" style="font-size:14px">${fmt(d.balkong)}</div></div>
         <div class="fact-cell"><div class="fact-label">Formue</div><div class="fact-value">kr ${fn(d.formue)}</div><div class="fact-value-small">Ligningsverdi</div></div>
       </div>
-      <div class="description-text">${(d.beskrivelse||'').split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('')}</div>
+      <div class="description-text">${(typeof d.beskrivelse === 'string' ? d.beskrivelse : String(d.beskrivelse||'')).split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('')}</div>
       ${(d.innvendig||d.utvendig||d.bad||d.kjoekken) ? `
       <h3 class="section-title-gold">Innredning og standard</h3>
       <div class="innredning-grid">
@@ -1245,7 +1245,11 @@ footer{background:var(--dark);color:rgba(255,255,255,.4);padding:32px 56px;font-
       <div class="nb-grid">
         <div class="nb-category">
           <div class="nb-category-title">🚌 Kollektivtransport og nærhet</div>
-          ${d.naboer.map(n=>`<div class="nb-item"><span>${n.split('–')[0]||n.split('-')[0]||n}</span><span class="nb-dist">${(n.split('–')[1]||n.split('-')[1]||'').trim()}</span></div>`).join('')}
+          ${d.naboer.map(n=>{
+            if (typeof n === 'object') return '<div class="nb-item"><span>' + (n.navn||'') + '</span><span class="nb-dist">' + (n.avstand||'') + '</span></div>';
+            const parts = String(n).split(/[–-]/);
+            return '<div class="nb-item"><span>' + (parts[0]||n) + '</span><span class="nb-dist">' + ((parts[1]||'').trim()) + '</span></div>';
+          }).join('')}
         </div>
       </div>` : ''}
     </div>
