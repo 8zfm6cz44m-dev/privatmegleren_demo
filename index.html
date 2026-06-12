@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_23.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_24.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_23.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_23.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_23.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_24.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_24.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_24.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_23.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_23.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_24.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_24.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -871,6 +871,13 @@ async function handleFile(file) {
   }
 
   hideError();
+  // Show filename in upload zone
+  const zone = document.getElementById('uploadZone');
+  zone.innerHTML = `
+    <div class="upload-icon">📄</div>
+    <div class="upload-title" style="color:var(--gold)">${file.name}</div>
+    <div class="upload-sub">${(file.size / 1024 / 1024).toFixed(1)} MB · Analyseres nå...</div>
+  `;
   showProgress();
   setStatus('processing', 'Analyserer...');
   window._abortController = new AbortController();
@@ -917,6 +924,7 @@ async function handleFile(file) {
     showResult(result);
     setStatus('ready', 'Klar');
     document.getElementById('cancelBtn').style.display = 'none';
+    resetUploadZone();
 
   } catch (err) {
     if (err.name === 'AbortError') {
@@ -1465,6 +1473,30 @@ function downloadResult() {
   win.document.close();
 }
 
+function resetUploadZone() {
+  const zone = document.getElementById('uploadZone');
+  zone.innerHTML = `
+    <input type="file" id="fileInput" accept=".pdf" onchange="handleFile(this.files[0])">
+    <div class="upload-icon">📎</div>
+    <div class="upload-title">Dra PDF hit, eller klikk for å velge</div>
+    <div class="upload-sub">Den sammenslåtte vedlegg-PDF-en fra oppdraget ditt</div>
+    <div class="upload-formats">
+      <span class="format-tag">Tilstandsrapport</span>
+      <span class="format-tag">Egenerklæring</span>
+      <span class="format-tag">Verdivurdering</span>
+      <span class="format-tag">Nabolagsprofil</span>
+    </div>
+  `;
+  // Re-attach drag events
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+}
+
 function cancelRequest() {
   if (window._abortController) {
     window._abortController.abort();
@@ -1477,6 +1509,7 @@ function cancelRequest() {
   document.getElementById('cancelBtn').style.display = 'none';
   document.getElementById('errorMsg').classList.remove('visible');
   setStatus('', 'Venter på fil...');
+  resetUploadZone();
 }
 
 function copyResult() {
