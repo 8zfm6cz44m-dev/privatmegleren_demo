@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_32.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_33.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_32.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_32.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_32.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_33.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_33.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_33.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_32.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_32.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_33.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_33.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -922,6 +922,7 @@ async function handleFile(file) {
     setStep(4, 'done');
     setProgress(100, 'Ferdig!');
 
+    setStep(2, 'done'); setStep(3, 'done'); setStep(4, 'done');
     showResult(result);
     setStatus('ready', 'Klar');
     document.getElementById('cancelBtn').style.display = 'none';
@@ -1366,25 +1367,25 @@ function showResult(data) {
   window._resultData = data;
   window._resultHTML = buildSalgsoppgaveHTML(data);
 
+  const fn = fmtNum;
   body.innerHTML = `
     <div style="background:linear-gradient(135deg,#1a1814,#2d2820);border-radius:4px;padding:20px;margin-bottom:16px;color:white;">
       <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#c9995a;margin-bottom:6px">${fmt(data.boligtype)} · ${fmt(data.byggeaar)}</div>
-      <div style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:4px">${fmt(data.adresse)}</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.6)">${fmt(data.poststed)} · ${fmt(data.etasje)} etasje</div>
-    </div>
-    <div class="result-section">
-      <div class="result-section-title">Nøkkelinformasjon</div>
-      <div class="result-grid">
-        <div class="result-item"><div class="result-item-label">Prisantydning</div><div class="result-item-value">kr ${fmtNum(data.prisantydning)}</div></div>
-        <div class="result-item"><div class="result-item-label">Areal</div><div class="result-item-value">${fmt(data.areal_brai)} m²</div></div>
-        <div class="result-item"><div class="result-item-label">Soverom</div><div class="result-item-value">${fmt(data.soverom)}</div></div>
-        <div class="result-item"><div class="result-item-label">Felleskostnader</div><div class="result-item-value">kr ${fmtNum(data.felleskostnader)}/mnd</div></div>
-        <div class="result-item"><div class="result-item-label">Fellesgjeld</div><div class="result-item-value">kr ${fmtNum(data.fellesgjeld)||'0'}</div></div>
-        <div class="result-item"><div class="result-item-label">Energikarakter</div><div class="result-item-value">${fmt(data.energikarakter)}</div></div>
+      <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin-bottom:4px">${fmt(data.adresse)}</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:12px">${fmt(data.poststed)} · ${fmt(data.etasje)} etasje</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${data.soverom?'<span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-size:11px;padding:4px 10px;border-radius:20px">🛏 '+data.soverom+' soverom</span>':''}
+        ${data.areal_brai?'<span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-size:11px;padding:4px 10px;border-radius:20px">📐 '+data.areal_brai+' m²</span>':''}
+        ${data.energikarakter?'<span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-size:11px;padding:4px 10px;border-radius:20px">⚡ Energi '+data.energikarakter+'</span>':''}
       </div>
     </div>
-    ${data.beskrivelse ? '<div class="result-section"><div class="result-section-title">Boligbeskrivelse</div><div class="result-text">' + data.beskrivelse.split('\n').filter(p=>p.trim()).slice(0,2).map(p=>'<p>'+p+'</p>').join('') + '<p style="color:var(--gold);font-size:12px;margin-top:8px">↓ Åpne full salgsoppgave for å se alt</p></div></div>' : ''}
-    ${(data.tg0!==undefined||data.tg1||data.tg2) ? '<div class="result-section"><div class="result-section-title">Tilstandsgrader</div><div class="result-grid"><div class="result-item"><div class="result-item-label">TG0</div><div class="result-item-value" style="color:#4a9e6a;font-size:24px">'+(data.tg0||0)+'</div></div><div class="result-item"><div class="result-item-label">TG1</div><div class="result-item-value" style="color:#8ab040;font-size:24px">'+(data.tg1||0)+'</div></div><div class="result-item"><div class="result-item-label">TG2</div><div class="result-item-value" style="color:#e8a020;font-size:24px">'+(data.tg2||0)+'</div></div><div class="result-item"><div class="result-item-label">TG IU</div><div class="result-item-value" style="font-size:24px">'+(data.tgiu||0)+'</div></div></div></div>' : ''}
+    <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:16px;margin-bottom:12px;display:flex;gap:32px;flex-wrap:wrap">
+      <div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-bottom:3px">Prisantydning</div><div style="font-family:'Playfair Display',serif;font-size:28px;color:var(--gold)">${fn(data.prisantydning)?'kr '+fn(data.prisantydning):'–'}</div></div>
+      <div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-bottom:3px">Fellesgjeld</div><div style="font-size:16px;font-weight:500;color:var(--text)">kr ${fn(data.fellesgjeld)||'0'}</div></div>
+      <div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-bottom:3px">Felleskostnader</div><div style="font-size:16px;font-weight:500;color:var(--text)">kr ${fn(data.felleskostnader)||'–'}/mnd</div></div>
+    </div>
+    ${data.beskrivelse ? '<div class="result-section"><div class="result-section-title">Boligbeskrivelse</div><div class="result-text">'+data.beskrivelse.split('\n').filter(p=>p.trim()).slice(0,2).map(p=>'<p>'+p+'</p>').join('')+'<p style="color:var(--gold);font-size:12px;margin-top:8px">↓ Åpne full salgsoppgave for å se alt</p></div></div>' : ''}
+    ${(data.tg0!==undefined||data.tg1||data.tg2) ? '<div class="result-section"><div class="result-section-title">Tilstandsgrader</div><div class="result-grid"><div class="result-item"><div class="result-item-label">TG0 – Ingen avvik</div><div class="result-item-value" style="color:#4a9e6a;font-size:24px">'+(data.tg0||0)+'</div></div><div class="result-item"><div class="result-item-label">TG1 – Mindre avvik</div><div class="result-item-value" style="color:#8ab040;font-size:24px">'+(data.tg1||0)+'</div></div><div class="result-item"><div class="result-item-label">TG2 – Tiltak</div><div class="result-item-value" style="color:#e8a020;font-size:24px">'+(data.tg2||0)+'</div></div><div class="result-item"><div class="result-item-label">TG IU</div><div class="result-item-value" style="font-size:24px">'+(data.tgiu||0)+'</div></div></div></div>' : ''}
   `;
   document.getElementById('resultActions').style.display = 'flex';
 }
