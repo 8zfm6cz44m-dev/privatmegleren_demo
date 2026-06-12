@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_17.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_18.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_17.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_17.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_17.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_18.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_18.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_18.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_17.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_17.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_18.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_18.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -1318,19 +1318,10 @@ footer{background:var(--dark);color:rgba(255,255,255,.4);padding:32px 56px;font-
       <div class="sidebar-card-body">
         <div class="info-row"><span class="info-key">Prisantydning</span><span class="info-val">${fn(d.prisantydning)}</span></div>
         <div class="info-row"><span class="info-key">Fellesgjeld</span><span class="info-val">${fn(d.fellesgjeld)||'0'}</span></div>
-        ${(() => {
-          const isBorettslag = (d.boligtype||'').toLowerCase().includes('andel') || (d.boligtype||'').toLowerCase().includes('borettslag');
-          const pris = Number(String(d.prisantydning||'0').replace(/\s/g,''));
-          const fellesgjeld = Number(String(d.fellesgjeld||'0').replace(/\s/g,''));
-          const dokavg = isBorettslag ? 0 : Math.round(pris * 0.025);
-          const totalt = pris + fellesgjeld + dokavg + 1090;
-          return \`
-          <div class="info-row"><span class="info-key">Dokumentavgift (2,5%)</span><span class="info-val">\${isBorettslag ? '0 (borettslag)' : fn(dokavg)}</span></div>
-          <div class="info-row"><span class="info-key">Tinglysing hjemmelsdok.</span><span class="info-val">545</span></div>
-          <div class="info-row"><span class="info-key">Tinglysing pantedok.</span><span class="info-val">545</span></div>
-          <div class="costs-total"><span class="costs-total-label">Totalt ved kjøp</span><span class="costs-total-value">\${fn(totalt)}</span></div>
-          \`;
-        })()}
+        <div class="info-row"><span class="info-key">Dokumentavgift</span><span class="info-val">${((d.boligtype||'').toLowerCase().includes('andel')||(d.boligtype||'').toLowerCase().includes('borettslag')) ? '0 (borettslag)' : fn(Math.round(Number(String(d.prisantydning||0).replace(/ /g,''))*0.025))}</span></div>
+        <div class="info-row"><span class="info-key">Tinglysing hjemmelsdok.</span><span class="info-val">545</span></div>
+        <div class="info-row"><span class="info-key">Tinglysing pantedok.</span><span class="info-val">545</span></div>
+        <div class="costs-total"><span class="costs-total-label">Totalt ved kjøp</span><span class="costs-total-value">${fn(Number(String(d.prisantydning||0).replace(/ /g,'')) + Number(String(d.fellesgjeld||0).replace(/ /g,'')) + (((d.boligtype||'').toLowerCase().includes('andel')||(d.boligtype||'').toLowerCase().includes('borettslag')) ? 0 : Math.round(Number(String(d.prisantydning||0).replace(/ /g,''))*0.025)) + 1090)}</span></div>
         <div style="font-size:11px;color:var(--muted);margin-top:10px">Forutsetter tinglysing av ett pantedokument.</div>
       </div>
     </div>
