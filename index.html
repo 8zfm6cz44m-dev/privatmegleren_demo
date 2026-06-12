@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_20.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_21.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_20.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_20.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_20.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_21.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_21.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_21.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_20.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_20.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_21.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_21.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -1378,9 +1378,32 @@ function showResult(data) {
       if (s !== -1 && e !== -1) raw = raw.slice(s, e+1);
       data = JSON.parse(raw);
     } catch(e) {
-      body.innerHTML = '<div class="result-text"><p style="font-size:13px;white-space:pre-wrap">' + data.raw.slice(0,500) + '</p></div>';
-      document.getElementById('resultActions').style.display = 'flex';
-      return;
+      // Try to fix truncated JSON by closing it
+      try {
+        let raw = data.raw.replace(/```json|```/g,'').trim();
+        const s = raw.indexOf('{');
+        if (s !== -1) {
+          raw = raw.slice(s);
+          // Count open braces/brackets and close them
+          let opens = 0, openBrackets = 0;
+          for (let c of raw) {
+            if (c === '{') opens++;
+            else if (c === '}') opens--;
+            else if (c === '[') openBrackets++;
+            else if (c === ']') openBrackets--;
+          }
+          // Close any open arrays first, then objects
+          while (openBrackets > 0) { raw += ']'; openBrackets--; }
+          while (opens > 0) { raw += '}'; opens--; }
+          data = JSON.parse(raw);
+        } else {
+          throw new Error('No JSON found');
+        }
+      } catch(e2) {
+        body.innerHTML = '<div class="output-placeholder"><div class="output-placeholder-icon">⚠️</div><div style="font-size:14px;color:var(--text2)">Svaret ble for langt. Prøv igjen.</div></div>';
+        document.getElementById('resultActions').style.display = 'none';
+        return;
+      }
     }
   }
 
