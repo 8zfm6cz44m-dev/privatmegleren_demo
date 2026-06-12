@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_22.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_23.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_22.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_22.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_22.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_23.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_23.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_23.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_22.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_22.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_23.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_23.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -803,6 +803,7 @@ footer {
           </div>
 
           <div class="error-msg" id="errorMsg"></div>
+          <button id="cancelBtn" onclick="cancelRequest()" style="display:none;margin-top:12px;width:100%;padding:10px;background:transparent;border:1px solid rgba(201,153,90,0.3);color:var(--text2);font-family:&#39;Syne&#39;,sans-serif;font-size:13px;border-radius:2px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor=&#39;var(--gold)&#39;;this.style.color=&#39;var(--text)&#39;" onmouseout="this.style.borderColor=&#39;rgba(201,153,90,0.3)&#39;;this.style.color=&#39;var(--text2)&#39;">✕ Avbryt</button>
         </div>
 
         <div class="output-panel" id="outputPanel">
@@ -872,6 +873,8 @@ async function handleFile(file) {
   hideError();
   showProgress();
   setStatus('processing', 'Analyserer...');
+  window._abortController = new AbortController();
+  document.getElementById('cancelBtn').style.display = 'block';
 
   try {
     // Convert PDF to base64
@@ -890,6 +893,7 @@ async function handleFile(file) {
     let fakePct = 30;
     const msgs = ['Ekstraherer data...','Leser tilstandsrapport...','Analyserer verdivurdering...','Finner nøkkeltall...','Leser egenerklæring...','Genererer salgstekst...','Bygger salgsoppgave...'];
     let msgIdx = 0;
+    window._crawlInterval = null;
     const crawl = setInterval(() => {
       if (fakePct < 98) {
         // Slow down as we approach 98
@@ -901,6 +905,7 @@ async function handleFile(file) {
         if (fakePct > 70) { setStep(3, 'done'); setStep(4, 'active'); }
       }
     }, 400);
+    window._crawlInterval = crawl;
 
     // Call Claude API
     const result = await callClaude(base64);
@@ -911,10 +916,18 @@ async function handleFile(file) {
 
     showResult(result);
     setStatus('ready', 'Klar');
+    document.getElementById('cancelBtn').style.display = 'none';
 
   } catch (err) {
+    if (err.name === 'AbortError') {
+      document.getElementById('progressWrap').classList.remove('visible');
+      document.getElementById('cancelBtn').style.display = 'none';
+      setStatus('', 'Venter på fil...');
+      return;
+    }
     showError('Noe gikk galt: ' + err.message);
     setStatus('', 'Feil');
+    document.getElementById('cancelBtn').style.display = 'none';
     console.error(err);
   }
 }
@@ -934,9 +947,11 @@ async function callClaude(base64) {
     'JSON: {"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","forretningsforer":"","forsikring":"","gnr":"","bnr":"","snr":"","formue":"","megler":"","selger":"","oppdragsnr":"","befaringsdato":"","beskrivelse":"","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"tg_items":[{"grade":"","room":"","title":"","desc":""}],"hms_items":[{"tittel":"","beskrivelse":""}],"snitt_naeromrade":"","snitt_kommune":"","snitt_salgspris":"","snitt_under_prisantydning":"","til_salgs":"","solgt_3mnd":"","snitt_dager_ute":"","snitt_salgstid":"","nabolag":"","nabolag_sitat":"","nb_score1":"","nb_label1":"","nb_score2":"","nb_label2":"","nb_score3":"","nb_label3":"","naboer":[{"navn":"","avstand":"","kategori":""}],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","prisant":"","pris":"","m2pris":""}],"hist_tinglyst":"","hist_pris":"","hist_fellesgjeld":"","hist_totalpris":"","borettslag_info":""}'
   ].join(' ');
 
+  const signal = window._abortController ? window._abortController.signal : undefined;
   const response = await fetch('https://silent-surf-d0fb.8zfm6cz44m.workers.dev', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    signal,
     body: JSON.stringify({
       model: 'claude-opus-4-6',
       max_tokens: 4000,
@@ -1448,6 +1463,20 @@ function downloadResult() {
   const htmlWithPrint = window._resultHTML.replace('</head>', '<style>@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style><script>window.onload=function(){window.print()}<\/script></head>');
   win.document.write(htmlWithPrint);
   win.document.close();
+}
+
+function cancelRequest() {
+  if (window._abortController) {
+    window._abortController.abort();
+    window._abortController = null;
+  }
+  if (window._crawlInterval) {
+    clearInterval(window._crawlInterval);
+  }
+  document.getElementById('progressWrap').classList.remove('visible');
+  document.getElementById('cancelBtn').style.display = 'none';
+  document.getElementById('errorMsg').classList.remove('visible');
+  setStatus('', 'Venter på fil...');
 }
 
 function copyResult() {
