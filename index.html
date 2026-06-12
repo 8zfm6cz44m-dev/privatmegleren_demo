@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_30.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_31.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_30.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_30.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_30.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_31.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_31.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_31.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_30.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_30.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_31.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_31.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -871,6 +871,7 @@ async function handleFile(file) {
   }
 
   hideError();
+  window._currentFileName = file.name;
   // Show filename in upload zone
   const zone = document.getElementById('uploadZone');
   zone.innerHTML = `
@@ -942,196 +943,23 @@ async function handleFile(file) {
 
 async function callClaude(base64) {
   await new Promise(r => setTimeout(r, 2000 + Math.random() * 2000));
-  return {"adresse":"Rådmann Paulsens gate 46","postnummer":"1473","poststed":"LØRENSKOG","boligtype":"Selveierleilighet","areal_brai":"87","byggeaar":"2023","etasje":"3","soverom":"3","fellesgjeld":"0","felleskostnader":"6 457","prisantydning":"6 400 000","totalpris":"6 400 000","m2pris":"73 563","energikarakter":"B","heis":true,"balkong":"13 m² sydvendt","garasje":"Garasjeplass m/el-lader","sameie":"Skårerbyen 2 Sameie","forretningsforer":"USBL","forsikring":"Tryg #8592413","gnr":"102","bnr":"463","snr":"165","formue":"30 932","megler":"Lars Espen Storebø","selger":"","oppdragsnr":"24260202","befaringsdato":"29.05.2026","beskrivelse":"En moderne og innbydende 4-roms selveierleilighet fra 2023, beliggende i populære Skårerbyen i Lørenskog. Leiligheten ligger i byggets 3. etasje med heis og byr på en gjennomtenkt planløsning, gode lysforhold og en romslig sydvendt balkong på ca. 13 m².\n\nHer bor du i et attraktivt boligkonsept med tilgang til Selvaag Pluss® – utviklet for å gi en enklere og mer sosial hverdag med 600 kvm serviceområde med resepsjon, treningsrom og selskapslokale.\n\nLeiligheten disponerer garasjeplass med el-lader samt bod i kjeller, og ligger sentralt med gangavstand til Triaden og kollektivtransport.","innvendig":"Parkett på gulv, malte plater på vegger og malte dekker i tak.","utvendig":"Malte trevinduer med 3-lags glass, malt hovedytterdør og balkongdør i tre.","bad":"Flisbelagte flater, gulvvarme, vegghengt toalett, dusj og servant. Downlights i tak.","kjoekken":"Glatt kjøkken med laminert benkeplate og integrerte hvitevarer.","tg0":16,"tg1":4,"tg2":1,"tgiu":1,"tg_items":[{"grade":"TG2","room":"Utvendig","title":"Andre utvendige forhold","desc":"Ingen tilstandsrapport for fellesdeler i bygget."},{"grade":"TG1","room":"Utvendig","title":"Vinduer og dører","desc":"Malte trevinduer med 3-lags glass, normal bruksslitasje."},{"grade":"TG1","room":"Våtrom","title":"Overflater vegger og himling","desc":"Flisbelagte vegger, malt tak, downlights."},{"grade":"TGIU","room":"Utvendig","title":"Konstruksjoner utenfor leiligheten","desc":"Tak, yttervegger og grunnmur ikke undersøkt."}],"hms_items":[],"snitt_naeromrade":"73 810","snitt_kommune":"69 985","snitt_under_prisantydning":"0.8","til_salgs":"67","solgt_3mnd":"58","snitt_dager_ute":"91","snitt_salgstid":"70","nabolag":"Rolvsrud","nabolag_sitat":"Hyggelige naboer, ålreit sted, rolig og behagelig med gode bussmuligheter.","nb_score1":"91","nb_label1":"Nærhet til skog og mark","nb_score2":"88","nb_label2":"Kollektivtilbud","nb_score3":"83","nb_label3":"Kvalitet barnehager","naboer":[{"navn":"Joker Vestparken","avstand":"3 min","kategori":"dagligvare"},{"navn":"Rema 1000 Skårer","avstand":"3 min","kategori":"dagligvare"},{"navn":"Triaden Lørenskog","avstand":"4 min","kategori":"varehandel"},{"navn":"Linje 120, 125E, 310","avstand":"Rolvsrud","kategori":"kollektivtransport"},{"navn":"Lørenskog stasjon","avstand":"8 min","kategori":"kollektivtransport"},{"navn":"Oslo S","avstand":"18 min","kategori":"kollektivtransport"},{"navn":"Benterud skole (1-7)","avstand":"13 min","kategori":"skoler"},{"navn":"Rasta skole (1-7)","avstand":"14 min","kategori":"skoler"},{"navn":"Løkenåsen ungdomsskole","avstand":"16 min","kategori":"skoler"},{"navn":"Emaljeverket barnehage","avstand":"3 min","kategori":"barnehager"},{"navn":"Rolvsrud stadion","avstand":"6 min","kategori":"idrett"},{"navn":"Fresh Fitness Skårer","avstand":"5 min","kategori":"idrett"}],"sammenlignbare":[{"adresse":"Rådmann Paulsens gate 44","areal":"83","etasje":"7. etg","dato":"16.04.2026","prisant":"7 150 000","pris":"6 720 000","m2pris":"80 964"},{"adresse":"Rådmann Paulsens gate 56","areal":"89","etasje":"2. etg","dato":"04.12.2025","prisant":"6 750 000","pris":"6 750 000","m2pris":"75 843"},{"adresse":"Ingvald Kristiansens gate 13","areal":"96","etasje":"3. etg","dato":"10.10.2025","prisant":"6 990 000","pris":"6 990 000","m2pris":"72 813"},{"adresse":"Søster Mathildes gate 41","areal":"89","etasje":"2. etg","dato":"05.05.2026","prisant":"6 490 000","pris":"6 300 000","m2pris":"70 787"},{"adresse":"Søster Mathildes gate 33","areal":"90","etasje":"4. etg","dato":"17.10.2025","prisant":"6 800 000","pris":"6 250 000","m2pris":"69 444"}],"hist_tinglyst":"17.10.2023","hist_pris":"5 730 000","hist_fellesgjeld":"0","hist_totalpris":"5 730 000","borettslag_info":""};
+
+  // Demo data for Blystadringen 2C
+  const blystadringen = {"adresse":"Blystadringen 2C","postnummer":"2014","poststed":"BLYSTADLIA","boligtype":"Andel i borettslagleilighet","areal_brai":"91","byggeaar":"1978","etasje":"2","soverom":"2","fellesgjeld":"228 800","felleskostnader":"5 927","prisantydning":"4 000 000","totalpris":"4 228 800","m2pris":"46 470","energikarakter":"F","heis":false,"balkong":"14 m² betong- og metallkonstruksjon","garasje":"Garasjeplass i felles garasjekjeller","sameie":"Blystadringen Borettslag","forretningsforer":"USBL","forsikring":"If Skadeforsikring NUF, polisenr SP6806414","gnr":"103","bnr":"297","snr":"0","formue":"46 510","megler":"Karl Nguyen, PrivatMegleren Lillestrøm","selger":"Werner Alvestad","oppdragsnr":"24260008","befaringsdato":"28.05.2026","beskrivelse":"Lys og romslig 3(4)-roms andelsleilighet i 2. etasje med stor balkong på ca. 14 m² og garasjeplass i Blystadringen Borettslag på Blystadlia. Boligen har et internt bruksareal på 91 m² og ble bygget i 1978. Kjøkken og bad ble totalrenovert i 2017 av fagfolk.\n\nBeliggenheten er attraktiv med kort vei til marka og gode turmuligheter, barnehage, skole, dagligvare og kollektivtransport. Nabolaget scorer svært høyt på nærhet til skog og mark (96/100), lite trafikk (92/100) og trygghet for barn (91/100).","innvendig":"Parkett på gulv, malt tapet på vegger, sparklet og malte himlinger. Himlingshøyde ca. 2,37 m.","utvendig":"Bygning i betong, stål- og trekonstruksjon med flatt oppforet yttertak. Balkongrekkverk ca. 0,86 m.","bad":"Bad totalrenovert i 2017. Fliser på gulv og vegg. Servant og dusj på gulv. Mekanisk avtrekk.","kjoekken":"Kjøkkeninnredning fra 2017 med glatte fronter og benkeplate i laminat. Integrerte hvitevarer.","tg0":0,"tg1":13,"tg2":4,"tgiu":1,"tg_items":[{"grade":"TG2","room":"Vaskerom - 2. etasje","title":"Sluk og tettesjikt/membran","desc":"Sluk i plast med synlig vinylbelegg klemt i sluket. Sluket har oppnådd mer enn halvparten av forventet levetid."},{"grade":"TG2","room":"Vaskerom - 2. etasje","title":"Avtrekk","desc":"Mekanisk avtrekk. Tilluft mangler. Kan redusere effekten av avtrekket."},{"grade":"TG2","room":"Toalettrom - 2. etasje","title":"Sanitærutstyr og ventilasjon","desc":"Mekanisk avtrekk. Servant og veggfestet klosett. Ingen lufttilførsel til rommet."},{"grade":"TG2","room":"Tekniske installasjoner","title":"Ventilasjon","desc":"Mekanisk avtrekk fra bad og kjøkken. Mangler luftespalte til toalettrom og vaskerom."},{"grade":"TGIU","room":"Vaskerom - 2. etasje","title":"Kontroll i tilliggende konstruksjoner","desc":"Fuktmåling under 6 vektprosent, men hulltaking utført utenfor bruksvannsonen."}],"hms_items":[{"tittel":"Rekkverk og håndløper","beskrivelse":"Balkong: Rekkverket er lavere enn dagens krav (ca. 0,86 m). Registrert åpninger større enn forskriftskrav."},{"tittel":"Radon","beskrivelse":"Det foreligger ikke dokumentasjon på radonmålinger. Aktsomhetsgrad moderat til lav."}],"snitt_naeromrade":"50 343","snitt_kommune":"56 878","snitt_under_prisantydning":"0.8","til_salgs":"8","solgt_3mnd":"25","snitt_dager_ute":"32","snitt_salgstid":"45","nabolag":"Blystadlia","nabolag_sitat":"Prisgunstige leiligheter, mye for pengene! Trives godt og blir nok boende :)","nb_score1":"96","nb_label1":"Nærhet til skog og mark","nb_score2":"92","nb_label2":"Lite trafikk","nb_score3":"91","nb_label3":"Trygghet der barna ferdes","naboer":[{"navn":"Blystadlia bussholdeplass","avstand":"0.3 km / 3 min","kategori":"kollektivtransport"},{"navn":"Lillestrøm stasjon","avstand":"4.9 km / 9 min","kategori":"kollektivtransport"},{"navn":"Oslo S","avstand":"20.3 km / 23 min","kategori":"kollektivtransport"},{"navn":"Oslo Gardermoen","avstand":"35 min","kategori":"kollektivtransport"},{"navn":"Blystadlia skole (1-7 kl.)","avstand":"0.5 km / 6 min","kategori":"skoler"},{"navn":"Løvenstad skole (1-7 kl.)","avstand":"1.7 km / 19 min","kategori":"skoler"},{"navn":"Sandbekken ungdomsskole","avstand":"1 km / 11 min","kategori":"skoler"},{"navn":"Rælingen videregående skole","avstand":"1.9 km / 21 min","kategori":"skoler"},{"navn":"Blystadlia barnehage","avstand":"0.4 km / 4 min","kategori":"barnehager"},{"navn":"Kurland barnehage","avstand":"1.6 km / 19 min","kategori":"barnehager"},{"navn":"Løvenstad barnehage","avstand":"1.7 km / 20 min","kategori":"barnehager"},{"navn":"Kiwi Blystadlia","avstand":"3 min","kategori":"dagligvare"},{"navn":"Coop Extra Kurlandsåsen","avstand":"14 min","kategori":"dagligvare"},{"navn":"Strømmen Storsenter","avstand":"7 min","kategori":"varehandel"},{"navn":"Boots apotek Strømmen","avstand":"7 min","kategori":"varehandel"},{"navn":"Blystadlia skole (idrett)","avstand":"6 min","kategori":"idrett"},{"navn":"Sandbekkhallen","avstand":"10 min","kategori":"idrett"},{"navn":"Fresh Fitness Strømmen","avstand":"7 min","kategori":"idrett"}],"sammenlignbare":[{"adresse":"Blystadringen 2E","areal":"84","etasje":"4. etg","dato":"01.11.2025","prisant":"3 990 001","pris":"3 950 000","m2pris":"49 677"},{"adresse":"Blystadringen 2F","areal":"98","etasje":"2. etg","dato":"24.06.2025","prisant":"4 300 000","pris":"4 400 000","m2pris":"47 334"},{"adresse":"Blystadringen 2B","areal":"92","etasje":"3. etg","dato":"24.03.2025","prisant":"4 200 000","pris":"4 250 000","m2pris":"48 767"}],"hist_tinglyst":"05.01.2017","hist_pris":"2 870 000","hist_fellesgjeld":"156 636","hist_totalpris":"3 026 636","borettslag_info":"Blystadringen Borettslag, org.nr 945 639 288, tilknyttet BORI. 286 andeler. Gjennomført takprosjekt 2024 – låneavdrag starter oktober 2026, forventet økning ca. kr 216/mnd. Dyrehold tillatt (hund/katt med avtale, maks 8 poter). TV/internett via Telenor inkludert."};
+
+  // Demo data for Håkons vei 12
+  const hakonsvei = {"adresse":"Håkons vei 12","postnummer":"1470","poststed":"LØRENSKOG","boligtype":"Selveier enebolig","areal_brai":"553","byggeaar":"1999","etasje":"3","soverom":"5","fellesgjeld":"0","felleskostnader":"0","prisantydning":"18 900 000","totalpris":"18 900 000","m2pris":"34 177","energikarakter":"E","heis":false,"balkong":"Tre solrike balkonger + terrasse 200 m² med oppvarmet svømmebasseng","garasje":"Dobbelgarasje med steinsatt gårdsplass","sameie":"","forretningsforer":"","forsikring":"","gnr":"105","bnr":"35","snr":"0","formue":"","megler":"Steinar Gundersen, PrivatMegleren Lillestrøm","selger":"","oppdragsnr":"11483-1746","befaringsdato":"09.04.2026","beskrivelse":"En sjelden perle av en enebolig over tre familievennlige plan med tre solrike balkonger og fantastisk terrasse på over 200 kvm med nedfelt oppvarmet svømmebasseng. Dobbelgarasje med steinsatt gårdsplass.\n\nKjelleren imponerer med godkjent utleiedel, stor hybel, samt en spaavdeling med jacuzzi, steamdusj og trimrom. Hovedetasjen har generøse romløsninger med stue, lydisolert kinorom, spisestue og lekkert kjøkken med steinbenk og integrerte hvitevarer.\n\nMed vannbåren gulvvarme og balansert ventilasjon er komforten sikret. Beliggende i rolig villastrøk i Lørenskog med kort vei til Triaden og Oslo.","innvendig":"Gulv av laminat og fliser. Malte vegger og tak. Vannbåren gulvvarme. Balansert ventilasjon.","utvendig":"Liggende bordkledning og skifer. Glassert takstein. Ny hovedytterdør 2025, nye takvinduer 2024.","bad":"Flere bad i boligen. Oppgradert hovedbad med dusj og badekar. Elektrisk gulvvarme.","kjoekken":"Lekkert kjøkken med steinbenk, kjølerom og integrerte hvitevarer.","tg0":3,"tg1":8,"tg2":12,"tgiu":4,"tg_items":[{"grade":"TG2","room":"Utvendig","title":"Taktekking","desc":"Mer enn halvparten av forventet brukstid passert. Enkelte knekte takstein."},{"grade":"TG2","room":"Utvendig","title":"Nedløp og beslag","desc":"Ikke tilfredsstillende bortledning av vann fra taknedløp ved grunnmur."},{"grade":"TG2","room":"Utvendig","title":"Veggkonstruksjon","desc":"Bordkledning har synlig slitasje og sprekker fra værpåvirkning og manglende vedlikehold."},{"grade":"TG2","room":"Innvendig","title":"Rom under terreng","desc":"Indikasjoner på fuktgjennomtrenging i kjellergulv og kjellermur. Registrert insekter."},{"grade":"TG2","room":"Innvendig","title":"Etasjeskille/gulv","desc":"Målt høydeforskjell 15-30 mm gjennom hele rommet."},{"grade":"TG2","room":"Innvendig","title":"Overflater","desc":"Sprukne fliser, bom i fliser, knirk i gulv og slitt laminat."}],"hms_items":[{"tittel":"Rekkverk og håndløper","beskrivelse":"Utvendig trapp mangler håndløper, økt risiko for fall."},{"tittel":"Radon","beskrivelse":"Det er foretatt radonmålinger og iverksatt tiltak ifølge rekvirent."}],"snitt_naeromrade":"52 152","snitt_kommune":"52 050","snitt_under_prisantydning":"0.9","til_salgs":"8","solgt_3mnd":"13","snitt_dager_ute":"91","snitt_salgstid":"80","nabolag":"Lørenskog","nabolag_sitat":"Flott og rolig boligområde med gode naboer og kort vei til alt.","nb_score1":"88","nb_label1":"Nærhet til skog og mark","nb_score2":"85","nb_label2":"Kollektivtilbud","nb_score3":"90","nb_label3":"Trygghet for barn","naboer":[{"navn":"Lørenskog stasjon","avstand":"5 min","kategori":"kollektivtransport"},{"navn":"Oslo S","avstand":"20 min","kategori":"kollektivtransport"},{"navn":"Triaden Lørenskog","avstand":"5 min","kategori":"varehandel"},{"navn":"Kiwi Lørenskog","avstand":"4 min","kategori":"dagligvare"},{"navn":"Rema 1000","avstand":"5 min","kategori":"dagligvare"},{"navn":"Lørenskog skole","avstand":"8 min","kategori":"skoler"},{"navn":"Lørenskog videregående","avstand":"10 min","kategori":"skoler"},{"navn":"Fresh Fitness Lørenskog","avstand":"6 min","kategori":"idrett"},{"navn":"Triaden ishall","avstand":"5 min","kategori":"idrett"}],"sammenlignbare":[{"adresse":"Georg Stangs vei 14","areal":"496","etasje":"1-3","dato":"11.11.2025","prisant":"15 000 000","pris":"14 400 000","m2pris":"29 032"},{"adresse":"Østaveien 15","areal":"286","etasje":"1-3","dato":"17.04.2024","prisant":"16 300 000","pris":"16 300 000","m2pris":"56 993"},{"adresse":"Lysåskroken 9","areal":"383","etasje":"1-3","dato":"23.10.2024","prisant":"16 950 000","pris":"16 600 000","m2pris":"43 342"}],"hist_tinglyst":"17.11.2016","hist_pris":"14 200 000","hist_fellesgjeld":"0","hist_totalpris":"14 200 000","borettslag_info":""};
+
+  // Demo data for Rådmann Paulsens gate 46 (default)
+  const radmann = {"adresse":"Rådmann Paulsens gate 46","postnummer":"1473","poststed":"LØRENSKOG","boligtype":"Selveierleilighet","areal_brai":"87","byggeaar":"2023","etasje":"3","soverom":"3","fellesgjeld":"0","felleskostnader":"6 457","prisantydning":"6 400 000","totalpris":"6 400 000","m2pris":"73 563","energikarakter":"B","heis":true,"balkong":"13 m² sydvendt","garasje":"Garasjeplass m/el-lader","sameie":"Skårerbyen 2 Sameie","forretningsforer":"USBL","forsikring":"Tryg #8592413","gnr":"102","bnr":"463","snr":"165","formue":"30 932","megler":"Lars Espen Storebø, PrivatMegleren Lillestrøm","selger":"","oppdragsnr":"24260202","befaringsdato":"29.05.2026","beskrivelse":"En moderne og innbydende 4-roms selveierleilighet fra 2023, beliggende i populære Skårerbyen i Lørenskog. Leiligheten ligger i byggets 3. etasje med heis og byr på en gjennomtenkt planløsning, gode lysforhold og en romslig sydvendt balkong på ca. 13 m².\n\nHer bor du i et attraktivt boligkonsept med tilgang til Selvaag Pluss® – utviklet for å gi en enklere og mer sosial hverdag med 600 kvm serviceområde med resepsjon, treningsrom og selskapslokale.\n\nLeiligheten disponerer garasjeplass med el-lader samt bod i kjeller. Sentralt beliggende med gangavstand til Triaden og kollektivtransport.","innvendig":"Parkett på gulv, malte plater på vegger og malte dekker i tak. Hvite, glatte innvendige dører.","utvendig":"Malte trevinduer med 3-lags glass. Malt hovedytterdør og balkongdør i tre.","bad":"Flisbelagte flater, gulvvarme, vegghengt toalett, dusj og servant. Downlights i tak.","kjoekken":"Glatt kjøkken med laminert benkeplate og integrerte hvitevarer.","tg0":16,"tg1":4,"tg2":1,"tgiu":1,"tg_items":[{"grade":"TG2","room":"Utvendig","title":"Andre utvendige forhold","desc":"Ingen tilstandsrapport for fellesdeler i bygget. Bør utarbeides vedlikeholdsplan."},{"grade":"TG1","room":"Utvendig","title":"Vinduer og dører","desc":"Malte trevinduer med 3-lags glass, normal bruksslitasje."},{"grade":"TG1","room":"Våtrom","title":"Overflater vegger og himling","desc":"Flisbelagte vegger, malt tak, downlights. Normal bruksslitasje."},{"grade":"TGIU","room":"Utvendig","title":"Konstruksjoner utenfor leiligheten","desc":"Tak, yttervegger og grunnmur er ikke undersøkt som del av rapporten."}],"hms_items":[],"snitt_naeromrade":"73 810","snitt_kommune":"69 985","snitt_under_prisantydning":"0.8","til_salgs":"67","solgt_3mnd":"58","snitt_dager_ute":"91","snitt_salgstid":"70","nabolag":"Rolvsrud","nabolag_sitat":"Hyggelige naboer, ålreit sted, rolig og behagelig med gode bussmuligheter.","nb_score1":"91","nb_label1":"Nærhet til skog og mark","nb_score2":"88","nb_label2":"Kollektivtilbud","nb_score3":"83","nb_label3":"Kvalitet barnehager","naboer":[{"navn":"Joker Vestparken","avstand":"3 min","kategori":"dagligvare"},{"navn":"Rema 1000 Skårer","avstand":"3 min","kategori":"dagligvare"},{"navn":"Triaden Lørenskog","avstand":"4 min","kategori":"varehandel"},{"navn":"Apotek 1 Skårersletta","avstand":"4 min","kategori":"varehandel"},{"navn":"Linje 120, 125E, 310","avstand":"Rolvsrud","kategori":"kollektivtransport"},{"navn":"Lørenskog stasjon","avstand":"8 min","kategori":"kollektivtransport"},{"navn":"Oslo S","avstand":"18 min","kategori":"kollektivtransport"},{"navn":"Benterud skole (1-7)","avstand":"13 min","kategori":"skoler"},{"navn":"Rasta skole (1-7)","avstand":"14 min","kategori":"skoler"},{"navn":"Løkenåsen ungdomsskole","avstand":"16 min","kategori":"skoler"},{"navn":"Emaljeverket barnehage","avstand":"3 min","kategori":"barnehager"},{"navn":"Rolvsrud stadion","avstand":"6 min","kategori":"idrett"},{"navn":"Fresh Fitness Skårer","avstand":"5 min","kategori":"idrett"}],"sammenlignbare":[{"adresse":"Rådmann Paulsens gate 44","areal":"83","etasje":"7. etg","dato":"16.04.2026","prisant":"7 150 000","pris":"6 720 000","m2pris":"80 964"},{"adresse":"Rådmann Paulsens gate 56","areal":"89","etasje":"2. etg","dato":"04.12.2025","prisant":"6 750 000","pris":"6 750 000","m2pris":"75 843"},{"adresse":"Ingvald Kristiansens gate 13","areal":"96","etasje":"3. etg","dato":"10.10.2025","prisant":"6 990 000","pris":"6 990 000","m2pris":"72 813"},{"adresse":"Søster Mathildes gate 41","areal":"89","etasje":"2. etg","dato":"05.05.2026","prisant":"6 490 000","pris":"6 300 000","m2pris":"70 787"},{"adresse":"Søster Mathildes gate 33","areal":"90","etasje":"4. etg","dato":"17.10.2025","prisant":"6 800 000","pris":"6 250 000","m2pris":"69 444"}],"hist_tinglyst":"17.10.2023","hist_pris":"5 730 000","hist_fellesgjeld":"0","hist_totalpris":"5 730 000","borettslag_info":""};
+
+  // Pick correct dataset based on filename
+  const name = (window._currentFileName || '').toLowerCase();
+  if (name.includes('blystadringen') || name.includes('blystadlia')) return blystadringen;
+  if (name.includes('hakon') || name.includes('håkon')) return hakonsvei;
+  return radmann;
 }
 
-
-function showResult(data) {
-  const body = document.getElementById('outputBody');
-  const fmt = v => (v !== null && v !== undefined && v !== '') ? v : '–';
-
-  // Try harder to parse raw JSON
-  if (data.raw) {
-    try {
-      let raw = data.raw.replace(/```json|```/g,'').trim();
-      const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
-      if (s !== -1 && e !== -1) raw = raw.slice(s, e+1);
-      data = JSON.parse(raw);
-    } catch(e) {
-      // Try to fix truncated JSON by closing it
-      try {
-        let raw = data.raw.replace(/```json|```/g,'').trim();
-        const s = raw.indexOf('{');
-        if (s !== -1) {
-          raw = raw.slice(s);
-          // Count open braces/brackets and close them
-          let opens = 0, openBrackets = 0;
-          for (let c of raw) {
-            if (c === '{') opens++;
-            else if (c === '}') opens--;
-            else if (c === '[') openBrackets++;
-            else if (c === ']') openBrackets--;
-          }
-          // Close any open arrays first, then objects
-          while (openBrackets > 0) { raw += ']'; openBrackets--; }
-          while (opens > 0) { raw += '}'; opens--; }
-          data = JSON.parse(raw);
-        } else {
-          throw new Error('No JSON found');
-        }
-      } catch(e2) {
-        body.innerHTML = '<div class="output-placeholder"><div class="output-placeholder-icon">⚠️</div><div style="font-size:14px;color:var(--text2)">Svaret ble for langt. Prøv igjen.</div></div>';
-        document.getElementById('resultActions').style.display = 'none';
-        return;
-      }
-    }
-  }
-
-  window._resultData = data;
-  window._resultHTML = buildSalgsoppgaveHTML(data);
-
-  body.innerHTML = `
-    <div style="background:linear-gradient(135deg,#1a1814,#2d2820);border-radius:4px;padding:20px;margin-bottom:16px;color:white;">
-      <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#c9995a;margin-bottom:6px">${fmt(data.boligtype)} · ${fmt(data.byggeaar)}</div>
-      <div style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:4px">${fmt(data.adresse)}</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.6)">${fmt(data.poststed)} · ${fmt(data.etasje)} etasje</div>
-    </div>
-    <div class="result-section">
-      <div class="result-section-title">Nøkkelinformasjon</div>
-      <div class="result-grid">
-        <div class="result-item"><div class="result-item-label">Prisantydning</div><div class="result-item-value">kr ${fmt(data.prisantydning)}</div></div>
-        <div class="result-item"><div class="result-item-label">Areal</div><div class="result-item-value">${fmt(data.areal_brai)} m²</div></div>
-        <div class="result-item"><div class="result-item-label">Soverom</div><div class="result-item-value">${fmt(data.soverom)}</div></div>
-        <div class="result-item"><div class="result-item-label">Felleskostnader</div><div class="result-item-value">kr ${fmt(data.felleskostnader)}/mnd</div></div>
-        <div class="result-item"><div class="result-item-label">Fellesgjeld</div><div class="result-item-value">kr ${fmt(data.fellesgjeld)}</div></div>
-        <div class="result-item"><div class="result-item-label">Energikarakter</div><div class="result-item-value">${fmt(data.energikarakter)}</div></div>
-      </div>
-    </div>
-    ${data.beskrivelse ? `<div class="result-section"><div class="result-section-title">Boligbeskrivelse</div><div class="result-text">${data.beskrivelse.split('\n').filter(p=>p.trim()).slice(0,2).map(p=>'<p>'+p+'</p>').join('')}<p style="color:var(--gold);font-size:12px;margin-top:8px">↓ Åpne full salgsoppgave for å se alt</p></div></div>` : ''}
-    ${(data.tg0||data.tg1||data.tg2) ? `<div class="result-section"><div class="result-section-title">Tilstandsgrader</div><div class="result-grid"><div class="result-item"><div class="result-item-label">TG0</div><div class="result-item-value" style="color:#4a9e6a;font-size:24px">${fmt(data.tg0)}</div></div><div class="result-item"><div class="result-item-label">TG1</div><div class="result-item-value" style="color:#8ab040;font-size:24px">${fmt(data.tg1)}</div></div><div class="result-item"><div class="result-item-label">TG2</div><div class="result-item-value" style="color:#e8a020;font-size:24px">${fmt(data.tg2)}</div></div><div class="result-item"><div class="result-item-label">TG IU</div><div class="result-item-value" style="font-size:24px">${fmt(data.tgiu)}</div></div></div></div>` : ''}
-  `;
-  document.getElementById('resultActions').style.display = 'flex';
-}
-
-function openFullSalgsoppgave() {
-  if (!window._resultHTML) return;
-  const blob = new Blob([window._resultHTML], {type:'text/html'});
-  window.open(URL.createObjectURL(blob), '_blank');
-}
-
-
-function downloadResult() {
-  if (!window._resultHTML) return;
-  // Open in new window and trigger print-to-PDF
-  const win = window.open('', '_blank');
-  // Add print CSS to auto-trigger print dialog
-  const htmlWithPrint = window._resultHTML.replace('</head>', '<style>@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style><script>window.onload=function(){window.print()}<\/script></head>');
-  win.document.write(htmlWithPrint);
-  win.document.close();
-}
-
-function resetUploadZone() {
-  const zone = document.getElementById('uploadZone');
-  zone.innerHTML = `
-    <input type="file" id="fileInput" accept=".pdf" onchange="handleFile(this.files[0])">
-    <div class="upload-icon">📎</div>
-    <div class="upload-title">Dra PDF hit, eller klikk for å velge</div>
-    <div class="upload-sub">Den sammenslåtte vedlegg-PDF-en fra oppdraget ditt</div>
-    <div class="upload-formats">
-      <span class="format-tag">Tilstandsrapport</span>
-      <span class="format-tag">Egenerklæring</span>
-      <span class="format-tag">Verdivurdering</span>
-      <span class="format-tag">Nabolagsprofil</span>
-    </div>
-  `;
-  // Re-attach drag events
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
-  zone.addEventListener('drop', e => {
-    e.preventDefault();
-    zone.classList.remove('dragover');
-    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
-  });
-}
-
-function cancelRequest() {
-  if (window._abortController) {
-    window._abortController.abort();
-    window._abortController = null;
-  }
-  if (window._crawlInterval) {
-    clearInterval(window._crawlInterval);
-  }
-  document.getElementById('progressWrap').classList.remove('visible');
-  document.getElementById('cancelBtn').style.display = 'none';
-  document.getElementById('errorMsg').classList.remove('visible');
-  setStatus('', 'Venter på fil...');
-  resetUploadZone();
-}
-
-function copyResult() {
-  if (!window._resultData) return;
-  const d = window._resultData;
-  const text = `${d.adresse}, ${d.postnummer} ${d.poststed}\n\n${d.beskrivelse}`;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = event.target;
-    btn.textContent = 'Kopiert!';
-    setTimeout(() => btn.textContent = 'Kopier tekst', 2000);
-  });
-}
-
-// HELPERS
-function fileToBase64(file) {
-  return new Promise((res, rej) => {
-    const r = new FileReader();
-    r.onload = () => res(r.result.split(',')[1]);
-    r.onerror = () => rej(new Error('Kunne ikke lese fil'));
-    r.readAsDataURL(file);
-  });
-}
-
-function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-function showProgress() {
-  document.getElementById('progressWrap').classList.add('visible');
-  ['step1','step2','step3','step4'].forEach(id => {
-    const el = document.getElementById(id);
-    el.classList.remove('active','done');
-  });
-}
-
-function setStep(n, state) {
-  const el = document.getElementById('step' + n);
-  el.classList.remove('active','done');
-  if (state) el.classList.add(state);
-  if (state === 'active') {
-    el.querySelector('.progress-step-dot').textContent = '↻';
-  } else if (state === 'done') {
-    el.querySelector('.progress-step-dot').textContent = '✓';
-  }
-}
-
-function setProgress(pct, text) {
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressPct').textContent = Math.round(pct) + '%';
-  document.getElementById('progressText').textContent = text;
-}
-
-function setStatus(type, text) {
-  const dot = document.getElementById('statusDot');
-  dot.className = 'status-dot' + (type ? ' ' + type : '');
-  document.getElementById('statusText').textContent = text;
-}
-
-function showError(msg) {
-  const el = document.getElementById('errorMsg');
-  el.textContent = msg;
-  el.classList.add('visible');
-}
-
-function hideError() {
-  document.getElementById('errorMsg').classList.remove('visible');
-}
 
 function buildSalgsoppgaveHTML(d) {
   const fmt = v => (v !== null && v !== undefined && v !== '') ? v : '–';
