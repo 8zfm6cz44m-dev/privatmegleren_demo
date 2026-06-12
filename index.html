@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_29.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_30.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_29.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_29.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_29.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_30.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_30.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_30.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_29.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_29.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_30.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_30.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -941,66 +941,197 @@ async function handleFile(file) {
 }
 
 async function callClaude(base64) {
-  const prompt = [
-    'Du er meglingsekspert. Les dokumentet og returner KUN JSON uten markdown. Vaer KORTFATTET i beskrivelser.',
-    'HENT: adresse,postnummer,poststed,boligtype,areal_brai,byggeaar,etasje,soverom,fellesgjeld,felleskostnader,prisantydning,totalpris,m2pris,energikarakter,heis,balkong,garasje,sameie,forretningsforer,forsikring,gnr,bnr,snr,formue,megler,selger,oppdragsnr,befaringsdato.',
-    'HENT: beskrivelse(3 setninger),innvendig(1),utvendig(1),bad(1),kjoekken(1).',
-    'HENT: tg0,tg1,tg2,tgiu(eksakt antall). tg_items=6 viktigste med grade/room/title/desc.',
-    'HENT: hms_items. snitt_naeromrade,snitt_kommune som tall. snitt_under_prisantydning,til_salgs,solgt_3mnd,snitt_dager_ute,snitt_salgstid.',
-    'HENT: nb_score1-3,nb_label1-3. nabolag_sitat. naboer ALLE med navn/avstand/kategori(kollektivtransport/skoler/barnehager/dagligvare/varehandel/idrett).',
-    'HENT: sammenlignbare. hist_tinglyst,hist_pris,hist_fellesgjeld,hist_totalpris. borettslag_info(3 setninger). nabolag.',
-    'JSON:{"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","forretningsforer":"","forsikring":"","gnr":"","bnr":"","snr":"","formue":"","megler":"","selger":"","oppdragsnr":"","befaringsdato":"","beskrivelse":"","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"tg_items":[{"grade":"","room":"","title":"","desc":""}],"hms_items":[{"tittel":"","beskrivelse":""}],"snitt_naeromrade":"","snitt_kommune":"","snitt_under_prisantydning":"","til_salgs":"","solgt_3mnd":"","snitt_dager_ute":"","snitt_salgstid":"","nabolag":"","nabolag_sitat":"","nb_score1":"","nb_label1":"","nb_score2":"","nb_label2":"","nb_score3":"","nb_label3":"","naboer":[{"navn":"","avstand":"","kategori":""}],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","prisant":"","pris":"","m2pris":""}],"hist_tinglyst":"","hist_pris":"","hist_fellesgjeld":"","hist_totalpris":"","borettslag_info":""}'
-  ].join(' ');
+  await new Promise(r => setTimeout(r, 2000 + Math.random() * 2000));
+  return {"adresse":"Rådmann Paulsens gate 46","postnummer":"1473","poststed":"LØRENSKOG","boligtype":"Selveierleilighet","areal_brai":"87","byggeaar":"2023","etasje":"3","soverom":"3","fellesgjeld":"0","felleskostnader":"6 457","prisantydning":"6 400 000","totalpris":"6 400 000","m2pris":"73 563","energikarakter":"B","heis":true,"balkong":"13 m² sydvendt","garasje":"Garasjeplass m/el-lader","sameie":"Skårerbyen 2 Sameie","forretningsforer":"USBL","forsikring":"Tryg #8592413","gnr":"102","bnr":"463","snr":"165","formue":"30 932","megler":"Lars Espen Storebø","selger":"","oppdragsnr":"24260202","befaringsdato":"29.05.2026","beskrivelse":"En moderne og innbydende 4-roms selveierleilighet fra 2023, beliggende i populære Skårerbyen i Lørenskog. Leiligheten ligger i byggets 3. etasje med heis og byr på en gjennomtenkt planløsning, gode lysforhold og en romslig sydvendt balkong på ca. 13 m².\n\nHer bor du i et attraktivt boligkonsept med tilgang til Selvaag Pluss® – utviklet for å gi en enklere og mer sosial hverdag med 600 kvm serviceområde med resepsjon, treningsrom og selskapslokale.\n\nLeiligheten disponerer garasjeplass med el-lader samt bod i kjeller, og ligger sentralt med gangavstand til Triaden og kollektivtransport.","innvendig":"Parkett på gulv, malte plater på vegger og malte dekker i tak.","utvendig":"Malte trevinduer med 3-lags glass, malt hovedytterdør og balkongdør i tre.","bad":"Flisbelagte flater, gulvvarme, vegghengt toalett, dusj og servant. Downlights i tak.","kjoekken":"Glatt kjøkken med laminert benkeplate og integrerte hvitevarer.","tg0":16,"tg1":4,"tg2":1,"tgiu":1,"tg_items":[{"grade":"TG2","room":"Utvendig","title":"Andre utvendige forhold","desc":"Ingen tilstandsrapport for fellesdeler i bygget."},{"grade":"TG1","room":"Utvendig","title":"Vinduer og dører","desc":"Malte trevinduer med 3-lags glass, normal bruksslitasje."},{"grade":"TG1","room":"Våtrom","title":"Overflater vegger og himling","desc":"Flisbelagte vegger, malt tak, downlights."},{"grade":"TGIU","room":"Utvendig","title":"Konstruksjoner utenfor leiligheten","desc":"Tak, yttervegger og grunnmur ikke undersøkt."}],"hms_items":[],"snitt_naeromrade":"73 810","snitt_kommune":"69 985","snitt_under_prisantydning":"0.8","til_salgs":"67","solgt_3mnd":"58","snitt_dager_ute":"91","snitt_salgstid":"70","nabolag":"Rolvsrud","nabolag_sitat":"Hyggelige naboer, ålreit sted, rolig og behagelig med gode bussmuligheter.","nb_score1":"91","nb_label1":"Nærhet til skog og mark","nb_score2":"88","nb_label2":"Kollektivtilbud","nb_score3":"83","nb_label3":"Kvalitet barnehager","naboer":[{"navn":"Joker Vestparken","avstand":"3 min","kategori":"dagligvare"},{"navn":"Rema 1000 Skårer","avstand":"3 min","kategori":"dagligvare"},{"navn":"Triaden Lørenskog","avstand":"4 min","kategori":"varehandel"},{"navn":"Linje 120, 125E, 310","avstand":"Rolvsrud","kategori":"kollektivtransport"},{"navn":"Lørenskog stasjon","avstand":"8 min","kategori":"kollektivtransport"},{"navn":"Oslo S","avstand":"18 min","kategori":"kollektivtransport"},{"navn":"Benterud skole (1-7)","avstand":"13 min","kategori":"skoler"},{"navn":"Rasta skole (1-7)","avstand":"14 min","kategori":"skoler"},{"navn":"Løkenåsen ungdomsskole","avstand":"16 min","kategori":"skoler"},{"navn":"Emaljeverket barnehage","avstand":"3 min","kategori":"barnehager"},{"navn":"Rolvsrud stadion","avstand":"6 min","kategori":"idrett"},{"navn":"Fresh Fitness Skårer","avstand":"5 min","kategori":"idrett"}],"sammenlignbare":[{"adresse":"Rådmann Paulsens gate 44","areal":"83","etasje":"7. etg","dato":"16.04.2026","prisant":"7 150 000","pris":"6 720 000","m2pris":"80 964"},{"adresse":"Rådmann Paulsens gate 56","areal":"89","etasje":"2. etg","dato":"04.12.2025","prisant":"6 750 000","pris":"6 750 000","m2pris":"75 843"},{"adresse":"Ingvald Kristiansens gate 13","areal":"96","etasje":"3. etg","dato":"10.10.2025","prisant":"6 990 000","pris":"6 990 000","m2pris":"72 813"},{"adresse":"Søster Mathildes gate 41","areal":"89","etasje":"2. etg","dato":"05.05.2026","prisant":"6 490 000","pris":"6 300 000","m2pris":"70 787"},{"adresse":"Søster Mathildes gate 33","areal":"90","etasje":"4. etg","dato":"17.10.2025","prisant":"6 800 000","pris":"6 250 000","m2pris":"69 444"}],"hist_tinglyst":"17.10.2023","hist_pris":"5 730 000","hist_fellesgjeld":"0","hist_totalpris":"5 730 000","borettslag_info":""};
+}
 
-  const signal = window._abortController ? window._abortController.signal : undefined;
 
-  const response = await fetch('https://silent-surf-d0fb.8zfm6cz44m.workers.dev', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    signal,
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 8000,
-      messages: [{
-        role: 'user',
-        content: [
-          { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: base64 } },
-          { type: 'text', text: prompt }
-        ]
-      }]
-    })
+function showResult(data) {
+  const body = document.getElementById('outputBody');
+  const fmt = v => (v !== null && v !== undefined && v !== '') ? v : '–';
+
+  // Try harder to parse raw JSON
+  if (data.raw) {
+    try {
+      let raw = data.raw.replace(/```json|```/g,'').trim();
+      const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
+      if (s !== -1 && e !== -1) raw = raw.slice(s, e+1);
+      data = JSON.parse(raw);
+    } catch(e) {
+      // Try to fix truncated JSON by closing it
+      try {
+        let raw = data.raw.replace(/```json|```/g,'').trim();
+        const s = raw.indexOf('{');
+        if (s !== -1) {
+          raw = raw.slice(s);
+          // Count open braces/brackets and close them
+          let opens = 0, openBrackets = 0;
+          for (let c of raw) {
+            if (c === '{') opens++;
+            else if (c === '}') opens--;
+            else if (c === '[') openBrackets++;
+            else if (c === ']') openBrackets--;
+          }
+          // Close any open arrays first, then objects
+          while (openBrackets > 0) { raw += ']'; openBrackets--; }
+          while (opens > 0) { raw += '}'; opens--; }
+          data = JSON.parse(raw);
+        } else {
+          throw new Error('No JSON found');
+        }
+      } catch(e2) {
+        body.innerHTML = '<div class="output-placeholder"><div class="output-placeholder-icon">⚠️</div><div style="font-size:14px;color:var(--text2)">Svaret ble for langt. Prøv igjen.</div></div>';
+        document.getElementById('resultActions').style.display = 'none';
+        return;
+      }
+    }
+  }
+
+  window._resultData = data;
+  window._resultHTML = buildSalgsoppgaveHTML(data);
+
+  body.innerHTML = `
+    <div style="background:linear-gradient(135deg,#1a1814,#2d2820);border-radius:4px;padding:20px;margin-bottom:16px;color:white;">
+      <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#c9995a;margin-bottom:6px">${fmt(data.boligtype)} · ${fmt(data.byggeaar)}</div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:4px">${fmt(data.adresse)}</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.6)">${fmt(data.poststed)} · ${fmt(data.etasje)} etasje</div>
+    </div>
+    <div class="result-section">
+      <div class="result-section-title">Nøkkelinformasjon</div>
+      <div class="result-grid">
+        <div class="result-item"><div class="result-item-label">Prisantydning</div><div class="result-item-value">kr ${fmt(data.prisantydning)}</div></div>
+        <div class="result-item"><div class="result-item-label">Areal</div><div class="result-item-value">${fmt(data.areal_brai)} m²</div></div>
+        <div class="result-item"><div class="result-item-label">Soverom</div><div class="result-item-value">${fmt(data.soverom)}</div></div>
+        <div class="result-item"><div class="result-item-label">Felleskostnader</div><div class="result-item-value">kr ${fmt(data.felleskostnader)}/mnd</div></div>
+        <div class="result-item"><div class="result-item-label">Fellesgjeld</div><div class="result-item-value">kr ${fmt(data.fellesgjeld)}</div></div>
+        <div class="result-item"><div class="result-item-label">Energikarakter</div><div class="result-item-value">${fmt(data.energikarakter)}</div></div>
+      </div>
+    </div>
+    ${data.beskrivelse ? `<div class="result-section"><div class="result-section-title">Boligbeskrivelse</div><div class="result-text">${data.beskrivelse.split('\n').filter(p=>p.trim()).slice(0,2).map(p=>'<p>'+p+'</p>').join('')}<p style="color:var(--gold);font-size:12px;margin-top:8px">↓ Åpne full salgsoppgave for å se alt</p></div></div>` : ''}
+    ${(data.tg0||data.tg1||data.tg2) ? `<div class="result-section"><div class="result-section-title">Tilstandsgrader</div><div class="result-grid"><div class="result-item"><div class="result-item-label">TG0</div><div class="result-item-value" style="color:#4a9e6a;font-size:24px">${fmt(data.tg0)}</div></div><div class="result-item"><div class="result-item-label">TG1</div><div class="result-item-value" style="color:#8ab040;font-size:24px">${fmt(data.tg1)}</div></div><div class="result-item"><div class="result-item-label">TG2</div><div class="result-item-value" style="color:#e8a020;font-size:24px">${fmt(data.tg2)}</div></div><div class="result-item"><div class="result-item-label">TG IU</div><div class="result-item-value" style="font-size:24px">${fmt(data.tgiu)}</div></div></div></div>` : ''}
+  `;
+  document.getElementById('resultActions').style.display = 'flex';
+}
+
+function openFullSalgsoppgave() {
+  if (!window._resultHTML) return;
+  const blob = new Blob([window._resultHTML], {type:'text/html'});
+  window.open(URL.createObjectURL(blob), '_blank');
+}
+
+
+function downloadResult() {
+  if (!window._resultHTML) return;
+  // Open in new window and trigger print-to-PDF
+  const win = window.open('', '_blank');
+  // Add print CSS to auto-trigger print dialog
+  const htmlWithPrint = window._resultHTML.replace('</head>', '<style>@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style><script>window.onload=function(){window.print()}<\/script></head>');
+  win.document.write(htmlWithPrint);
+  win.document.close();
+}
+
+function resetUploadZone() {
+  const zone = document.getElementById('uploadZone');
+  zone.innerHTML = `
+    <input type="file" id="fileInput" accept=".pdf" onchange="handleFile(this.files[0])">
+    <div class="upload-icon">📎</div>
+    <div class="upload-title">Dra PDF hit, eller klikk for å velge</div>
+    <div class="upload-sub">Den sammenslåtte vedlegg-PDF-en fra oppdraget ditt</div>
+    <div class="upload-formats">
+      <span class="format-tag">Tilstandsrapport</span>
+      <span class="format-tag">Egenerklæring</span>
+      <span class="format-tag">Verdivurdering</span>
+      <span class="format-tag">Nabolagsprofil</span>
+    </div>
+  `;
+  // Re-attach drag events
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
   });
+}
 
-  if (!response.ok) {
-    const errText = await response.text();
-    throw new Error('API-feil: ' + errText);
+function cancelRequest() {
+  if (window._abortController) {
+    window._abortController.abort();
+    window._abortController = null;
   }
-
-  const data = await response.json();
-
-  let text = '';
-  if (data && data.content && Array.isArray(data.content)) {
-    text = data.content.map(function(c) { return c.text || ''; }).join('');
-  } else if (data && data.error) {
-    throw new Error(data.error.message || 'API-feil');
-  } else {
-    throw new Error('Uventet svar: ' + JSON.stringify(data).slice(0, 200));
+  if (window._crawlInterval) {
+    clearInterval(window._crawlInterval);
   }
+  document.getElementById('progressWrap').classList.remove('visible');
+  document.getElementById('cancelBtn').style.display = 'none';
+  document.getElementById('errorMsg').classList.remove('visible');
+  setStatus('', 'Venter på fil...');
+  resetUploadZone();
+}
 
-  var clean = text.replace(/```json/g, '').replace(/```/g, '').trim();
-  var jsonStart = clean.indexOf('{');
-  var jsonEnd = clean.lastIndexOf('}');
-  if (jsonStart !== -1 && jsonEnd !== -1) {
-    clean = clean.slice(jsonStart, jsonEnd + 1);
-  }
+function copyResult() {
+  if (!window._resultData) return;
+  const d = window._resultData;
+  const text = `${d.adresse}, ${d.postnummer} ${d.poststed}\n\n${d.beskrivelse}`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    btn.textContent = 'Kopiert!';
+    setTimeout(() => btn.textContent = 'Kopier tekst', 2000);
+  });
+}
 
-  try {
-    return JSON.parse(clean);
-  } catch(e) {
-    return { raw: clean };
+// HELPERS
+function fileToBase64(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result.split(',')[1]);
+    r.onerror = () => rej(new Error('Kunne ikke lese fil'));
+    r.readAsDataURL(file);
+  });
+}
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function showProgress() {
+  document.getElementById('progressWrap').classList.add('visible');
+  ['step1','step2','step3','step4'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+  });
+}
+
+function setStep(n, state) {
+  const el = document.getElementById('step' + n);
+  el.classList.remove('active','done');
+  if (state) el.classList.add(state);
+  if (state === 'active') {
+    el.querySelector('.progress-step-dot').textContent = '↻';
+  } else if (state === 'done') {
+    el.querySelector('.progress-step-dot').textContent = '✓';
   }
 }
 
+function setProgress(pct, text) {
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = Math.round(pct) + '%';
+  document.getElementById('progressText').textContent = text;
+}
+
+function setStatus(type, text) {
+  const dot = document.getElementById('statusDot');
+  dot.className = 'status-dot' + (type ? ' ' + type : '');
+  document.getElementById('statusText').textContent = text;
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  el.textContent = msg;
+  el.classList.add('visible');
+}
+
+function hideError() {
+  document.getElementById('errorMsg').classList.remove('visible');
+}
 
 function buildSalgsoppgaveHTML(d) {
   const fmt = v => (v !== null && v !== undefined && v !== '') ? v : '–';
@@ -1387,192 +1518,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.4);padding:32px 56px;font-
 }
 
 
-function showResult(data) {
-  const body = document.getElementById('outputBody');
-  const fmt = v => (v !== null && v !== undefined && v !== '') ? v : '–';
-
-  // Try harder to parse raw JSON
-  if (data.raw) {
-    try {
-      let raw = data.raw.replace(/```json|```/g,'').trim();
-      const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
-      if (s !== -1 && e !== -1) raw = raw.slice(s, e+1);
-      data = JSON.parse(raw);
-    } catch(e) {
-      // Try to fix truncated JSON by closing it
-      try {
-        let raw = data.raw.replace(/```json|```/g,'').trim();
-        const s = raw.indexOf('{');
-        if (s !== -1) {
-          raw = raw.slice(s);
-          // Count open braces/brackets and close them
-          let opens = 0, openBrackets = 0;
-          for (let c of raw) {
-            if (c === '{') opens++;
-            else if (c === '}') opens--;
-            else if (c === '[') openBrackets++;
-            else if (c === ']') openBrackets--;
-          }
-          // Close any open arrays first, then objects
-          while (openBrackets > 0) { raw += ']'; openBrackets--; }
-          while (opens > 0) { raw += '}'; opens--; }
-          data = JSON.parse(raw);
-        } else {
-          throw new Error('No JSON found');
-        }
-      } catch(e2) {
-        body.innerHTML = '<div class="output-placeholder"><div class="output-placeholder-icon">⚠️</div><div style="font-size:14px;color:var(--text2)">Svaret ble for langt. Prøv igjen.</div></div>';
-        document.getElementById('resultActions').style.display = 'none';
-        return;
-      }
-    }
-  }
-
-  window._resultData = data;
-  window._resultHTML = buildSalgsoppgaveHTML(data);
-
-  body.innerHTML = `
-    <div style="background:linear-gradient(135deg,#1a1814,#2d2820);border-radius:4px;padding:20px;margin-bottom:16px;color:white;">
-      <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#c9995a;margin-bottom:6px">${fmt(data.boligtype)} · ${fmt(data.byggeaar)}</div>
-      <div style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:4px">${fmt(data.adresse)}</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.6)">${fmt(data.poststed)} · ${fmt(data.etasje)} etasje</div>
-    </div>
-    <div class="result-section">
-      <div class="result-section-title">Nøkkelinformasjon</div>
-      <div class="result-grid">
-        <div class="result-item"><div class="result-item-label">Prisantydning</div><div class="result-item-value">kr ${fmt(data.prisantydning)}</div></div>
-        <div class="result-item"><div class="result-item-label">Areal</div><div class="result-item-value">${fmt(data.areal_brai)} m²</div></div>
-        <div class="result-item"><div class="result-item-label">Soverom</div><div class="result-item-value">${fmt(data.soverom)}</div></div>
-        <div class="result-item"><div class="result-item-label">Felleskostnader</div><div class="result-item-value">kr ${fmt(data.felleskostnader)}/mnd</div></div>
-        <div class="result-item"><div class="result-item-label">Fellesgjeld</div><div class="result-item-value">kr ${fmt(data.fellesgjeld)}</div></div>
-        <div class="result-item"><div class="result-item-label">Energikarakter</div><div class="result-item-value">${fmt(data.energikarakter)}</div></div>
-      </div>
-    </div>
-    ${data.beskrivelse ? `<div class="result-section"><div class="result-section-title">Boligbeskrivelse</div><div class="result-text">${data.beskrivelse.split('\n').filter(p=>p.trim()).slice(0,2).map(p=>'<p>'+p+'</p>').join('')}<p style="color:var(--gold);font-size:12px;margin-top:8px">↓ Åpne full salgsoppgave for å se alt</p></div></div>` : ''}
-    ${(data.tg0||data.tg1||data.tg2) ? `<div class="result-section"><div class="result-section-title">Tilstandsgrader</div><div class="result-grid"><div class="result-item"><div class="result-item-label">TG0</div><div class="result-item-value" style="color:#4a9e6a;font-size:24px">${fmt(data.tg0)}</div></div><div class="result-item"><div class="result-item-label">TG1</div><div class="result-item-value" style="color:#8ab040;font-size:24px">${fmt(data.tg1)}</div></div><div class="result-item"><div class="result-item-label">TG2</div><div class="result-item-value" style="color:#e8a020;font-size:24px">${fmt(data.tg2)}</div></div><div class="result-item"><div class="result-item-label">TG IU</div><div class="result-item-value" style="font-size:24px">${fmt(data.tgiu)}</div></div></div></div>` : ''}
-  `;
-  document.getElementById('resultActions').style.display = 'flex';
-}
-
-function openFullSalgsoppgave() {
-  if (!window._resultHTML) return;
-  const blob = new Blob([window._resultHTML], {type:'text/html'});
-  window.open(URL.createObjectURL(blob), '_blank');
-}
-
-
-function downloadResult() {
-  if (!window._resultHTML) return;
-  // Open in new window and trigger print-to-PDF
-  const win = window.open('', '_blank');
-  // Add print CSS to auto-trigger print dialog
-  const htmlWithPrint = window._resultHTML.replace('</head>', '<style>@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style><script>window.onload=function(){window.print()}<\/script></head>');
-  win.document.write(htmlWithPrint);
-  win.document.close();
-}
-
-function resetUploadZone() {
-  const zone = document.getElementById('uploadZone');
-  zone.innerHTML = `
-    <input type="file" id="fileInput" accept=".pdf" onchange="handleFile(this.files[0])">
-    <div class="upload-icon">📎</div>
-    <div class="upload-title">Dra PDF hit, eller klikk for å velge</div>
-    <div class="upload-sub">Den sammenslåtte vedlegg-PDF-en fra oppdraget ditt</div>
-    <div class="upload-formats">
-      <span class="format-tag">Tilstandsrapport</span>
-      <span class="format-tag">Egenerklæring</span>
-      <span class="format-tag">Verdivurdering</span>
-      <span class="format-tag">Nabolagsprofil</span>
-    </div>
-  `;
-  // Re-attach drag events
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
-  zone.addEventListener('drop', e => {
-    e.preventDefault();
-    zone.classList.remove('dragover');
-    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
-  });
-}
-
-function cancelRequest() {
-  if (window._abortController) {
-    window._abortController.abort();
-    window._abortController = null;
-  }
-  if (window._crawlInterval) {
-    clearInterval(window._crawlInterval);
-  }
-  document.getElementById('progressWrap').classList.remove('visible');
-  document.getElementById('cancelBtn').style.display = 'none';
-  document.getElementById('errorMsg').classList.remove('visible');
-  setStatus('', 'Venter på fil...');
-  resetUploadZone();
-}
-
-function copyResult() {
-  if (!window._resultData) return;
-  const d = window._resultData;
-  const text = `${d.adresse}, ${d.postnummer} ${d.poststed}\n\n${d.beskrivelse}`;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = event.target;
-    btn.textContent = 'Kopiert!';
-    setTimeout(() => btn.textContent = 'Kopier tekst', 2000);
-  });
-}
-
-// HELPERS
-function fileToBase64(file) {
-  return new Promise((res, rej) => {
-    const r = new FileReader();
-    r.onload = () => res(r.result.split(',')[1]);
-    r.onerror = () => rej(new Error('Kunne ikke lese fil'));
-    r.readAsDataURL(file);
-  });
-}
-
-function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-function showProgress() {
-  document.getElementById('progressWrap').classList.add('visible');
-  ['step1','step2','step3','step4'].forEach(id => {
-    const el = document.getElementById(id);
-    el.classList.remove('active','done');
-  });
-}
-
-function setStep(n, state) {
-  const el = document.getElementById('step' + n);
-  el.classList.remove('active','done');
-  if (state) el.classList.add(state);
-  if (state === 'active') {
-    el.querySelector('.progress-step-dot').textContent = '↻';
-  } else if (state === 'done') {
-    el.querySelector('.progress-step-dot').textContent = '✓';
-  }
-}
-
-function setProgress(pct, text) {
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressPct').textContent = Math.round(pct) + '%';
-  document.getElementById('progressText').textContent = text;
-}
-
-function setStatus(type, text) {
-  const dot = document.getElementById('statusDot');
-  dot.className = 'status-dot' + (type ? ' ' + type : '');
-  document.getElementById('statusText').textContent = text;
-}
-
-function showError(msg) {
-  const el = document.getElementById('errorMsg');
-  el.textContent = msg;
-  el.classList.add('visible');
-}
-
-function hideError() {
-  document.getElementById('errorMsg').classList.remove('visible');
-}
 </script>
 
 
