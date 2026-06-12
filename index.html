@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_28.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_29.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_28.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_28.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_28.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_29.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_29.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_29.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_28.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_28.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_29.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_29.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -942,97 +942,63 @@ async function handleFile(file) {
 
 async function callClaude(base64) {
   const prompt = [
-    'Du er meglingsekspert. Les dokumentet og returner KUN JSON uten markdown. Vær KORTFATTET i beskrivelser.',
-    'HENT: adresse,postnummer,poststed,boligtype,areal_brai(BRA-i),byggeaar,etasje,soverom,fellesgjeld,felleskostnader,prisantydning,totalpris,m2pris,energikarakter,heis,balkong,garasje,sameie,forretningsforer,forsikring,gnr,bnr,snr,formue,megler,selger,oppdragsnr,befaringsdato.',
-    'HENT: beskrivelse(maks 3 setninger),innvendig(1 setning),utvendig(1 setning),bad(1 setning),kjoekken(1 setning).',
-    'HENT: tg0,tg1,tg2,tgiu(tell eksakt). tg_items=maks 6 viktigste(TG2 og TGIU prioritet),grade/room/title/desc(kort).',
-    'HENT: hms_items(tittel+1 setning beskrivelse). snitt_naeromrade,snitt_kommune(tall). snitt_under_prisantydning,til_salgs,solgt_3mnd,snitt_dager_ute,snitt_salgstid.',
-    'HENT: nb_score1-3,nb_label1-3(full tekst). nabolag_sitat. naboer(ALLE,kort format:{navn,avstand,kategori}).',
-    'HENT: sammenlignbare(alle,{adresse,areal,etasje,dato,prisant,pris,m2pris}). hist_tinglyst,hist_pris,hist_fellesgjeld,hist_totalpris.',
-    'HENT: borettslag_info(maks 3 setninger med viktigste info). nabolag.',
+    'Du er meglingsekspert. Les dokumentet og returner KUN JSON uten markdown. Vaer KORTFATTET i beskrivelser.',
+    'HENT: adresse,postnummer,poststed,boligtype,areal_brai,byggeaar,etasje,soverom,fellesgjeld,felleskostnader,prisantydning,totalpris,m2pris,energikarakter,heis,balkong,garasje,sameie,forretningsforer,forsikring,gnr,bnr,snr,formue,megler,selger,oppdragsnr,befaringsdato.',
+    'HENT: beskrivelse(3 setninger),innvendig(1),utvendig(1),bad(1),kjoekken(1).',
+    'HENT: tg0,tg1,tg2,tgiu(eksakt antall). tg_items=6 viktigste med grade/room/title/desc.',
+    'HENT: hms_items. snitt_naeromrade,snitt_kommune som tall. snitt_under_prisantydning,til_salgs,solgt_3mnd,snitt_dager_ute,snitt_salgstid.',
+    'HENT: nb_score1-3,nb_label1-3. nabolag_sitat. naboer ALLE med navn/avstand/kategori(kollektivtransport/skoler/barnehager/dagligvare/varehandel/idrett).',
+    'HENT: sammenlignbare. hist_tinglyst,hist_pris,hist_fellesgjeld,hist_totalpris. borettslag_info(3 setninger). nabolag.',
     'JSON:{"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","forretningsforer":"","forsikring":"","gnr":"","bnr":"","snr":"","formue":"","megler":"","selger":"","oppdragsnr":"","befaringsdato":"","beskrivelse":"","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"tg_items":[{"grade":"","room":"","title":"","desc":""}],"hms_items":[{"tittel":"","beskrivelse":""}],"snitt_naeromrade":"","snitt_kommune":"","snitt_under_prisantydning":"","til_salgs":"","solgt_3mnd":"","snitt_dager_ute":"","snitt_salgstid":"","nabolag":"","nabolag_sitat":"","nb_score1":"","nb_label1":"","nb_score2":"","nb_label2":"","nb_score3":"","nb_label3":"","naboer":[{"navn":"","avstand":"","kategori":""}],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","prisant":"","pris":"","m2pris":""}],"hist_tinglyst":"","hist_pris":"","hist_fellesgjeld":"","hist_totalpris":"","borettslag_info":""}'
   ].join(' ');
 
-  return new Promise((resolve, reject) => {
-    const signal = window._abortController ? window._abortController.signal : undefined;
+  const signal = window._abortController ? window._abortController.signal : undefined;
 
-    fetch('https://silent-surf-d0fb.8zfm6cz44m.workers.dev', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      signal,
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 8000,
-        messages: [{
-          role: 'user',
-          content: [
-            { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: base64 } },
-            { type: 'text', text: prompt }
-          ]
-        }]
-      })
-    }).then(response => {
-      if (!response.ok) {
-        return response.text().then(t => { throw new Error('API-feil: ' + t); });
-      }
-
-      const contentType = response.headers.get('content-type') || '';
-
-      // Handle SSE streaming
-      if (contentType.includes('text/event-stream')) {
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let buffer = '';
-
-        function read() {
-          reader.read().then(({ done, value }) => {
-            if (done) { reject(new Error('Stream ended uten resultat')); return; }
-
-            buffer += decoder.decode(value, { stream: true });
-            const lines = buffer.split('\n');
-            buffer = lines.pop();
-
-            for (const line of lines) {
-              if (!line.startsWith('data: ')) continue;
-              const data = line.slice(6).trim();
-              if (data === '[DONE]' || data.startsWith(':')) continue;
-              try {
-                const parsed = JSON.parse(data);
-                if (parsed.error) { reject(new Error(parsed.error)); return; }
-                if (parsed.content) {
-                  const text = parsed.content.map(c => c.text || '').join('');
-                  let clean = text.replace(/\x60\x60\x60json/g, '').replace(/\x60\x60\x60/g, '').trim();
-                  const s = clean.indexOf('{'), e = clean.lastIndexOf('}');
-                  if (s !== -1 && e !== -1) clean = clean.slice(s, e + 1);
-                  try { resolve(JSON.parse(clean)); } catch(err) { resolve({ raw: clean }); }
-                  return;
-                }
-              } catch(e) {}
-            }
-            read();
-          }).catch(err => {
-            if (err.name === 'AbortError') reject(err);
-            else reject(new Error('Stream error: ' + err.message));
-          });
-        }
-        read();
-      } else {
-        // Handle regular JSON response
-        response.json().then(data => {
-          let text = '';
-          if (data && data.content && Array.isArray(data.content)) {
-            text = data.content.map(c => c.text || '').join('');
-          } else if (data && data.error) {
-            throw new Error(data.error.message || 'API-feil');
-          }
-          let clean = text.replace(/\x60\x60\x60json/g, '').replace(/\x60\x60\x60/g, '').trim();
-          const s = clean.indexOf('{'), e = clean.lastIndexOf('}');
-          if (s !== -1 && e !== -1) clean = clean.slice(s, e + 1);
-          try { resolve(JSON.parse(clean)); } catch(err) { resolve({ raw: clean }); }
-        }).catch(reject);
-      }
-    }).catch(err => reject(err));
+  const response = await fetch('https://silent-surf-d0fb.8zfm6cz44m.workers.dev', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    signal,
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 8000,
+      messages: [{
+        role: 'user',
+        content: [
+          { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: base64 } },
+          { type: 'text', text: prompt }
+        ]
+      }]
+    })
   });
+
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error('API-feil: ' + errText);
+  }
+
+  const data = await response.json();
+
+  let text = '';
+  if (data && data.content && Array.isArray(data.content)) {
+    text = data.content.map(function(c) { return c.text || ''; }).join('');
+  } else if (data && data.error) {
+    throw new Error(data.error.message || 'API-feil');
+  } else {
+    throw new Error('Uventet svar: ' + JSON.stringify(data).slice(0, 200));
+  }
+
+  var clean = text.replace(/```json/g, '').replace(/```/g, '').trim();
+  var jsonStart = clean.indexOf('{');
+  var jsonEnd = clean.lastIndexOf('}');
+  if (jsonStart !== -1 && jsonEnd !== -1) {
+    clean = clean.slice(jsonStart, jsonEnd + 1);
+  }
+
+  try {
+    return JSON.parse(clean);
+  } catch(e) {
+    return { raw: clean };
+  }
 }
 
 
