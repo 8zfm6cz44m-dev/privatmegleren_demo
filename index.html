@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_24.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_25.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_24.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_24.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_24.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_25.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_25.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_25.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_24.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_24.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_25.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_25.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -942,17 +942,12 @@ async function handleFile(file) {
 
 async function callClaude(base64) {
   const prompt = [
-    'Du er en ekspert på norsk eiendomsmegling. Les HELE dokumentet nøye.',
-    'Returner KUN et JSON-objekt uten markdown eller forklaring.',
-    'KRITISK VIKTIG:',
-    '1) areal_brai = BRA-i i m² fra tilstandsrapport (ikke BRA-e).',
-    '2) Tell nøyaktig TG0/TG1/TG2/TGIU. tg_items = ALLE vurderinger med grade/room/title/desc.',
-    '3) naboer: Hent ABSOLUTT ALLE steder fra nabolagsprofilen. Kategorier: kollektivtransport/skoler/barnehager/dagligvare/varehandel/idrett. Varehandel = kjøpesenter, apotek, vinmonopol etc.',
-    '4) snitt_naeromrade = m²-pris snitt nærområde som tall. snitt_kommune = tall.',
-    '5) nb_label1/2/3 = FULL tekst på nabolagscores, f.eks. Nærhet til skog og mark, Lite trafikk, Trygghet der barna ferdes.',
-    '6) nabolag_sitat = sitat fra lokalkjent. selger = navn på selger.',
-    '7) hms_items, hist_*, borettslag_info, snitt_under_prisantydning.',
-    'JSON: {"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","forretningsforer":"","forsikring":"","gnr":"","bnr":"","snr":"","formue":"","megler":"","selger":"","oppdragsnr":"","befaringsdato":"","beskrivelse":"","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"tg_items":[{"grade":"","room":"","title":"","desc":""}],"hms_items":[{"tittel":"","beskrivelse":""}],"snitt_naeromrade":"","snitt_kommune":"","snitt_salgspris":"","snitt_under_prisantydning":"","til_salgs":"","solgt_3mnd":"","snitt_dager_ute":"","snitt_salgstid":"","nabolag":"","nabolag_sitat":"","nb_score1":"","nb_label1":"","nb_score2":"","nb_label2":"","nb_score3":"","nb_label3":"","naboer":[{"navn":"","avstand":"","kategori":""}],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","prisant":"","pris":"","m2pris":""}],"hist_tinglyst":"","hist_pris":"","hist_fellesgjeld":"","hist_totalpris":"","borettslag_info":""}'
+    'Du er meglingsekspert. Les dokumentet og returner KUN JSON uten markdown.',
+    'KRITISK: 1)areal_brai=BRA-i m². 2)Tell eksakt TG0/TG1/TG2/TGIU. 3)tg_items=ALLE vurderinger.',
+    '4)naboer=ALLE steder fra nabolagsprofil med kategori:kollektivtransport/skoler/barnehager/dagligvare/varehandel/idrett.',
+    '5)nb_label1/2/3=full tekst f.eks Nærhet til skog og mark. 6)snitt_naeromrade og snitt_kommune=tall.',
+    '7)nabolag_sitat=sitat fra lokalkjent. 8)selger=navn. 9)hist_*=historisk omsetning. 10)hms_items=HMS-varsler.',
+    'JSON:{"adresse":"","postnummer":"","poststed":"","boligtype":"","areal_brai":"","byggeaar":"","etasje":"","soverom":"","fellesgjeld":"","felleskostnader":"","prisantydning":"","totalpris":"","m2pris":"","energikarakter":"","heis":false,"balkong":"","garasje":"","sameie":"","forretningsforer":"","forsikring":"","gnr":"","bnr":"","snr":"","formue":"","megler":"","selger":"","oppdragsnr":"","befaringsdato":"","beskrivelse":"","innvendig":"","utvendig":"","bad":"","kjoekken":"","tg0":0,"tg1":0,"tg2":0,"tgiu":0,"tg_items":[{"grade":"","room":"","title":"","desc":""}],"hms_items":[{"tittel":"","beskrivelse":""}],"snitt_naeromrade":"","snitt_kommune":"","snitt_under_prisantydning":"","til_salgs":"","solgt_3mnd":"","snitt_dager_ute":"","snitt_salgstid":"","nabolag":"","nabolag_sitat":"","nb_score1":"","nb_label1":"","nb_score2":"","nb_label2":"","nb_score3":"","nb_label3":"","naboer":[{"navn":"","avstand":"","kategori":""}],"sammenlignbare":[{"adresse":"","areal":"","etasje":"","dato":"","prisant":"","pris":"","m2pris":""}],"hist_tinglyst":"","hist_pris":"","hist_fellesgjeld":"","hist_totalpris":"","borettslag_info":""}'
   ].join(' ');
 
   const signal = window._abortController ? window._abortController.signal : undefined;
