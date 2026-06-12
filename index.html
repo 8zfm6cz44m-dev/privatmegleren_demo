@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_16.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_17.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -687,9 +687,9 @@ footer {
 <nav>
   <div class="nav-logo">Salgs<span>AI</span></div>
   <ul class="nav-links">
-    <li><a href="file:///Users/martin/Downloads/index_16.html#hvordan">Hvordan det virker</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_16.html#demo">Demo</a></li>
-    <li><a href="file:///Users/martin/Downloads/index_16.html#demo" class="nav-cta">Prøv gratis</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_17.html#hvordan">Hvordan det virker</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_17.html#demo">Demo</a></li>
+    <li><a href="file:///Users/martin/Downloads/index_17.html#demo" class="nav-cta">Prøv gratis</a></li>
   </ul>
 </nav>
 
@@ -701,8 +701,8 @@ footer {
   <h1>Salgsoppgaven<br>på <em>5 minutter.</em></h1>
   <p class="hero-sub">Last opp vedleggene fra oppdraget. Få en komplett, profesjonell salgsoppgave ut – klar til godkjenning.</p>
   <div class="hero-actions">
-    <a href="file:///Users/martin/Downloads/index_16.html#demo" class="btn-hero">Prøv live demo</a>
-    <a href="file:///Users/martin/Downloads/index_16.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
+    <a href="file:///Users/martin/Downloads/index_17.html#demo" class="btn-hero">Prøv live demo</a>
+    <a href="file:///Users/martin/Downloads/index_17.html#hvordan" class="btn-ghost">Se hvordan det virker</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
@@ -839,8 +839,8 @@ footer {
 
 <script>
 function fmtNum(v) {
-  if (!v && v !== 0) return String.fromCharCode(8211);
-  return String(v).replace(/\B(?=(\d{3})+(?!\d))/g, String.fromCharCode(160));
+  if (v === null || v === undefined || v === '') return '-';
+  return String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 // TAB SWITCHING
@@ -988,7 +988,7 @@ async function callClaude(base64) {
 
 
 function buildSalgsoppgaveHTML(d) {
-  const fmt = v => v || '–';
+  const fmt = v => (v !== null && v !== undefined && v !== '') ? v : '–';
   const fn = fmtNum;
 
   const tgItems = (Array.isArray(d.tg_items) ? d.tg_items : []).map(item => {
@@ -1225,12 +1225,12 @@ footer{background:var(--dark);color:rgba(255,255,255,.4);padding:32px 56px;font-
     <div class="content-section" id="tilstand">
       <h2 class="section-title">Tilstandsrapport</h2>
       <div class="tg-summary">
-        <div class="tg-card tg0"><div class="tg-card-number">${fmt(d.tg0)}</div><div class="tg-card-label">TG 0</div><div class="tg-card-desc">Ingen avvik</div></div>
-        <div class="tg-card tg1"><div class="tg-card-number">${fmt(d.tg1)}</div><div class="tg-card-label">TG 1</div><div class="tg-card-desc">Mindre avvik</div></div>
-        <div class="tg-card tg2"><div class="tg-card-number">${fmt(d.tg2)}</div><div class="tg-card-label">TG 2</div><div class="tg-card-desc">Kan kreve tiltak</div></div>
-        <div class="tg-card tgiu"><div class="tg-card-number">${fmt(d.tgiu)}</div><div class="tg-card-label">TG IU</div><div class="tg-card-desc">Ikke undersøkt</div></div>
+        <div class="tg-card tg0"><div class="tg-card-number">${(d.tg0 !== undefined && d.tg0 !== null && d.tg0 !== '') ? d.tg0 : 0}</div><div class="tg-card-label">TG 0</div><div class="tg-card-desc">Ingen avvik</div></div>
+        <div class="tg-card tg1"><div class="tg-card-number">${(d.tg1 !== undefined && d.tg1 !== null && d.tg1 !== '') ? d.tg1 : 0}</div><div class="tg-card-label">TG 1</div><div class="tg-card-desc">Mindre avvik</div></div>
+        <div class="tg-card tg2"><div class="tg-card-number">${(d.tg2 !== undefined && d.tg2 !== null && d.tg2 !== '') ? d.tg2 : 0}</div><div class="tg-card-label">TG 2</div><div class="tg-card-desc">Kan kreve tiltak</div></div>
+        <div class="tg-card tgiu"><div class="tg-card-number">${(d.tgiu !== undefined && d.tgiu !== null && d.tgiu !== '') ? d.tgiu : 0}</div><div class="tg-card-label">TG IU</div><div class="tg-card-desc">Ikke undersøkt</div></div>
       </div>
-      ${tgItems ? `<div style="background:white;border:1px solid var(--border);border-radius:4px;padding:20px;margin-bottom:24px">${tgItems}</div>` : ''}
+      ${(tgItems && tgItems.trim()) ? `<div style="background:white;border:1px solid var(--border);border-radius:4px;padding:20px;margin-bottom:24px">${tgItems}</div>` : ''}
     </div>
 
     <div class="content-section" id="marked">
@@ -1318,10 +1318,19 @@ footer{background:var(--dark);color:rgba(255,255,255,.4);padding:32px 56px;font-
       <div class="sidebar-card-body">
         <div class="info-row"><span class="info-key">Prisantydning</span><span class="info-val">${fn(d.prisantydning)}</span></div>
         <div class="info-row"><span class="info-key">Fellesgjeld</span><span class="info-val">${fn(d.fellesgjeld)||'0'}</span></div>
-        <div class="info-row"><span class="info-key">Dokumentavgift (2,5%)</span><span class="info-val">${d.prisantydning?fn(Math.round(Number(String(d.prisantydning).replace(/\s/g,''))*0.025)):'–'}</span></div>
-        <div class="info-row"><span class="info-key">Tinglysing hjemmelsdok.</span><span class="info-val">545</span></div>
-        <div class="info-row"><span class="info-key">Tinglysing pantedok.</span><span class="info-val">545</span></div>
-        <div class="costs-total"><span class="costs-total-label">Totalt ved kjøp</span><span class="costs-total-value">${d.prisantydning?fn(Math.round(Number(String(d.prisantydning).replace(/\s/g,''))*1.025+1090)):'–'}</span></div>
+        ${(() => {
+          const isBorettslag = (d.boligtype||'').toLowerCase().includes('andel') || (d.boligtype||'').toLowerCase().includes('borettslag');
+          const pris = Number(String(d.prisantydning||'0').replace(/\s/g,''));
+          const fellesgjeld = Number(String(d.fellesgjeld||'0').replace(/\s/g,''));
+          const dokavg = isBorettslag ? 0 : Math.round(pris * 0.025);
+          const totalt = pris + fellesgjeld + dokavg + 1090;
+          return \`
+          <div class="info-row"><span class="info-key">Dokumentavgift (2,5%)</span><span class="info-val">\${isBorettslag ? '0 (borettslag)' : fn(dokavg)}</span></div>
+          <div class="info-row"><span class="info-key">Tinglysing hjemmelsdok.</span><span class="info-val">545</span></div>
+          <div class="info-row"><span class="info-key">Tinglysing pantedok.</span><span class="info-val">545</span></div>
+          <div class="costs-total"><span class="costs-total-label">Totalt ved kjøp</span><span class="costs-total-value">\${fn(totalt)}</span></div>
+          \`;
+        })()}
         <div style="font-size:11px;color:var(--muted);margin-top:10px">Forutsetter tinglysing av ett pantedokument.</div>
       </div>
     </div>
@@ -1349,7 +1358,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.4);padding:32px 56px;font-
 
 function showResult(data) {
   const body = document.getElementById('outputBody');
-  const fmt = v => v || '–';
+  const fmt = v => (v !== null && v !== undefined && v !== '') ? v : '–';
 
   // Try harder to parse raw JSON
   if (data.raw) {
