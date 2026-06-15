@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_35.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_36.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SalgsAI – Salgsoppgave på 5 minutter</title>
@@ -680,6 +679,18 @@ footer {
   display: none;
 }
 .error-msg.visible { display: block; }
+
+/* TG-ITEMS – used in seksjoner output panel */
+.sk-tg-item{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border2)}
+.sk-tg-item:last-child{border-bottom:none}
+.sk-tg-badge{flex-shrink:0;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.sk-badge-tg2{background:#ffe082;color:#a06000}
+.sk-badge-tg3{background:#ffccbc;color:#bf360c}
+.sk-tg-content{flex:1}
+.sk-tg-room{font-size:11px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;color:var(--text2);margin-bottom:2px}
+.sk-tg-title{font-weight:500;font-size:14px;color:var(--text)}
+.sk-tg-desc{font-size:13px;color:var(--text2);margin-top:4px;line-height:1.55}
+.sk-tg-utbedring{font-size:13px;color:var(--gold);margin-top:4px}
 </style>
 </head>
 <body>
@@ -901,6 +912,81 @@ footer {
         <div id="stResultActions" style="display:none; padding:16px 20px; border-top:1px solid var(--border2); gap:10px;">
           <button class="btn-sm btn-sm-gold" onclick="copySalgstekst()" style="flex:1">📋 Kopier tekst</button>
           <button class="btn-sm btn-sm-outline" onclick="resetSalgstekst()">↩ Ny fil</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SALGSOPPGAVE-SEKSJONER -->
+<div class="demo-section" id="seksjoner" style="border-top: 1px solid rgba(201,153,90,0.12);">
+  <div class="demo-inner">
+    <div class="section-label">Salgsoppgave-innhold</div>
+    <h2 class="section-title" style="margin-bottom:12px;">Alle seksjoner.<br><em>Ferdig til godkjenning.</em></h2>
+    <p style="font-size:15px; color:var(--text2); font-weight:300; max-width:620px; line-height:1.7; margin-bottom:40px;">Last opp vedlegg-PDF-en og få alle juridiske og tekniske seksjoner generert automatisk – Areal, Nøkkelinformasjon, Beliggenhet, Offentlige forhold, Bebyggelse, Sameie/Borettslag, TG-grader og Tinglyste rettigheter.</p>
+
+    <div class="demo-grid">
+      <!-- LEFT: Upload -->
+      <div>
+        <div class="upload-zone" id="skUploadZone" onclick="document.getElementById(&#39;skFileInput&#39;).click()">
+          <input type="file" id="skFileInput" accept=".pdf" style="display:none" onchange="handleSeksjonerFile(this.files[0])">
+          <div class="upload-icon" id="skUploadIcon">📋</div>
+          <div class="upload-title" id="skUploadTitle">Last opp vedlegg-PDF</div>
+          <div class="upload-sub" id="skUploadSub">Tilstandsrapport, egenerklæring og vedlegg</div>
+          <div class="upload-formats">
+            <span class="format-tag">Areal</span>
+            <span class="format-tag">Nøkkelinfo</span>
+            <span class="format-tag">TG-grader</span>
+            <span class="format-tag">Tinglyste rettigheter</span>
+          </div>
+        </div>
+
+        <div id="skProgressWrap" style="display:none; margin-top:24px;">
+          <div class="progress-label">
+            <span id="skProgressText">Leser PDF...</span>
+            <span id="skProgressPct">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="skProgressFill"></div>
+          </div>
+          <div class="progress-steps" style="margin-top:16px;">
+            <div id="skStep1" class="progress-step">
+              <div class="progress-step-dot">1</div>
+              <span>Leser og analyserer dokumentet</span>
+            </div>
+            <div id="skStep2" class="progress-step">
+              <div class="progress-step-dot">2</div>
+              <span>Henter areal, nøkkeldata og TG-grader</span>
+            </div>
+            <div id="skStep3" class="progress-step">
+              <div class="progress-step-dot">3</div>
+              <span>Bygger alle salgsoppgave-seksjoner</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="skError" style="display:none; margin-top:16px; font-size:13px; color:var(--red); padding:12px 16px; border:1px solid rgba(192,80,64,0.3); border-radius:3px;"></div>
+        <button id="skCancelBtn" onclick="cancelSeksjoner()" style="display:none; margin-top:12px; width:100%; padding:10px; background:transparent; border:1px solid rgba(201,153,90,0.3); color:var(--text2); font-family:&#39;Syne&#39;,sans-serif; font-size:13px; border-radius:2px; cursor:pointer; transition:all .2s" onmouseover="this.style.borderColor=&#39;var(--gold)&#39;;this.style.color=&#39;var(--text)&#39;" onmouseout="this.style.borderColor=&#39;rgba(201,153,90,0.3)&#39;;this.style.color=&#39;var(--text2)&#39;">✕ Avbryt</button>
+      </div>
+
+      <!-- RIGHT: Output -->
+      <div class="output-panel" id="skOutputPanel">
+        <div class="output-header">
+          <span class="output-title">Seksjoner</span>
+          <div class="output-status">
+            <div class="status-dot" id="skStatusDot"></div>
+            <span id="skStatusText">Venter på fil...</span>
+          </div>
+        </div>
+        <div class="output-body" id="skOutputBody" style="max-height:680px;">
+          <div class="output-placeholder">
+            <div class="output-placeholder-icon">📋</div>
+            <div style="font-size:14px; color:var(--text2);">Seksjonene genereres her</div>
+          </div>
+        </div>
+        <div id="skResultActions" style="display:none; padding:16px 20px; border-top:1px solid var(--border2); gap:10px;">
+          <button class="btn-sm btn-sm-gold" onclick="copySeksjoner()" style="flex:1">📋 Kopier alle seksjoner</button>
+          <button class="btn-sm btn-sm-outline" onclick="resetSeksjoner()">↩ Ny fil</button>
         </div>
       </div>
     </div>
@@ -1135,7 +1221,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--warm-bg);color:var(--dark
 .tg-item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border)}
 .tg-item:last-child{border-bottom:none}
 .tg-badge{flex-shrink:0;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
-.badge-tg0{background:#c8e6c9;color:var(--tg0)}.badge-tg1{background:#dcedc8;color:var(--tg1)}.badge-tg2{background:#ffe082;color:#a06000}.badge-tgiu{background:#e0e0e0;color:#666}
+.badge-tg0{background:#c8e6c9;color:var(--tg0)}.badge-tg1{background:#dcedc8;color:var(--tg1)}.badge-tg2{background:#ffe082;color:#a06000}.badge-tg3{background:#ffccbc;color:#bf360c}.badge-tgiu{background:#e0e0e0;color:#666}
 .tg-item-content{flex:1}
 .tg-item-room{font-size:11px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
 .tg-item-title{font-weight:500;font-size:14px;color:var(--dark)}
@@ -1748,6 +1834,346 @@ function stShowError(msg) {
 function stHideError() {
   document.getElementById('stError').style.display = 'none';
 }
+// ─── SALGSOPPGAVE-SEKSJONER GENERATOR ────────────────────────────────────────
+
+const skZone = document.getElementById('skUploadZone');
+skZone.addEventListener('dragover', e => { e.preventDefault(); skZone.classList.add('dragover'); });
+skZone.addEventListener('dragleave', () => skZone.classList.remove('dragover'));
+skZone.addEventListener('drop', e => {
+  e.preventDefault();
+  skZone.classList.remove('dragover');
+  if (e.dataTransfer.files[0]) handleSeksjonerFile(e.dataTransfer.files[0]);
+});
+
+window._skAbortController = null;
+
+async function handleSeksjonerFile(file) {
+  if (!file || file.type !== 'application/pdf') { skShowError('Kun PDF-filer støttes.'); return; }
+  if (file.size > 50 * 1024 * 1024) { skShowError('Filen er for stor (maks 50 MB).'); return; }
+
+  skHideError();
+  document.getElementById('skUploadIcon').textContent = '📄';
+  document.getElementById('skUploadTitle').style.color = 'var(--gold)';
+  document.getElementById('skUploadTitle').textContent = file.name;
+  document.getElementById('skUploadSub').textContent = (file.size / 1024 / 1024).toFixed(1) + ' MB · Analyseres nå...';
+
+  document.getElementById('skProgressWrap').style.display = 'block';
+  document.getElementById('skCancelBtn').style.display = 'block';
+  skSetStep(1, 'active'); skSetStep(2, null); skSetStep(3, null);
+  skSetProgress(5, 'Leser PDF...');
+  skSetStatus('processing', 'Analyserer...');
+
+  document.getElementById('skOutputBody').innerHTML = `<div style="padding:8px 0; font-size:13px; color:var(--text2);">Genererer seksjoner…</div>`;
+  document.getElementById('skResultActions').style.display = 'none';
+
+  window._skAbortController = new AbortController();
+
+  try {
+    const base64 = await fileToBase64(file);
+    await delay(500);
+    skSetStep(1, 'done'); skSetStep(2, 'active');
+    skSetProgress(20, 'Henter nøkkeldata...');
+
+    let fakePct = 20;
+    const crawl = setInterval(() => {
+      if (fakePct < 85) {
+        fakePct += fakePct < 50 ? Math.random() * 1.0 : Math.random() * 0.3;
+        if (fakePct > 55) { skSetStep(2, 'done'); skSetStep(3, 'active'); skSetProgress(fakePct, 'Bygger seksjoner...'); }
+        else skSetProgress(fakePct, 'Henter nøkkeldata...');
+      }
+    }, 500);
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 8000,
+        messages: [{
+          role: 'user',
+          content: [
+            {
+              type: 'document',
+              source: { type: 'base64', media_type: 'application/pdf', data: base64 }
+            },
+            {
+              type: 'text',
+              text: `Du er en erfaren norsk eiendomsmegler. Les dette vedleggsdokumentet nøye og generer følgende seksjoner til en salgsoppgave. Svar KUN med JSON, ingen forklaringer, ingen markdown-backticks.
+
+JSON-format:
+{
+  "areal": {
+    "primærrom": "",
+    "bruksareal": "",
+    "bruttoareal": "",
+    "balkonger": "",
+    "bod": "",
+    "garasje": "",
+    "tomteareal": "",
+    "etasje": "",
+    "soverom": "",
+    "bad": "",
+    "noter": ""
+  },
+  "noekkelinformasjon": {
+    "boligtype": "",
+    "eierform": "",
+    "byggeaar": "",
+    "etasje": "",
+    "heis": "",
+    "energikarakter": "",
+    "fellesgjeld": "",
+    "felleskostnader": "",
+    "prisantydning": "",
+    "totalpris": "",
+    "gnr": "",
+    "bnr": "",
+    "snr": "",
+    "kommunenummer": "",
+    "oppdragsnummer": "",
+    "megler": ""
+  },
+  "beliggenhet": "",
+  "offentlige_forhold": "",
+  "bebyggelse": "",
+  "sameie_borettslag": "",
+  "tilstandsgrader": [
+    {
+      "grad": "TG2 eller TG3",
+      "rom": "",
+      "tittel": "",
+      "beskrivelse": "",
+      "utbedring": ""
+    }
+  ],
+  "tinglyste_rettigheter": ""
+}
+
+Regler:
+- "beliggenhet": 3–5 setninger om beliggenhet, nabolag, nærhet til kollektivtransport og servicetilbud, basert på det dokumentet sier
+- "offentlige_forhold": informasjon om reguleringsplan, kommunale avgifter, eiendomsskatt, konsesjon/forkjøpsrett dersom det finnes i dokumentet. Hvis ikke nevnt: skriv "Ikke opplyst i vedlagte dokumenter."
+- "bebyggelse": beskrivelse av bygningen utvendig – byggeår, konstruksjon, fasade, tak, vinduer
+- "sameie_borettslag": kun relevant hvis boligen er i sameie/borettslag. Navn, orgnr, antall seksjoner/andeler, forretningsfører, forsikring, vedlikeholdsplan. Hvis selveier: skriv "Selveierbolig – ikke aktuelt."
+- "tilstandsgrader": KUN TG2 og TG3 fra tilstandsrapporten. Ikke TG0, TG1 eller TGIU. Hent rom, tittel og beskrivelse nøyaktig som i rapporten.
+- "tinglyste_rettigheter": servitutter, heftelser, erklæringer og rettigheter tinglyst på eiendommen. Hvis ikke nevnt: "Ingen tinglyste rettigheter eller forpliktelser fremgår av vedlagte dokumenter."
+- Alle tekstfelt på norsk bokmål
+- Tomme felt som ikke finnes i dokumentet: bruk ""
+`
+            }
+          ]
+        }]
+      }),
+      signal: window._skAbortController.signal
+    });
+
+    clearInterval(crawl);
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error?.message || 'API-feil: ' + response.status);
+    }
+
+    const data = await response.json();
+    const raw = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const d = JSON.parse(clean);
+
+    window._skGeneratedText = formatSeksjonerAsText(d);
+    document.getElementById('skOutputBody').innerHTML = buildSeksjonerHTML(d);
+
+    skSetStep(3, 'done');
+    skSetProgress(100, 'Ferdig!');
+    skSetStatus('ready', 'Klar');
+    document.getElementById('skResultActions').style.display = 'flex';
+    document.getElementById('skCancelBtn').style.display = 'none';
+
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      skSetStatus('', 'Avbrutt');
+      skShowError('Generering avbrutt.');
+    } else {
+      skSetStatus('', 'Feil');
+      skShowError('Noe gikk galt: ' + err.message);
+    }
+    document.getElementById('skCancelBtn').style.display = 'none';
+    document.getElementById('skProgressWrap').style.display = 'none';
+  }
+}
+
+function buildSeksjonerHTML(d) {
+  const f = v => (v && v.trim()) ? v : '–';
+  const a = d.areal || {};
+  const n = d.noekkelinformasjon || {};
+  const tgs = (d.tilstandsgrader || []).filter(t => t.grad && (t.grad.includes('TG2') || t.grad.includes('TG3')));
+
+  const arealRows = [
+    ['Primærrom (P-ROM)', a.primærrom],
+    ['Bruksareal (BRA)', a.bruksareal],
+    ['Bruttoareal (BTA)', a.bruttoareal],
+    ['Balkong/terrasse', a.balkonger],
+    ['Bod', a.bod],
+    ['Garasje', a.garasje],
+    ['Tomteareal', a.tomteareal],
+    ['Etasje', a.etasje],
+    ['Soverom', a.soverom],
+    ['Bad/WC', a.bad],
+  ].filter(([,v]) => v && v.trim()).map(([label, val]) => `
+    <div class="result-item">
+      <div class="result-item-label">${label}</div>
+      <div class="result-item-value">${val}</div>
+    </div>`).join('');
+
+  const nøkkelRows = [
+    ['Boligtype', n.boligtype],
+    ['Eierform', n.eierform],
+    ['Byggeår', n.byggeaar],
+    ['Etasje', n.etasje],
+    ['Heis', n.heis],
+    ['Energikarakter', n.energikarakter],
+    ['Fellesgjeld', n.fellesgjeld],
+    ['Felleskostnader/mnd', n.felleskostnader],
+    ['Prisantydning', n.prisantydning],
+    ['Totalpris', n.totalpris],
+    ['Gnr/Bnr/Snr', [n.gnr, n.bnr, n.snr].filter(Boolean).join('/') || ''],
+    ['Oppdragsnr', n.oppdragsnummer],
+    ['Ansvarlig megler', n.megler],
+  ].filter(([,v]) => v && v.trim()).map(([label, val]) => `
+    <div class="result-item">
+      <div class="result-item-label">${label}</div>
+      <div class="result-item-value">${val}</div>
+    </div>`).join('');
+
+  const tgHTML = tgs.length ? tgs.map(t => {
+    const badge = t.grad.includes('TG3') ? 'sk-badge-tg3' : 'sk-badge-tg2';
+    return `<div class="sk-tg-item">
+      <div class="sk-tg-badge ${badge}">${t.grad}</div>
+      <div class="sk-tg-content">
+        <div class="sk-tg-room">${t.rom || ''}</div>
+        <div class="sk-tg-title">${t.tittel || ''}</div>
+        ${t.beskrivelse ? `<div class="sk-tg-desc">${t.beskrivelse}</div>` : ''}
+        ${t.utbedring ? `<div class="sk-tg-utbedring">▸ ${t.utbedring}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('') : '<div style="color:var(--text2); font-size:13px;">Ingen TG2 eller TG3 funnet i dokumentet.</div>';
+
+  return `
+    <div class="result-section">
+      <div class="result-section-title">Areal</div>
+      <div class="result-grid">${arealRows}</div>
+      ${a.noter ? `<div class="result-text" style="margin-top:10px; font-size:12px;">${a.noter}</div>` : ''}
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">Nøkkelinformasjon</div>
+      <div class="result-grid">${nøkkelRows}</div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">Beliggenhet</div>
+      <div class="result-text">${f(d.beliggenhet)}</div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">Offentlige forhold</div>
+      <div class="result-text">${f(d.offentlige_forhold)}</div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">Bebyggelse</div>
+      <div class="result-text">${f(d.bebyggelse)}</div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">Sameiet / Borettslaget</div>
+      <div class="result-text">${f(d.sameie_borettslag)}</div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">Tilstandsgrader – TG2 og TG3</div>
+      ${tgHTML}
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">Tinglyste rettigheter og forpliktelser</div>
+      <div class="result-text">${f(d.tinglyste_rettigheter)}</div>
+    </div>
+  `;
+}
+
+function formatSeksjonerAsText(d) {
+  const a = d.areal || {};
+  const n = d.noekkelinformasjon || {};
+  const tgs = (d.tilstandsgrader || []).filter(t => t.grad && (t.grad.includes('TG2') || t.grad.includes('TG3')));
+  const lines = [];
+  lines.push('=== AREAL ===');
+  if (a.primærrom) lines.push('P-ROM: ' + a.primærrom);
+  if (a.bruksareal) lines.push('BRA: ' + a.bruksareal);
+  if (a.etasje) lines.push('Etasje: ' + a.etasje);
+  if (a.soverom) lines.push('Soverom: ' + a.soverom);
+  lines.push('\n=== NØKKELINFORMASJON ===');
+  if (n.boligtype) lines.push('Boligtype: ' + n.boligtype);
+  if (n.prisantydning) lines.push('Prisantydning: ' + n.prisantydning);
+  if (n.megler) lines.push('Megler: ' + n.megler);
+  lines.push('\n=== BELIGGENHET ===\n' + (d.beliggenhet || ''));
+  lines.push('\n=== OFFENTLIGE FORHOLD ===\n' + (d.offentlige_forhold || ''));
+  lines.push('\n=== BEBYGGELSE ===\n' + (d.bebyggelse || ''));
+  lines.push('\n=== SAMEIET/BORETTSLAGET ===\n' + (d.sameie_borettslag || ''));
+  lines.push('\n=== TILSTANDSGRADER (TG2/TG3) ===');
+  tgs.forEach(t => lines.push(`${t.grad} – ${t.rom}: ${t.tittel}\n${t.beskrivelse || ''}`));
+  lines.push('\n=== TINGLYSTE RETTIGHETER ===\n' + (d.tinglyste_rettigheter || ''));
+  return lines.join('\n');
+}
+
+function cancelSeksjoner() {
+  if (window._skAbortController) window._skAbortController.abort();
+  document.getElementById('skCancelBtn').style.display = 'none';
+}
+
+function copySeksjoner() {
+  navigator.clipboard.writeText(window._skGeneratedText || '').then(() => {
+    const btn = document.querySelector('#skResultActions .btn-sm-gold');
+    btn.textContent = '✓ Kopiert!';
+    setTimeout(() => { btn.textContent = '📋 Kopier alle seksjoner'; }, 2000);
+  });
+}
+
+function resetSeksjoner() {
+  document.getElementById('skUploadIcon').textContent = '📋';
+  document.getElementById('skUploadTitle').textContent = 'Last opp vedlegg-PDF';
+  document.getElementById('skUploadTitle').style.color = '';
+  document.getElementById('skUploadSub').textContent = 'Tilstandsrapport, egenerklæring og vedlegg';
+  document.getElementById('skProgressWrap').style.display = 'none';
+  document.getElementById('skResultActions').style.display = 'none';
+  document.getElementById('skOutputBody').innerHTML = `
+    <div class="output-placeholder">
+      <div class="output-placeholder-icon">📋</div>
+      <div style="font-size:14px; color:var(--text2);">Seksjonene genereres her</div>
+    </div>`;
+  skSetStatus('', 'Venter på fil...');
+  skHideError();
+  document.getElementById('skFileInput').value = '';
+}
+
+function skSetStep(n, state) {
+  const el = document.getElementById('skStep' + n);
+  el.classList.remove('active', 'done');
+  if (state) el.classList.add(state);
+  el.querySelector('.progress-step-dot').textContent = state === 'done' ? '✓' : state === 'active' ? '↻' : n;
+}
+function skSetProgress(pct, text) {
+  document.getElementById('skProgressFill').style.width = Math.round(pct) + '%';
+  document.getElementById('skProgressPct').textContent = Math.round(pct) + '%';
+  document.getElementById('skProgressText').textContent = text;
+}
+function skSetStatus(type, text) {
+  document.getElementById('skStatusDot').className = 'status-dot' + (type ? ' ' + type : '');
+  document.getElementById('skStatusText').textContent = text;
+}
+function skShowError(msg) {
+  const el = document.getElementById('skError');
+  el.textContent = msg; el.style.display = 'block';
+}
+function skHideError() { document.getElementById('skError').style.display = 'none'; }
 
 </script>
 
