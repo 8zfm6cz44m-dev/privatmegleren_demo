@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_39.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_40.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -892,6 +892,18 @@ footer {
         <div id="stError" style="display:none; margin-top:16px; font-size:13px; color:var(--red); padding:12px 16px; border:1px solid rgba(192,80,64,0.3); border-radius:3px;"></div>
 
         <button id="stCancelBtn" onclick="cancelSalgstekst()" style="display:none; margin-top:12px; width:100%; padding:10px; background:transparent; border:1px solid rgba(201,153,90,0.3); color:var(--text2); font-family:&#39;Syne&#39;,sans-serif; font-size:13px; border-radius:2px; cursor:pointer; transition:all .2s" onmouseover="this.style.borderColor=&#39;var(--gold)&#39;;this.style.color=&#39;var(--text)&#39;" onmouseout="this.style.borderColor=&#39;rgba(201,153,90,0.3)&#39;;this.style.color=&#39;var(--text2)&#39;">✕ Avbryt</button>
+
+        <div style="margin-top:20px; padding-top:20px; border-top:1px solid rgba(201,153,90,0.15);">
+          <div style="font-size:12px; color:var(--text2); margin-bottom:10px; letter-spacing:0.5px;">ELLER SE EKSEMPEL</div>
+          <button onclick="showSeksjonerExample()" style="width:100%; padding:12px 16px; background:transparent; border:1px solid rgba(201,153,90,0.4); color:var(--text); font-family:&#39;Syne&#39;,sans-serif; font-size:13px; border-radius:2px; cursor:pointer; transition:all .2s; text-align:left; display:flex; align-items:center; gap:10px;" onmouseover="this.style.borderColor=&#39;var(--gold)&#39;;this.style.background=&#39;rgba(201,153,90,0.05)&#39;" onmouseout="this.style.borderColor=&#39;rgba(201,153,90,0.4)&#39;;this.style.background=&#39;transparent&#39;">
+            <span style="font-size:18px;">🏠</span>
+            <div>
+              <div style="font-weight:500;">Hagelundveien 42, Oslo</div>
+              <div style="font-size:11px; color:var(--text2); margin-top:2px;">3-roms leilighet · Grorud · Aksje</div>
+            </div>
+            <span style="margin-left:auto; color:var(--gold); font-size:12px;">→</span>
+          </button>
+        </div>
       </div>
 
       <!-- RIGHT: Output -->
@@ -2126,6 +2138,120 @@ function formatSeksjonerAsText(d) {
   tgs.forEach(t => lines.push(`${t.grad} – ${t.rom}: ${t.tittel}\n${t.beskrivelse || ''}`));
   lines.push('\n=== TINGLYSTE RETTIGHETER ===\n' + (d.tinglyste_rettigheter || ''));
   return lines.join('\n');
+}
+
+// HAGELUNDVEIEN 42 DEMO DATA
+const hagelundveien42Data = {
+  "areal": {
+    "primærrom": "62 m²",
+    "bruksareal": "76 m² (BRA-i: 62 m² + BRA-e: 14 m²)",
+    "bruttoareal": "",
+    "balkonger": "10 m² (TBA – terrasse-/balkongareal)",
+    "bod": "2 kjellerboder på hhv. 5,7 m² og 8,7 m² (BRA-e, tilhører boligselskapet som fellesareal)",
+    "garasje": "",
+    "tomteareal": "22 787 m² (iflg. EDR)",
+    "etasje": "1 (høy 1. etasje)",
+    "soverom": "2",
+    "bad": "1",
+    "noter": "Arealmålingen er basert på NS 3940:2023. Bodarealene tilhører boligselskapet og disponering kan opphøre ved vedtak."
+  },
+  "noekkelinformasjon": {
+    "boligtype": "Leilighet",
+    "eierform": "Aksje (boligaksjeselskap)",
+    "byggeaar": "1949",
+    "etasje": "1",
+    "heis": "Nei",
+    "energikarakter": "F – Oransje",
+    "fellesgjeld": "250 274,-",
+    "felleskostnader": "6 409,- /mnd",
+    "prisantydning": "4 090 000,-",
+    "totalpris": "4 367 824,- (inkl. omkostninger)",
+    "gnr": "94",
+    "bnr": "315",
+    "snr": "",
+    "kommunenummer": "0301",
+    "oppdragsnummer": "125260101",
+    "megler": "Christer Fjeld, PrivatMegleren Primera"
+  },
+  "beliggenhet": "Hagelundveien 42 ligger i Øvre Grorud, et rolig og barnevennlig boligområde i Oslo øst med fin intern beliggenhet i borettslaget, vendt ut mot et naturskjønt og usjenert grøntområde. Det er gangavstand til Grorud senter med dagligdagse servicetilbud – Rema 1000 og Coop Extra ligger 8–9 minutter til fots. Bussholdeplass med linje 62 er kun 0,2 km unna (2 min), og Grorud stasjon med t-bane (linje L1) gir rask forbindelse til Oslo S på ca. 18 minutter med tog. Umiddelbar nærhet til marka med flotte turmuligheter sommer og vinter. Nabolaget Øvre Grorud scorer 97/100 på turmulighetene, 92/100 på kollektivtilbud og 75/100 på støynivå.",
+  "offentlige_forhold": "Kommunenr.: 0301 (Oslo). Gnr. 94, Bnr. 315, Andelsnr. 26, Leilighetsnr. 23. Vei, vann og avløp: offentlig. Tomtestørrelse: 22 787,5 m² iflg. EDR – oppgitt areal kan fravike fra faktisk areal om ikke grensepunktene er koordinatfestet med høy nøyaktighet. Det er ikke utført radonmålinger i boligen (TG-2) – radonkartet viser moderat til lav aktsomhetsgrad, og målinger anbefales. En utvidet el-kontroll anbefales gjennomført før kjøp. For detaljer om reguleringsplan og bestemmelser, se vedlagte reguleringsopplysninger.",
+  "bebyggelse": "Boligblokk oppført i 1949 med støpt dekke. Yttervegger i teglstein med pussede og malte fasader. Saltak i treverk tekket med takstein. Snøfangere, renner, nedløp og beslag i stål. Vinduer og balkongdør med 2-lags glass og trekarmer – vinduer datert 2017 og 2022, balkongdør 2022. Finert entredør (B30/35dB) med kikkehull og sikkerhetsslås. Felles trapp i støpt terrazzo. Balkong utført med støpt dekke forankret til bygning, dekke oppforet med tregulv (9,6 m²). Balkongrehabilitering utført i 2003/2004. Bygningsdeler som yttervegger, tak, grunnmur og fellesarealer er underlagt boligselskapets ansvarsområde og er ikke tilstandsvurdert.",
+  "sameie_borettslag": "Eiendommen er organisert som et boligaksjeselskap. Eierformen er aksje, andelsnr. 26, leilighetsnr. 23. Andel fellesgjeld: 250 274,-. Andel fellesformue: 26 974,-. Fellesutgifter: 6 409,- per måned, som dekker bl.a. vaktmester-/vektertjeneste, kabel-TV og bredbånd. Boligselskapets styre gjennomførte en baderomsrehabilitering i 2017/2018, inkl. avløpsrør og vannledninger. Boligselskapet kan ved vedtak beslutte annet bruk av fellesarealet, og disponering av bodarealene kan dermed opphøre. For ytterligere informasjon om selskapet, regnskap og vedtekter, se vedlagte husordensregler og vedtekter.",
+  "tilstandsgrader": [
+    {
+      "grad": "TG2",
+      "rom": "Etasjeskille og gulv på grunn",
+      "tittel": "Skjevheter og ujevnheter",
+      "beskrivelse": "Skjevheter/ujevnheter/«knirk» registrert. Lokalt avvik målt opp til 12 mm, totalt avvik opp til 22 mm.",
+      "utbedring": "Ikke behov for umiddelbare tiltak, men ved legging av nytt gulv må tiltak påregnes."
+    },
+    {
+      "grad": "TG2",
+      "rom": "Kjøkken – Avtrekk",
+      "tittel": "Omluftsvifte (kullfilter)",
+      "beskrivelse": "Avtrekk med kullfiltervifte gis TG-2 iht. NS3600. Det er ikke tillatt å endre dette i blokkleieligheter.",
+      "utbedring": ""
+    },
+    {
+      "grad": "TG2",
+      "rom": "Våtrom: Bad/Vaskerom – Overflater",
+      "tittel": "Fall på gulv mot sluk og trevindu i dusjsone",
+      "beskrivelse": "Deler av fall på gulv mot sluk er noe dårlig. Trevindu er etablert i dusjsone og er uheldig.",
+      "utbedring": "Montering av dusjkabinett anbefales."
+    },
+    {
+      "grad": "TG2",
+      "rom": "Våtrom: Bad/Vaskerom – Ventilasjon",
+      "tittel": "Naturlig ventilasjon",
+      "beskrivelse": "Rommet har kun naturlig avtrekk og vil kun være effektivt ved vind og større temperaturforskjeller. TG-2 er satt selv om løsningen tilfredsstiller forskriften ved byggeåret.",
+      "utbedring": ""
+    },
+    {
+      "grad": "TG2",
+      "rom": "Vegger",
+      "tittel": "Ufagmessige arbeider tilknyttet hovedsoverom",
+      "beskrivelse": "Montering av panelplater tilknyttet hovedsoverom fremstår som ufagmessig. Gjenstående arbeider ble i tillegg observert.",
+      "utbedring": "Utbedring av oppgitte avvik må påregnes."
+    },
+    {
+      "grad": "TG2",
+      "rom": "Innvendige dører",
+      "tittel": "Elde og slitasje",
+      "beskrivelse": "Innerdører med normal elde og slitasje, alder tatt i betraktning. Oppgradert med overflatebehandlinger. TG-2 gis grunnet elde og slitasje.",
+      "utbedring": ""
+    },
+    {
+      "grad": "TG2",
+      "rom": "Radon",
+      "tittel": "Manglende radonmåling",
+      "beskrivelse": "Det er ikke utført radonmålinger i boligen. Radonkartet viser at området har moderat til lav aktsomhetsgrad for radon. Oppgitt avvik gis TG-2 (ref. NS3600).",
+      "utbedring": "Det anbefales å utføre målinger for å kartlegge radonkonsentrasjon."
+    }
+  ],
+  "tinglyste_rettigheter": "Eiendommen selges med gnr. 94, bnr. 315, andelsnr. 26 i Oslo kommune (kommunenr. 0301). Andel i boligaksjeselskap tinglyses ikke i grunnboken på samme måte som selveierboliger – eventuelle heftelser på aksjen og i boligselskapet bør undersøkes nærmere med megler. Ingen tinglyste rettigheter eller forpliktelser utover dette fremgår av vedlagte dokumenter."
+};
+
+function showSeksjonerExample() {
+  // Show file info in upload zone
+  document.getElementById('skUploadIcon').textContent = '📄';
+  document.getElementById('skUploadTitle').style.color = 'var(--gold)';
+  document.getElementById('skUploadTitle').textContent = 'Hagelundveien_42_vedlegg.pdf';
+  document.getElementById('skUploadSub').textContent = 'Eksempeldokument · Hagelundveien 42, 0963 Oslo';
+
+  // Hide progress, show result
+  document.getElementById('skProgressWrap').style.display = 'none';
+  document.getElementById('skCancelBtn').style.display = 'none';
+  skHideError();
+
+  // Update status
+  skSetStatus('ready', 'Eksempel – Klar');
+
+  // Store text version for copy
+  window._skGeneratedText = formatSeksjonerAsText(hagelundveien42Data);
+
+  // Render output
+  document.getElementById('skOutputBody').innerHTML = buildSeksjonerHTML(hagelundveien42Data);
+  document.getElementById('skResultActions').style.display = 'flex';
 }
 
 function cancelSeksjoner() {
