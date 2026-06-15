@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/martin/Downloads/index_37.html -->
+<!-- saved from url=(0044)file:///Users/martin/Downloads/index_38.html -->
 <html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -911,6 +911,7 @@ footer {
         </div>
         <div id="stResultActions" style="display:none; padding:16px 20px; border-top:1px solid var(--border2); gap:10px;">
           <button class="btn-sm btn-sm-gold" onclick="copySalgstekst()" style="flex:1">📋 Kopier tekst</button>
+          <button class="btn-sm btn-sm-outline" onclick="downloadSalgstekstPDF()">⬇ Last ned PDF</button>
           <button class="btn-sm btn-sm-outline" onclick="resetSalgstekst()">↩ Ny fil</button>
         </div>
       </div>
@@ -986,6 +987,7 @@ footer {
         </div>
         <div id="skResultActions" style="display:none; padding:16px 20px; border-top:1px solid var(--border2); gap:10px;">
           <button class="btn-sm btn-sm-gold" onclick="copySeksjoner()" style="flex:1">📋 Kopier alle seksjoner</button>
+          <button class="btn-sm btn-sm-outline" onclick="downloadSeksjonerPDF()">⬇ Last ned PDF</button>
           <button class="btn-sm btn-sm-outline" onclick="resetSeksjoner()">↩ Ny fil</button>
         </div>
       </div>
@@ -2174,6 +2176,70 @@ function skShowError(msg) {
   el.textContent = msg; el.style.display = 'block';
 }
 function skHideError() { document.getElementById('skError').style.display = 'none'; }
+
+// ─── PDF NEDLASTING ───────────────────────────────────────────────────────────
+
+function downloadSalgstekstPDF() {
+  const tekst = window._stGeneratedText || '';
+  if (!tekst) return;
+  const paragraphs = tekst.trim().split(/\n\n+/).map(p => `<p style="margin:0 0 14px 0; line-height:1.75;">${p.trim()}</p>`).join('');
+  const html = `<!DOCTYPE html><html lang="no"><head><meta charset="UTF-8">
+<title>Salgstekst</title>
+<style>
+  body { font-family: Georgia, serif; font-size: 14pt; color: #1a1814; max-width: 700px; margin: 60px auto; padding: 0 40px; }
+  h1 { font-size: 18pt; margin-bottom: 32px; font-weight: normal; border-bottom: 1px solid #ccc; padding-bottom: 12px; }
+  @media print { body { margin: 40px; } }
+</style>
+</head><body>
+<h1>Salgstekst</h1>
+${paragraphs}
+<script>window.onload=function(){window.print()}<\/script>
+</body></html>`;
+  const win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
+}
+
+function downloadSeksjonerPDF() {
+  const body = document.getElementById('skOutputBody');
+  if (!body) return;
+
+  // Build a clean print-friendly version using the rendered HTML
+  const inner = body.innerHTML;
+  const html = `<!DOCTYPE html><html lang="no"><head><meta charset="UTF-8">
+<title>Salgsoppgave – seksjoner</title>
+<style>
+  body { font-family: Georgia, serif; font-size: 13pt; color: #1a1814; max-width: 760px; margin: 40px auto; padding: 0 40px; }
+  h1 { font-size: 20pt; font-weight: normal; margin-bottom: 8px; }
+  .result-section { margin-bottom: 28px; page-break-inside: avoid; }
+  .result-section-title { font-size: 9pt; letter-spacing: 1.5px; text-transform: uppercase; color: #b5844a; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #e8d9c4; font-family: sans-serif; }
+  .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 4px; }
+  .result-item { background: #f9f6f2; padding: 10px 14px; border-radius: 3px; }
+  .result-item-label { font-size: 9pt; letter-spacing: 0.8px; text-transform: uppercase; color: #7a7570; margin-bottom: 3px; font-family: sans-serif; }
+  .result-item-value { font-size: 13pt; font-weight: 500; }
+  .result-text { font-size: 12pt; line-height: 1.75; color: #3d3a35; font-weight: 300; }
+  .result-text p + p { margin-top: 10px; }
+  .sk-tg-item { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #e8e2d9; }
+  .sk-tg-item:last-child { border-bottom: none; }
+  .sk-tg-badge { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9pt; font-weight: 700; font-family: sans-serif; }
+  .sk-badge-tg2 { background: #ffe082; color: #a06000; }
+  .sk-badge-tg3 { background: #ffccbc; color: #bf360c; }
+  .sk-tg-content { flex: 1; }
+  .sk-tg-room { font-size: 9pt; font-weight: 500; letter-spacing: .8px; text-transform: uppercase; color: #7a7570; margin-bottom: 2px; font-family: sans-serif; }
+  .sk-tg-title { font-weight: 500; font-size: 13pt; }
+  .sk-tg-desc { font-size: 11pt; color: #3d3a35; margin-top: 4px; line-height: 1.55; }
+  .sk-tg-utbedring { font-size: 11pt; color: #b5844a; margin-top: 4px; }
+  @media print { body { margin: 30px; } .result-section { page-break-inside: avoid; } }
+</style>
+</head><body>
+<h1>Salgsoppgave – seksjoner</h1>
+${inner}
+<script>window.onload=function(){window.print()}<\/script>
+</body></html>`;
+  const win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
+}
 
 </script>
 
